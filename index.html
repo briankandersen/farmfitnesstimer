@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="description" id="meta-desc" content="Free online fitness timer for EMOM, AMRAP, Tabata, Rounds and Circuit workouts. Custom interval timers for CrossFit, HIIT, and functional fitness.">
+<meta property="og:title" id="og-title" content="Farm Fitness Timer">
+<meta property="og:description" id="og-desc" content="Custom online interval timers for CrossFit, HIIT, and functional fitness."><title>Farm Fitness Timer</title>
+<link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/" />
+<link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/" />
+<link rel="alternate" hreflang="x-default" href="https://www.farmfitnesstimer.com/" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMiIgdmlld0JveD0iMCAwIDM1MDAgMTUwOSIgd2lkdGg9IjE5NyIgaGVpZ2h0PSI4NSI+PHN0eWxlPiAuczAgeyBmaWxsOiAjZWFhNDE2IH0gLnMxIHsgZmlsbDogbm9uZTtzdHJva2U6ICNlYWE0MTQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOiA2IH0gLnMyIHsgZmlsbDogI2ZmZmZmZiB9IDwvc3R5bGU+PGcgaWQ9IkxheWVyXzFfa29waSI+PGc+PHBhdGggY2xhc3M9InMwIiBkPSJtMjA1OC44NCA3NzMuMjFjLTUxLjE1LTUuMzgtODIuMzEtOC44Ni0xNDMuODYtMTAuMDkgMTEuMTQtMy42MyAyMS43Ny04LjQyIDMxLjQ0LTE0LjU2IDI0LjkyLTExLjMgNDguMi0yOS4xNCA2Mi40My01My40NSA1Ni41OC05OS44NC02LjQ0LTE5Ni40My05NS43Ny0yMjMuNTggMi4wMS0zLjQxIDguODctNi44IDguODctNi44LTYuNzQtMC4yMy0xNy41NyA0LjAyLTE4Ljg3IDQuNTQtMzguMTQtOS4yMS04MC4xNy02LjI2LTExOS41IDE0LjU3LTEuNDQgMC43OC0yLjY0IDEuNzctNC4wNCAyLjU5LTAuNjktMy45NCAxLjY3LTEwLjcxIDEuNjctMTAuNzEtNC42MyA0LjI5LTguOTggMTMuNzQtOS45OSAxNi4wNC04NC41NyA1Ny4wNy04NS40IDE4NC4zMy02LjUzIDI0My42NS0xLjQxIDEuNTMtOS4zMyAyLjMzLTkuMzMgMi4zMyA1LjI2IDEuOTYgMTAuMzcgMC44NyAxMi42OSAwLjE4IDcuODYgNS41NiAxNi4xOCAxMC43IDI1LjUzIDE0LjggOC43NSA0LjQxIDE3LjY5IDcuNjcgMjYuNjcgMTAuNDMtNjAuODcgMS4yNS05MS40MSA0Ljc0LTE0Mi4wOCAxMC4wN2gzODAuNjhxMCAwLTAuMDEtMC4wMXptLTI3MC45LTI4MS4yMWM5Mi42OC01MS42NyAyMzMuMTIgMTEuMDEgMjMyLjM2IDEyMy42MyAwLjc3IDM2LjYxLTEzLjI4IDcyLjI0LTM4LjQ1IDk3LjU4IDIyLjM3LTMwLjYxIDMxLjI3LTcxLjU2IDE2LjcxLTExOC4xMi0zMS4yMS0xMDYuNjMtMTg3LjIyLTEyMy42NS0yNDAuNzYtMzMuNzgtMy4wNS0wLjc4LTUuNjEtOC41Ny01LjYxLTguNTctMC44NiA0Ljk5IDAuOTIgMTMuMDUgMS40NiAxNS4zMy0zLjUgNi45Mi02LjUgMTQuMzItOC43NyAyMi4zOC0xMy4wOSA1Ni4zOCAyMy44IDExMy45NiA3NC42NSAxMzUuNTMgNDkuOCAyMi42OSAxMjIuNzUgNC4xIDE0My4wNS01MC4yNiA3LjYyLTE4LjU4IDguMzgtMzcuNzIgNC41Ny01NS43MiAzLjk3IDAuMzkgOS45IDQuNjggOS45IDQuNjgtMi41OC01LjMtOS41Ny0xMS42OC0xMi4wOC0xMy44OC0xNS42OC01MC43MS02OS40NS00OC41Ni0xMjAuNTYtNzAuMDMtMC42Ni0zLjk1IDEuNjktMTAuNjcgMS42OS0xMC42Ny0wLjY5IDAuNjQtMS4zNSAxLjYzLTIuMDMgMi40OCAwLTAuMDEgMC4wNC0wLjEzIDAuMDQtMC4xMy0wLjI2IDAuMjYtMC41IDAuNjktMC43NSAxLjAxLTAuNSAwLjY4LTEgMS4yNC0xLjQ3IDEuOTctMC4zNSAwLjU0LTAuNjUgMS4wNi0wLjk3IDEuNjMtMS41MyAyLjUzLTIuODIgNC45My0zLjc0IDYuODMtNi42MyAzLjE0LTEzLjIyIDYuOS0xOS42IDEyLjE0LTIyLjg1IDE3LjIyLTMzLjM5IDQ4Ljg5LTI2LjQ0IDc2LjM3IDYuMiA0MC4zMiA0My4zMyA2Ny40OCA3OS43MyA2Ni4yNS0wLjI0IDMuODUtNi4xNyA5LjY1LTYuMTcgOS42NSA2LjY0LTEuNzggMTYuMzYtOS45NyAxNi4zNi05Ljk3IDAgMC0wLjY1LTAuMjQtMS4wOC0wLjQxIDE0LjgzLTIuNTYgMjkuMTItOS43NiA0MC41OS0yMy43OCAzOS42Ny01Ni41NC00NS4wNS0xMzIuOTctODcuMTItNjguOTctMTIuNjkgMjcuMTQgNC40IDY0LjYzIDM2LjM5IDY3LjM4IDE0Ljc3IDAuNzEgMzIuMDQtOS41NSAzMi43MS0yNi45MSAwLjQyLTE1LjE4LTE4LjYtMzEuMzMtMzEuNDEtMjAuMzcgMTMuNC0zLjQ4IDIzLjQzIDEwLjMxIDIzLjEzIDIwLjE1LTAuMzcgMTAuOTUtMTIuNjMgMTkuMjktMjQuMTcgMTguNjYtMjQuMDQtMS4wNi0zOS43NC0zMy45Ny0yOS4wNi01NS4wOSAxMC44My0yMi4yMiA0NS42MS0yNC45OCA2Mi44Mi03LjY1IDQ1LjYgNDUuNDktMi4wMyAxMDUuMDktNTguMzkgODYuMTgtNDguMjYtMTcuNDUtNjYuMjktOTIuNjItMjIuNDUtMTI0Ljc2IDEwOC43MS03OS41NSAyMDMuODYgMTIwLjU3IDc1LjY2IDE1OC4xNi03Ni4zNCAyOC44MS0xNjMuNy01MC4yOS0xNDUuMTgtMTI4LjQgMTIuNDYtNTEuMDYgNjcuMzgtODMuMzggMTE4LjgzLTgxLjMzIDExNi40My0wLjYzIDE2OS4yMSAxNTcuNzkgNzUuMDkgMjI1Ljg5LTE3MS4wMyA5OC40Mi0zMzEuODktMTM0LjIzLTE1OS41MS0yNDUuMDh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMxIiBkPSJtMjA1OC44NCA3NzMuMjFjLTUxLjE1LTUuMzgtODIuMzEtOC44Ni0xNDMuODYtMTAuMDkgMTEuMTQtMy42MyAyMS43Ny04LjQyIDMxLjQ0LTE0LjU2IDI0LjkyLTExLjMgNDguMi0yOS4xNCA2Mi40My01My40NSA1Ni41OC05OS44NC02LjQ0LTE5Ni40My05NS43Ny0yMjMuNTggMi4wMS0zLjQxIDguODctNi44IDguODctNi44LTYuNzQtMC4yMy0xNy41NyA0LjAyLTE4Ljg3IDQuNTQtMzguMTQtOS4yMS04MC4xNy02LjI2LTExOS41IDE0LjU3LTEuNDQgMC43OC0yLjY0IDEuNzctNC4wNCAyLjU5LTAuNjktMy45NCAxLjY3LTEwLjcxIDEuNjctMTAuNzEtNC42MyA0LjI5LTguOTggMTMuNzQtOS45OSAxNi4wNC04NC41NyA1Ny4wNy04NS40IDE4NC4zMy02LjUzIDI0My42NS0xLjQxIDEuNTMtOS4zMyAyLjMzLTkuMzMgMi4zMyA1LjI2IDEuOTYgMTAuMzcgMC44NyAxMi42OSAwLjE4IDcuODYgNS41NiAxNi4xOCAxMC43IDI1LjUzIDE0LjggOC43NSA0LjQxIDE3LjY5IDcuNjcgMjYuNjcgMTAuNDMtNjAuODcgMS4yNS05MS40MSA0Ljc0LTE0Mi4wOCAxMC4wN2gzODAuNjhxMCAwLTAuMDEtMC4wMXptLTI3MC45LTI4MS4yMWM5Mi42OC01MS42NyAyMzMuMTIgMTEuMDEgMjMyLjM2IDEyMy42MyAwLjc3IDM2LjYxLTEzLjI4IDcyLjI0LTM4LjQ1IDk3LjU4IDIyLjM3LTMwLjYxIDMxLjI3LTcxLjU2IDE2LjcxLTExOC4xMi0zMS4yMS0xMDYuNjMtMTg3LjIyLTEyMy42NS0yNDAuNzYtMzMuNzgtMy4wNS0wLjc4LTUuNjEtOC41Ny01LjYxLTguNTctMC44NiA0Ljk5IDAuOTIgMTMuMDUgMS40NiAxNS4zMy0zLjUgNi45Mi02LjUgMTQuMzItOC43NyAyMi4zOC0xMy4wOSA1Ni4zOCAyMy44IDExMy45NiA3NC42NSAxMzUuNTMgNDkuOCAyMi42OSAxMjIuNzUgNC4xIDE0My4wNS01MC4yNiA3LjYyLTE4LjU4IDguMzgtMzcuNzIgNC41Ny01NS43MiAzLjk3IDAuMzkgOS45IDQuNjggOS45IDQuNjgtMi41OC01LjMtOS41Ny0xMS42OC0xMi4wOC0xMy44OC0xNS42OC01MC43MS02OS40NS00OC41Ni0xMjAuNTYtNzAuMDMtMC42Ni0zLjk1IDEuNjktMTAuNjcgMS42OS0xMC42Ny0wLjY5IDAuNjQtMS4zNSAxLjYzLTIuMDMgMi40OCAwLTAuMDEgMC4wNC0wLjEzIDAuMDQtMC4xMy0wLjI2IDAuMjYtMC41IDAuNjktMC43NSAxLjAxLTAuNSAwLjY4LTEgMS4yNC0xLjQ3IDEuOTctMC4zNSAwLjU0LTAuNjUgMS4wNi0wLjk3IDEuNjMtMS41MyAyLjUzLTIuODIgNC45My0zLjc0IDYuODMtNi42MyAzLjE0LTEzLjIyIDYuOS0xOS42IDEyLjE0LTIyLjg1IDE3LjIyLTMzLjM5IDQ4Ljg5LTI2LjQ0IDc2LjM3IDYuMiA0MC4zMiA0My4zMyA2Ny40OCA3OS43MyA2Ni4yNS0wLjI0IDMuODUtNi4xNyA5LjY1LTYuMTcgOS42NSA2LjY0LTEuNzggMTYuMzYtOS45NyAxNi4zNi05Ljk3IDAgMC0wLjY1LTAuMjQtMS4wOC0wLjQxIDE0LjgzLTIuNTYgMjkuMTItOS43NiA0MC41OS0yMy43OCAzOS42Ny01Ni41NC00NS4wNS0xMzIuOTctODcuMTItNjguOTctMTIuNjkgMjcuMTQgNC40IDY0LjYzIDM2LjM5IDY3LjM4IDE0Ljc3IDAuNzEgMzIuMDQtOS41NSAzMi43MS0yNi45MSAwLjQyLTE1LjE4LTE4LjYtMzEuMzMtMzEuNDEtMjAuMzcgMTMuNC0zLjQ4IDIzLjQzIDEwLjMxIDIzLjEzIDIwLjE1LTAuMzcgMTAuOTUtMTIuNjMgMTkuMjktMjQuMTcgMTguNjYtMjQuMDQtMS4wNi0zOS43NC0zMy45Ny0yOS4wNi01NS4wOSAxMC44My0yMi4yMiA0NS42MS0yNC45OCA2Mi44Mi03LjY1IDQ1LjYgNDUuNDktMi4wMyAxMDUuMDktNTguMzkgODYuMTgtNDguMjYtMTcuNDUtNjYuMjktOTIuNjItMjIuNDUtMTI0Ljc2IDEwOC43MS03OS41NSAyMDMuODYgMTIwLjU3IDc1LjY2IDE1OC4xNi03Ni4zNCAyOC44MS0xNjMuNy01MC4yOS0xNDUuMTgtMTI4LjQgMTIuNDYtNTEuMDYgNjcuMzgtODMuMzggMTE4LjgzLTgxLjMzIDExNi40My0wLjYzIDE2OS4yMSAxNTcuNzkgNzUuMDkgMjI1Ljg5LTE3MS4wMyA5OC40Mi0zMzEuODktMTM0LjIzLTE1OS41MS0yNDUuMDh6Ij48L3BhdGg+PC9nPjxnPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTMxNS41NiAyNjcuNDN2MTY0LjY1aDI4OC4zNnYxMTUuN2gtMjg4LjM2djIyNi45NWgtMTQ0LjE4di02MjNoNDcwLjgxdjExNS43eiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTEzMDIuNTcgNjQxLjIzaC0yODkuMjVsLTU1LjE4IDEzMy41aC0xNDcuNzRsMjc3LjY4LTYyM2gxNDIuNGwyNzguNTcgNjIzaC0xNTEuM3ptLTQ1LjM5LTEwOS40N2wtOTguNzktMjM4LjUyLTk4Ljc5IDIzOC41MnoiPjwvcGF0aD48cGF0aCBjbGFzcz0iczIiIGQ9Im0zMjA1Ljk2IDc3NC43M2wtMC44OS0zNzMuOC0xODMuMzQgMzA3Ljk0aC02NC45N2wtMTgyLjQ1LTI5OS45M3YzNjUuNzloLTEzNS4yOHYtNjIzaDExOS4yNmwyMzMuMTggMzg3LjE1IDIyOS42Mi0zODcuMTVoMTE4LjM3bDEuNzggNjIzeiI+PC9wYXRoPjwvZz48Zz48cGF0aCBjbGFzcz0iczIiIGQ9Im0xMDQ1LjEyIDEwNDIuMTh2ODhoMTE1Ljg0djIwLjQ4aC0xMTUuODR2OTUuMDRoLTIzLjY4di0yMjRoMTUzLjZ2MjAuNDh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMTI1NiAxMDIxLjdoMjMuNjh2MjI0aC0yMy42OHoiPjwvcGF0aD48cGF0aCBjbGFzcz0iczIiIGQ9Im0xNDI4LjE2IDEwNDIuMThoLTc4Ljcydi0yMC40OGgxODEuMTJ2MjAuNDhoLTc4LjcydjIwMy41MmgtMjMuNjh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMTc4Ny41MiAxMDIxLjd2MjI0aC0xOS41MmwtMTQ0LTE4MS43NnYxODEuNzZoLTIzLjY4di0yMjRoMTkuNTJsMTQ0LjMyIDE4MS43NnYtMTgxLjc2eiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTIwNTAuODcgMTIyNS4yM3YyMC40OGgtMTU4LjR2LTIyNGgxNTMuNnYyMC40OGgtMTI5Ljkydjc5LjY4aDExNS44NHYyMC4xNmgtMTE1Ljg0djgzLjJ6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMjExNy4xMSAxMjE4LjUxbDkuMjgtMTguMjRjMTYgMTUuNjggNDQuNDggMjcuMiA3My45MiAyNy4yIDQxLjkyIDAgNjAuMTYtMTcuNiA2MC4xNi0zOS42OCAwLTYxLjQ0LTEzNy45Mi0yMy42OC0xMzcuOTItMTA2LjU2IDAtMzIuOTYgMjUuNi02MS40NCA4Mi41Ni02MS40NCAyNS4yOCAwIDUxLjUyIDcuMzYgNjkuNDQgMTkuODRsLTggMTguODhjLTE5LjItMTIuNDgtNDEuNi0xOC41Ni02MS40NC0xOC41Ni00MC45NiAwLTU5LjIgMTguMjQtNTkuMiA0MC42NCAwIDYxLjQ0IDEzNy45MiAyNC4zMiAxMzcuOTIgMTA1LjkyIDAgMzIuOTYtMjYuMjQgNjEuMTItODMuNTIgNjEuMTItMzMuNiAwLTY2LjU2LTExLjg0LTgzLjItMjkuMTJ6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMjM0NS45IDEyMTguNTFsOS4yOC0xOC4yNGMxNiAxNS42OCA0NC40OCAyNy4yIDczLjkyIDI3LjIgNDEuOTIgMCA2MC4xNi0xNy42IDYwLjE2LTM5LjY4IDAtNjEuNDQtMTM3LjkyLTIzLjY4LTEzNy45Mi0xMDYuNTYgMC0zMi45NiAyNS42LTYxLjQ0IDgyLjU2LTYxLjQ0IDI1LjI4IDAgNTEuNTIgNy4zNiA2OS40NCAxOS44NGwtOCAxOC44OGMtMTkuMi0xMi40OC00MS42LTE4LjU2LTYxLjQ0LTE4LjU2LTQwLjk2IDAtNTkuMiAxOC4yNC01OS4yIDQwLjY0IDAgNjEuNDQgMTM3LjkyIDI0LjMyIDEzNy45MiAxMDUuOTIgMCAzMi45Ni0yNi4yNCA2MS4xMi04My41MiA2MS4xMi0zMy42IDAtNjYuNTYtMTEuODQtODMuMi0yOS4xMnoiPjwvcGF0aD48L2c+PHBhdGggY2xhc3M9InMyIiBkPSJtMTg4Ni43NiAyNjkuMjFsLTc5LjY3LTExNy40OGgyOTcuNzhjMTY2LjQzIDAgMjcwLjU2IDg2LjMzIDI3MC41NiAyMjYuMDYgMCA5My40NS00Ny4xNyAxNjEuOTgtMTI4LjE2IDE5Ni42OWwxMzkuNzMgMjAwLjI1aC0xNTQuODZsLTEyMC4xNS0xNzMuNTUtNzcuOTYtMTE0LjgxaDYyLjgzYzg4LjExIDAgMTMyLjYxLTQwLjk0IDEzMi42MS0xMDguNTggMC02Ny42NC00NC41LTEwOC41OC0xMzIuNjEtMTA4LjU4eiI+PC9wYXRoPjwvZz48L3N2Zz4g">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Farm Fitness Timer",
+  "operatingSystem": "Web Browser",
+  "applicationCategory": "HealthAndFitnessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free online interval, Tabata, EMOM, and AMRAP timer for workouts and CrossFit.",
+  "url": "https://www.farmfitnesstimer.com/"
+}
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Oswald:wght@400;600;700;800&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #111;
+    --surface: #1a1a1a;
+    --border: #333;
+    --text: #f0f0f0;
+    --dim: #666;
+    --accent: #e8a800;
+    --accent-glow: rgba(232, 168, 0, 0.3);
+    --work: #e8a800;
+    --work-glow: rgba(232, 168, 0, 0.3);
+    --rest: #f0ede8;
+    --rest-glow: rgba(240, 237, 232, 0.2);
+    --amrap: #c49000;
+    --amrap-glow: rgba(196, 144, 0, 0.3);
+    --clock: #e8a800;
+    --danger: #c0392b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { overflow-x: hidden; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--dim); }
+  * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+
+  body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh; min-height: 100dvh;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    cursor: default;
+    -webkit-user-select: none; user-select: none;
+  }
+
+  /* ── MENU ── */
+  #menu {
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    height: 100vh; height: 100dvh; gap: 16px; padding: 2vh 20px 40px; position: relative;
+    overflow-y: auto;
+  }
+  #menu h1 {
+    margin-bottom: 0px;
+    line-height: 1;
+  }
+  .menu-logo {
+    width: clamp(200px, 50vw, 400px);
+    height: auto;
+  }
+  .menu-subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 4vw, 28px);
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    color: var(--dim);
+    margin-bottom: 20px;
+  }
+
+  .menu-btn {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: clamp(18px, 4vw, 28px); text-transform: uppercase;
+    letter-spacing: 3px; padding: 16px 48px; width: min(420px, 85vw);
+    border: 3px solid var(--border); background: var(--surface);
+    color: var(--text); cursor: pointer; transition: all 0.2s; border-radius: 4px;
+  }
+  .menu-btn:hover, .menu-btn:focus {
+    border-color: var(--accent); color: var(--accent); transform: scale(1.03); outline: none;
+  }
+
+  /* ── SETUP SCREEN ── */
+  #setup {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    height: 100vh; height: 100dvh; padding: 20px 20px 60px; gap: 20px; overflow-y: auto;
+    position: relative;
+  }
+  #setup h2 {
+    font-family: 'Oswald', sans-serif; font-weight: 800;
+    font-size: clamp(24px, 5vw, 44px); text-transform: uppercase;
+    letter-spacing: 4px; color: var(--accent);
+  }
+
+  .preset-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    justify-content: center; max-width: 700px; width: 100%;
+  }
+  .preset-bar select {
+    font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 600;
+    letter-spacing: 1px; padding: 10px 14px; background: var(--surface);
+    border: 2px solid var(--border); color: var(--text); border-radius: 4px;
+    outline: none; cursor: pointer; flex: 1; min-width: 160px; max-width: 280px;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
+  }
+  .preset-bar select:focus { border-color: var(--accent); }
+  .preset-bar select option { background: var(--surface); color: var(--text); }
+
+  .preset-btn {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px; padding: 10px 16px;
+    border: 2px solid var(--border); background: transparent; color: var(--dim);
+    cursor: pointer; border-radius: 4px; transition: all 0.15s; white-space: nowrap;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+  .preset-btn.danger:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--dim); }
+
+  .setup-fields {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; max-width: 700px;
+  }
+  .field { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .field label {
+    font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--dim); text-transform: uppercase; letter-spacing: 2px;
+  }
+  .field input {
+    font-family: 'Oswald', sans-serif; font-size: 34px; font-weight: 700;
+    width: 105px; text-align: center; background: var(--surface);
+    border: 3px solid var(--border); color: var(--text); border-radius: 4px;
+    padding: 10px; outline: none;
+  }
+  .field input:focus { border-color: var(--accent); }
+
+  .options-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .option-group { display: flex; align-items: center; gap: 8px; }
+  .option-group .option-label {
+    font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--dim); text-transform: uppercase; letter-spacing: 2px;
+  }
+  .toggle-group { display: flex; border: 2px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .toggle-btn {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px;
+    border: none; background: transparent; color: var(--dim); cursor: pointer; transition: all 0.15s;
+  }
+  .toggle-btn + .toggle-btn { border-left: 2px solid var(--border); }
+  .toggle-btn.active { background: var(--accent); color: var(--bg); }
+
+  .url-display {
+    display: none;
+    position: fixed; bottom: 16px; left: 20px; right: 20px;
+    z-index: 50;
+  }
+  .url-display-inner {
+    display: flex; align-items: center; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 4px; padding: 8px 14px;
+    width: 100%; box-sizing: border-box;
+  }
+  .url-display-inner input {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    background: transparent; border: none; color: var(--dim);
+    flex: 1; outline: none; min-width: 0;
+  }
+
+  .setup-actions { display: flex; gap: 14px; margin-top: 4px; align-items: center; flex-wrap: wrap; justify-content: center; }
+
+  .btn {
+    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px;
+    text-transform: uppercase; letter-spacing: 3px; padding: 14px 40px;
+    border: 3px solid var(--accent); background: transparent; color: var(--accent);
+    cursor: pointer; border-radius: 4px; transition: all 0.15s;
+  }
+  .btn:hover { background: var(--accent); color: var(--bg); }
+  .btn-back { border-color: var(--dim); color: var(--dim); }
+  .btn-back:hover { background: var(--dim); color: var(--bg); }
+  .btn-sm { font-size: 14px; padding: 8px 20px; letter-spacing: 2px; }
+
+  /* ── TIMER SCREEN ── */
+  #timer {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    height: 100vh; height: 100dvh; position: relative; transition: background-color 0.4s;
+    overflow: hidden; width: 100%;
+  }
+  .timer-phase {
+    font-family: 'Oswald', sans-serif; font-weight: 800;
+    font-size: clamp(20px, 5vw, 40px); text-transform: uppercase;
+    letter-spacing: 8px; margin-bottom: 8px; opacity: 0.9;
+    padding-right: 8px; /* compensate letter-spacing on last char */
+  }
+  .timer-display {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: clamp(80px, 28vw, 480px); line-height: 1;
+    transition: color 0.3s, text-shadow 0.3s; text-align: center;
+    width: 100%; padding: 0 20px;
+  }
+  .timer-sub {
+    font-family: 'Oswald', sans-serif; font-weight: 400;
+    font-size: clamp(16px, 3.5vw, 28px); color: var(--dim);
+    margin-top: 8px; letter-spacing: 3px;
+    padding-right: 3px; /* compensate letter-spacing */
+  }
+  .timer-controls { position: absolute; bottom: 40px; display: flex; gap: 16px; align-items: center; }
+  .volume-control {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .volume-label {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: rgba(232,168,0,0.5);
+  }
+  .volume-slider {
+    -webkit-appearance: none; appearance: none;
+    width: 80px; height: 6px; border-radius: 3px;
+    background: rgba(232,168,0,0.15); outline: none; cursor: pointer;
+  }
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); cursor: pointer;
+  }
+  .volume-slider::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 50%; border: none;
+    background: var(--accent); cursor: pointer;
+  }
+  .timer-logo {
+    position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+    width: clamp(100px, 20vw, 200px); height: auto; opacity: 0.2;
+    pointer-events: none; transition: opacity 0.4s, width 0.4s;
+  }
+  .timer-logo.clock-mode {
+    opacity: 1;
+    width: clamp(200px, 40vw, 400px);
+  }
+  .ctrl-btn {
+    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px;
+    text-transform: uppercase; letter-spacing: 3px; padding: 12px 32px;
+    border: 3px solid rgba(232,168,0,0.4); background: rgba(232,168,0,0.05);
+    color: rgba(232,168,0,0.8); cursor: pointer; border-radius: 4px;
+    transition: all 0.15s; backdrop-filter: blur(4px);
+  }
+  .ctrl-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(232,168,0,0.1); }
+
+  .clock-display {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: clamp(60px, 16vw, 300px); line-height: 1;
+    color: var(--accent); text-shadow: 0 0 60px var(--accent-glow); text-align: center;
+    width: 100%; padding: 0 20px;
+  }
+  .clock-date {
+    font-family: 'Source Sans Pro', sans-serif; font-weight: 300;
+    font-size: clamp(16px, 3.5vw, 32px); color: var(--dim);
+    margin-top: 12px; letter-spacing: 4px; text-transform: uppercase;
+    padding-right: 4px;
+  }
+
+  #url-info {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(26,26,26,0.9); backdrop-filter: blur(8px);
+    padding: 8px 16px; font-family: 'Oswald', sans-serif; font-size: 13px;
+    color: var(--dim); display: none; z-index: 100; text-align: center;
+    border-bottom: 2px solid var(--border); letter-spacing: 1px;
+  }
+  #url-info code { background: rgba(232,168,0,0.1); padding: 2px 8px; border-radius: 3px; color: var(--accent); }
+
+  #countdown-overlay {
+    display: none; position: fixed; inset: 0; background: var(--bg); z-index: 200;
+    flex-direction: column; align-items: center; justify-content: center;
+  }
+  #countdown-overlay .countdown-num {
+    font-family: 'Oswald', sans-serif; font-weight: 800;
+    font-size: clamp(120px, 35vw, 320px); line-height: 1;
+    color: var(--accent); animation: countPulse 0.6s ease-out;
+  }
+  @keyframes countPulse { 0% { transform: scale(1.4); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
+  #countdown-overlay .countdown-label {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: clamp(20px, 4vw, 32px); text-transform: uppercase;
+    letter-spacing: 8px; color: var(--dim); margin-top: 16px;
+  }
+
+  .dialog-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    z-index: 300; flex-direction: column; align-items: center; justify-content: center;
+    gap: 20px; backdrop-filter: blur(6px);
+  }
+  .dialog-box {
+    background: var(--surface); border: 3px solid var(--accent); border-radius: 8px;
+    padding: 36px 40px; display: flex; flex-direction: column; align-items: center;
+    gap: 20px; max-width: 420px; width: 90%; max-height: 90vh; overflow-y: auto;
+  }
+  .dialog-box h3 {
+    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px;
+    text-transform: uppercase; letter-spacing: 3px; color: var(--accent);
+  }
+  .dialog-box input[type="text"] {
+    font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 600;
+    width: 100%; text-align: center; background: var(--bg); border: 2px solid var(--border);
+    color: var(--text); border-radius: 4px; padding: 12px; outline: none; letter-spacing: 1px;
+  }
+  .dialog-box input[type="text"]:focus { border-color: var(--accent); }
+  .dialog-box input[type="text"]::placeholder { color: var(--dim); }
+  .dialog-actions { display: flex; gap: 12px; }
+
+  /* ── COMPOUND ── */
+  #compound-setup {
+    display: none; flex-direction: column; align-items: center;
+    height: 100vh; height: 100dvh; padding: 20px; gap: 16px; overflow-y: auto;
+  }
+  #compound-setup h2, #circuit-setup h2 {
+    font-family: 'Oswald', sans-serif; font-weight: 800;
+    font-size: clamp(24px, 5vw, 44px); text-transform: uppercase;
+    letter-spacing: 4px; color: var(--accent); flex-shrink: 0; margin-top: 16px;
+  }
+  #circuit-setup {
+    display: none; flex-direction: column; align-items: center;
+    height: 100vh; height: 100dvh; padding: 20px 20px 60px; gap: 16px; overflow-y: auto;
+    position: relative;
+  }
+  .compound-list {
+    width: 100%; max-width: 600px; display: flex; flex-direction: column;
+    gap: 8px; flex: 1; overflow-y: auto; padding: 4px;
+  }
+  .compound-segment {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface); border: 2px solid var(--border); border-radius: 6px;
+    padding: 12px 16px; transition: border-color 0.15s; cursor: pointer;
+  }
+  .compound-segment:hover { border-color: var(--dim); }
+  .seg-num { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 16px; color: var(--dim); min-width: 28px; text-align: center; }
+  .seg-type { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; min-width: 90px; }
+  .seg-type.rest-type { color: var(--rest); }
+  .seg-details { font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: var(--dim); flex: 1; }
+  .seg-move { display: flex; flex-direction: column; gap: 2px; }
+  .seg-move-btn, .seg-del {
+    font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 12px;
+    padding: 4px 8px; border: 1px solid var(--border); background: transparent;
+    color: var(--dim); cursor: pointer; border-radius: 3px; transition: all 0.15s;
+  }
+  .seg-move-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .seg-del:hover { border-color: var(--danger); color: var(--danger); }
+  .compound-empty {
+    font-family: 'Oswald', sans-serif; font-size: 16px; color: var(--dim);
+    text-align: center; padding: 40px 20px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .compound-add-bar { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; flex-shrink: 0; }
+  .compound-total {
+    font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 16px;
+    color: var(--dim); letter-spacing: 2px; text-transform: uppercase; flex-shrink: 0;
+  }
+  .compound-total strong { color: var(--accent); font-weight: 700; }
+
+  #add-segment-dialog .dialog-box { max-width: 650px; }
+  .seg-dialog-fields { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 600px; }
+  .seg-dialog-fields .field input { font-size: 24px; width: 75px; padding: 8px; }
+  .seg-dialog-fields .field label { font-size: 11px; }
+
+  .hidden { display: none !important; }
+
+  .donate-section {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    margin-top: 20px; flex-shrink: 0;
+  }
+  .donate-btn {
+    font-family: 'Oswald', sans-serif; font-weight: 400; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 2px; padding: 8px 20px;
+    border: 1px solid var(--border); background: transparent; color: var(--dim);
+    cursor: pointer; border-radius: 4px; transition: all 0.15s; opacity: 0.5;
+  }
+  .donate-btn:hover { opacity: 1; border-color: var(--dim); }
+  .donate-dismiss {
+    font-family: 'Source Sans Pro', sans-serif; font-size: 11px;
+    color: var(--dim); opacity: 0.4; cursor: pointer; border: none;
+    background: none; padding: 2px 8px;
+  }
+  .donate-dismiss:hover { opacity: 0.8; }
+  #paypal-container-R8RFFSZ5RBG4Y { min-height: 45px; }
+
+  /* ── EXPORT / IMPORT ── */
+  .export-list-container {
+    width: 100%; max-height: 40vh; overflow-y: auto; text-align: left;
+    background: var(--bg); border: 2px solid var(--border); border-radius: 4px; padding: 10px;
+  }
+  .export-category {
+    font-family: 'Oswald', sans-serif; font-size: 16px; color: var(--accent);
+    margin-top: 10px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .export-item {
+    font-family: 'Source Sans Pro', sans-serif; font-size: 16px; color: var(--text);
+    display: flex; align-items: center; gap: 8px; margin-left: 10px; margin-bottom: 4px;
+  }
+  .export-item input[type="checkbox"], .export-category-label input[type="checkbox"] {
+    accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer;
+  }
+  .import-summary-list {
+    width: 100%; max-height: 30vh; overflow-y: auto; text-align: left;
+    font-family: 'Source Sans Pro', sans-serif; font-size: 15px; color: var(--dim);
+    list-style-type: none; padding: 0; background: var(--bg); padding: 10px; border-radius: 4px;
+  }
+  .import-summary-list li { margin-bottom: 4px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+  .import-summary-list li strong { color: var(--text); }
+  .import-added { color: #2ecc71; }
+  .import-overwritten { color: var(--accent); }
+  .import-skipped { color: var(--dim); }
+  .import-renamed { color: #3498db; }
+
+  #cb-exercise-list, .export-list-container, .import-summary-list {
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  
+  @media (max-height: 500px) {
+    .timer-display { font-size: clamp(60px, 20vh, 200px); }
+    .clock-display { font-size: clamp(50px, 18vh, 180px); }
+    .timer-logo { top: 10px; width: clamp(80px, 15vw, 150px); }
+    .timer-controls { bottom: 15px; }
+    .ctrl-btn { padding: 8px 24px; font-size: 16px; }
+  }
+</style>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA6kS-ZX6WufszTSah7j6MPwfB0s41IU6weyE_vbQLvx8_1ui9OiFY0qOtmuJz-szIb4SSxxhJ4vu45Xg&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+</head>
+<body>
+
+<div id="menu">
+  <h1><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMiIgdmlld0JveD0iMCAwIDM1MDAgMTUwOSIgd2lkdGg9IjE5NyIgaGVpZ2h0PSI4NSI+PHN0eWxlPiAuczAgeyBmaWxsOiAjZWFhNDE2IH0gLnMxIHsgZmlsbDogbm9uZTtzdHJva2U6ICNlYWE0MTQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOiA2IH0gLnMyIHsgZmlsbDogI2ZmZmZmZiB9IDwvc3R5bGU+PGcgaWQ9IkxheWVyXzFfa29waSI+PGc+PHBhdGggY2xhc3M9InMwIiBkPSJtMjA1OC44NCA3NzMuMjFjLTUxLjE1LTUuMzgtODIuMzEtOC44Ni0xNDMuODYtMTAuMDkgMTEuMTQtMy42MyAyMS43Ny04LjQyIDMxLjQ0LTE0LjU2IDI0LjkyLTExLjMgNDguMi0yOS4xNCA2Mi40My01My40NSA1Ni41OC05OS44NC02LjQ0LTE5Ni40My05NS43Ny0yMjMuNTggMi4wMS0zLjQxIDguODctNi44IDguODctNi44LTYuNzQtMC4yMy0xNy41NyA0LjAyLTE4Ljg3IDQuNTQtMzguMTQtOS4yMS04MC4xNy02LjI2LTExOS41IDE0LjU3LTEuNDQgMC43OC0yLjY0IDEuNzctNC4wNCAyLjU5LTAuNjktMy45NCAxLjY3LTEwLjcxIDEuNjctMTAuNzEtNC42MyA0LjI5LTguOTggMTMuNzQtOS45OSAxNi4wNC04NC41NyA1Ny4wNy04NS40IDE4NC4zMy02LjUzIDI0My42NS0xLjQxIDEuNTMtOS4zMyAyLjMzLTkuMzMgMi4zMyA1LjI2IDEuOTYgMTAuMzcgMC44NyAxMi42OSAwLjE4IDcuODYgNS41NiAxNi4xOCAxMC43IDI1LjUzIDE0LjggOC43NSA0LjQxIDE3LjY5IDcuNjcgMjYuNjcgMTAuNDMtNjAuODcgMS4yNS05MS40MSA0Ljc0LTE0Mi4wOCAxMC4wN2gzODAuNjhxMCAwLTAuMDEtMC4wMXptLTI3MC45LTI4MS4yMWM5Mi42OC01MS42NyAyMzMuMTIgMTEuMDEgMjMyLjM2IDEyMy42MyAwLjc3IDM2LjYxLTEzLjI4IDcyLjI0LTM4LjQ1IDk3LjU4IDIyLjM3LTMwLjYxIDMxLjI3LTcxLjU2IDE2LjcxLTExOC4xMi0zMS4yMS0xMDYuNjMtMTg3LjIyLTEyMy42NS0yNDAuNzYtMzMuNzgtMy4wNS0wLjc4LTUuNjEtOC41Ny01LjYxLTguNTctMC44NiA0Ljk5IDAuOTIgMTMuMDUgMS40NiAxNS4zMy0zLjUgNi45Mi02LjUgMTQuMzItOC43NyAyMi4zOC0xMy4wOSA1Ni4zOCAyMy44IDExMy45NiA3NC42NSAxMzUuNTMgNDkuOCAyMi42OSAxMjIuNzUgNC4xIDE0My4wNS01MC4yNiA3LjYyLTE4LjU4IDguMzgtMzcuNzIgNC41Ny01NS43MiAzLjk3IDAuMzkgOS45IDQuNjggOS45IDQuNjgtMi41OC01LjMtOS41Ny0xMS42OC0xMi4wOC0xMy44OC0xNS42OC01MC43MS02OS40NS00OC41Ni0xMjAuNTYtNzAuMDMtMC42Ni0zLjk1IDEuNjktMTAuNjcgMS42OS0xMC42Ny0wLjY5IDAuNjQtMS4zNSAxLjYzLTIuMDMgMi40OCAwLTAuMDEgMC4wNC0wLjEzIDAuMDQtMC4xMy0wLjI2IDAuMjYtMC41IDAuNjktMC43NSAxLjAxLTAuNSAwLjY4LTEgMS4yNC0xLjQ3IDEuOTctMC4zNSAwLjU0LTAuNjUgMS4wNi0wLjk3IDEuNjMtMS41MyAyLjUzLTIuODIgNC45My0zLjc0IDYuODMtNi42MyAzLjE0LTEzLjIyIDYuOS0xOS42IDEyLjE0LTIyLjg1IDE3LjIyLTMzLjM5IDQ4Ljg5LTI2LjQ0IDc2LjM3IDYuMiA0MC4zMiA0My4zMyA2Ny40OCA3OS43MyA2Ni4yNS0wLjI0IDMuODUtNi4xNyA5LjY1LTYuMTcgOS42NSA2LjY0LTEuNzggMTYuMzYtOS45NyAxNi4zNi05Ljk3IDAgMC0wLjY1LTAuMjQtMS4wOC0wLjQxIDE0LjgzLTIuNTYgMjkuMTItOS43NiA0MC41OS0yMy43OCAzOS42Ny01Ni41NC00NS4wNS0xMzIuOTctODcuMTItNjguOTctMTIuNjkgMjcuMTQgNC40IDY0LjYzIDM2LjM5IDY3LjM4IDE0Ljc3IDAuNzEgMzIuMDQtOS41NSAzMi43MS0yNi45MSAwLjQyLTE1LjE4LTE4LjYtMzEuMzMtMzEuNDEtMjAuMzcgMTMuNC0zLjQ4IDIzLjQzIDEwLjMxIDIzLjEzIDIwLjE1LTAuMzcgMTAuOTUtMTIuNjMgMTkuMjktMjQuMTcgMTguNjYtMjQuMDQtMS4wNi0zOS43NC0zMy45Ny0yOS4wNi01NS4wOSAxMC44My0yMi4yMiA0NS42MS0yNC45OCA2Mi44Mi03LjY1IDQ1LjYgNDUuNDktMi4wMyAxMDUuMDktNTguMzkgODYuMTgtNDguMjYtMTcuNDUtNjYuMjktOTIuNjItMjIuNDUtMTI0Ljc2IDEwOC43MS03OS41NSAyMDMuODYgMTIwLjU3IDc1LjY2IDE1OC4xNi03Ni4zNCAyOC44MS0xNjMuNy01MC4yOS0xNDUuMTgtMTI4LjQgMTIuNDYtNTEuMDYgNjcuMzgtODMuMzggMTE4LjgzLTgxLjMzIDExNi40My0wLjYzIDE2OS4yMSAxNTcuNzkgNzUuMDkgMjI1Ljg5LTE3MS4wMyA5OC40Mi0zMzEuODktMTM0LjIzLTE1OS41MS0yNDUuMDh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMxIiBkPSJtMjA1OC44NCA3NzMuMjFjLTUxLjE1LTUuMzgtODIuMzEtOC44Ni0xNDMuODYtMTAuMDkgMTEuMTQtMy42MyAyMS43Ny04LjQyIDMxLjQ0LTE0LjU2IDI0LjkyLTExLjMgNDguMi0yOS4xNCA2Mi40My01My40NSA1Ni41OC05OS44NC02LjQ0LTE5Ni40My05NS43Ny0yMjMuNTggMi4wMS0zLjQxIDguODctNi44IDguODctNi44LTYuNzQtMC4yMy0xNy41NyA0LjAyLTE4Ljg3IDQuNTQtMzguMTQtOS4yMS04MC4xNy02LjI2LTExOS41IDE0LjU3LTEuNDQgMC43OC0yLjY0IDEuNzctNC4wNCAyLjU5LTAuNjktMy45NCAxLjY3LTEwLjcxIDEuNjctMTAuNzEtNC42MyA0LjI5LTguOTggMTMuNzQtOS45OSAxNi4wNC04NC41NyA1Ny4wNy04NS40IDE4NC4zMy02LjUzIDI0My42NS0xLjQxIDEuNTMtOS4zMyAyLjMzLTkuMzMgMi4zMyA1LjI2IDEuOTYgMTAuMzcgMC44NyAxMi42OSAwLjE4IDcuODYgNS41NiAxNi4xOCAxMC43IDI1LjUzIDE0LjggOC43NSA0LjQxIDE3LjY5IDcuNjcgMjYuNjcgMTAuNDMtNjAuODcgMS4yNS05MS40MSA0Ljc0LTE0Mi4wOCAxMC4wN2gzODAuNjhxMCAwLTAuMDEtMC4wMXptLTI3MC45LTI4MS4yMWM5Mi42OC01MS42NyAyMzMuMTIgMTEuMDEgMjMyLjM2IDEyMy42MyAwLjc3IDM2LjYxLTEzLjI4IDcyLjI0LTM4LjQ1IDk3LjU4IDIyLjM3LTMwLjYxIDMxLjI3LTcxLjU2IDE2LjcxLTExOC4xMi0zMS4yMS0xMDYuNjMtMTg3LjIyLTEyMy42NS0yNDAuNzYtMzMuNzgtMy4wNS0wLjc4LTUuNjEtOC41Ny01LjYxLTguNTctMC44NiA0Ljk5IDAuOTIgMTMuMDUgMS40NiAxNS4zMy0zLjUgNi45Mi02LjUgMTQuMzItOC43NyAyMi4zOC0xMy4wOSA1Ni4zOCAyMy44IDExMy45NiA3NC42NSAxMzUuNTMgNDkuOCAyMi42OSAxMjIuNzUgNC4xIDE0My4wNS01MC4yNiA3LjYyLTE4LjU4IDguMzgtMzcuNzIgNC41Ny01NS43MiAzLjk3IDAuMzkgOS45IDQuNjggOS45IDQuNjgtMi41OC01LjMtOS41Ny0xMS42OC0xMi4wOC0xMy44OC0xNS42OC01MC43MS02OS40NS00OC41Ni0xMjAuNTYtNzAuMDMtMC42Ni0zLjk1IDEuNjktMTAuNjcgMS42OS0xMC42Ny0wLjY5IDAuNjQtMS4zNSAxLjYzLTIuMDMgMi40OCAwLTAuMDEgMC4wNC0wLjEzIDAuMDQtMC4xMy0wLjI2IDAuMjYtMC41IDAuNjktMC43NSAxLjAxLTAuNSAwLjY4LTEgMS4yNC0xLjQ3IDEuOTctMC4zNSAwLjU0LTAuNjUgMS4wNi0wLjk3IDEuNjMtMS41MyAyLjUzLTIuODIgNC45My0zLjc0IDYuODMtNi42MyAzLjE0LTEzLjIyIDYuOS0xOS42IDEyLjE0LTIyLjg1IDE3LjIyLTMzLjM5IDQ4Ljg5LTI2LjQ0IDc2LjM3IDYuMiA0MC4zMiA0My4zMyA2Ny40OCA3OS43MyA2Ni4yNS0wLjI0IDMuODUtNi4xNyA5LjY1LTYuMTcgOS42NSA2LjY0LTEuNzggMTYuMzYtOS45NyAxNi4zNi05Ljk3IDAgMC0wLjY1LTAuMjQtMS4wOC0wLjQxIDE0LjgzLTIuNTYgMjkuMTItOS43NiA0MC41OS0yMy43OCAzOS42Ny01Ni41NC00NS4wNS0xMzIuOTctODcuMTItNjguOTctMTIuNjkgMjcuMTQgNC40IDY0LjYzIDM2LjM5IDY3LjM4IDE0Ljc3IDAuNzEgMzIuMDQtOS41NSAzMi43MS0yNi45MSAwLjQyLTE1LjE4LTE4LjYtMzEuMzMtMzEuNDEtMjAuMzcgMTMuNC0zLjQ4IDIzLjQzIDEwLjMxIDIzLjEzIDIwLjE1LTAuMzcgMTAuOTUtMTIuNjMgMTkuMjktMjQuMTcgMTguNjYtMjQuMDQtMS4wNi0zOS43NC0zMy45Ny0yOS4wNi01NS4wOSAxMC44My0yMi4yMiA0NS42MS0yNC45OCA2Mi44Mi03LjY1IDQ1LjYgNDUuNDktMi4wMyAxMDUuMDktNTguMzkgODYuMTgtNDguMjYtMTcuNDUtNjYuMjktOTIuNjItMjIuNDUtMTI0Ljc2IDEwOC43MS03OS41NSAyMDMuODYgMTIwLjU3IDc1LjY2IDE1OC4xNi03Ni4zNCAyOC44MS0xNjMuNy01MC4yOS0xNDUuMTgtMTI4LjQgMTIuNDYtNTEuMDYgNjcuMzgtODMuMzggMTE4LjgzLTgxLjMzIDExNi40My0wLjYzIDE2OS4yMSAxNTcuNzkgNzUuMDkgMjI1Ljg5LTE3MS4wMyA5OC40Mi0zMzEuODktMTM0LjIzLTE1OS41MS0yNDUuMDh6Ij48L3BhdGg+PC9nPjxnPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTMxNS41NiAyNjcuNDN2MTY0LjY1aDI4OC4zNnYxMTUuN2gtMjg4LjM2djIyNi45NWgtMTQ0LjE4di02MjNoNDcwLjgxdjExNS43eiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTEzMDIuNTcgNjQxLjIzaC0yODkuMjVsLTU1LjE4IDEzMy41aC0xNDcuNzRsMjc3LjY4LTYyM2gxNDIuNGwyNzguNTcgNjIzaC0xNTEuM3ptLTQ1LjM5LTEwOS40N2wtOTguNzktMjM4LjUyLTk4Ljc5IDIzOC41MnoiPjwvcGF0aD48cGF0aCBjbGFzcz0iczIiIGQ9Im0zMjA1Ljk2IDc3NC43M2wtMC44OS0zNzMuOC0xODMuMzQgMzA3Ljk0aC02NC45N2wtMTgyLjQ1LTI5OS45M3YzNjUuNzloLTEzNS4yOHYtNjIzaDExOS4yNmwyMzMuMTggMzg3LjE1IDIyOS42Mi0zODcuMTVoMTE4LjM3bDEuNzggNjIzeiI+PC9wYXRoPjwvZz48Zz48cGF0aCBjbGFzcz0iczIiIGQ9Im0xMDQ1LjEyIDEwNDIuMTh2ODhoMTE1Ljg0djIwLjQ4aC0xMTUuODR2OTUuMDRoLTIzLjY4di0yMjRoMTUzLjZ2MjAuNDh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMTI1NiAxMDIxLjdoMjMuNjh2MjI0aC0yMy42OHoiPjwvcGF0aD48cGF0aCBjbGFzcz0iczIiIGQ9Im0xNDI4LjE2IDEwNDIuMThoLTc4Ljcydi0yMC40OGgxODEuMTJ2MjAuNDhoLTc4LjcydjIwMy41MmgtMjMuNjh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMTc4Ny41MiAxMDIxLjd2MjI0aC0xOS41MmwtMTQ0LTE4MS43NnYxODEuNzZoLTIzLjY4di0yMjRoMTkuNTJsMTQ0LjMyIDE4MS43NnYtMTgxLjc2eiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTIwNTAuODcgMTIyNS4yM3YyMC40OGgtMTU4LjR2LTIyNGgxNTMuNnYyMC40OGgtMTI5Ljkydjc5LjY4aDExNS44NHYyMC4xNmgtMTE1Ljg0djgzLjJ6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMjExNy4xMSAxMjE4LjUxbDkuMjgtMTguMjRjMTYgMTUuNjggNDQuNDggMjcuMiA3My45MiAyNy4yIDQxLjkyIDAgNjAuMTYtMTcuNiA2MC4xNi0zOS42OCAwLTYxLjQ0LTEzNy45Mi0yMy42OC0xMzcuOTItMTA2LjU2IDAtMzIuOTYgMjUuNi02MS40NCA4Mi41Ni02MS40NCAyNS4yOCAwIDUxLjUyIDcuMzYgNjkuNDQgMTkuODRsLTggMTguODhjLTE5LjItMTIuNDgtNDEuNi0xOC41Ni02MS40NC0xOC41Ni00MC45NiAwLTU5LjIgMTguMjQtNTkuMiA0MC42NCAwIDYxLjQ0IDEzNy45MiAyNC4zMiAxMzcuOTIgMTA1LjkyIDAgMzIuOTYtMjYuMjQgNjEuMTItODMuNTIgNjEuMTItMzMuNiAwLTY2LjU2LTExLjg0LTgzLjItMjkuMTJ6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMjM0NS45IDEyMTguNTFsOS4yOC0xOC4yNGMxNiAxNS42OCA0NC40OCAyNy4yIDczLjkyIDI3LjIgNDEuOTIgMCA2MC4xNi0xNy42IDYwLjE2LTM5LjY4IDAtNjEuNDQtMTM3LjkyLTIzLjY4LTEzNy45Mi0xMDYuNTYgMC0zMi45NiAyNS42LTYxLjQ0IDgyLjU2LTYxLjQ0IDI1LjI4IDAgNTEuNTIgNy4zNiA2OS40NCAxOS44NGwtOCAxOC44OGMtMTkuMi0xMi40OC00MS42LTE4LjU2LTYxLjQ0LTE4LjU2LTQwLjk2IDAtNTkuMiAxOC4yNC01OS4yIDQwLjY0IDAgNjEuNDQgMTM3LjkyIDI0LjMyIDEzNy45MiAxMDUuOTIgMCAzMi45Ni0yNi4yNCA2MS4xMi04My41MiA2MS4xMi0zMy42IDAtNjYuNTYtMTEuODQtODMuMi0yOS4xMnoiPjwvcGF0aD48L2c+PHBhdGggY2xhc3M9InMyIiBkPSJtMTg4Ni43NiAyNjkuMjFsLTc5LjY3LTExNy40OGgyOTcuNzhjMTY2LjQzIDAgMjcwLjU2IDg2LjMzIDI3MC41NiAyMjYuMDYgMCA5My40NS00Ny4xNyAxNjEuOTgtMTI4LjE2IDE5Ni42OWwxMzkuNzMgMjAwLjI1aC0xNTQuODZsLTEyMC4xNS0xNzMuNTUtNzcuOTYtMTE0LjgxaDYyLjgzYzg4LjExIDAgMTMyLjYxLTQwLjk0IDEzMi42MS0xMDguNTggMC02Ny42NC00NC41LTEwOC41OC0xMzIuNjEtMTA4LjU4eiI+PC9wYXRoPjwvZz48L3N2Zz4g" alt="Farm Fitness" class="menu-logo" id="menu-logo"></h1>
+  <p class="menu-subtitle">Timer</p>
+  <button class="menu-btn" data-type="clock">Clock</button>
+  <button class="menu-btn" data-type="rounds">Rounds</button>
+  <button class="menu-btn" data-type="emom">EMOM</button>
+  <button class="menu-btn" data-type="amrap">AMRAP / For Time</button>
+  <button class="menu-btn" data-type="circuit">Circuit</button>
+  <button class="menu-btn" data-type="compound">Compound</button>
+  
+  <div style="display: flex; gap: 10px; margin-top: 10px;">
+    <button class="preset-btn" id="btn-export-ui" style="border-color: var(--dim);">Export Presets</button>
+    <button class="preset-btn" id="btn-import-ui" style="border-color: var(--dim);">Import Presets</button>
+    <input type="file" id="file-import-input" accept=".json" style="display:none;">
+  </div>
+
+  <div class="donate-section" id="donate-section">
+    <button class="donate-btn" id="btn-donate">Donate</button>
+    <button class="donate-dismiss" id="btn-donate-dismiss">hide</button>
+  </div>
+
+  <div id="seo-text-container" style="margin-top: 10px; max-width: 600px; text-align: center; color: var(--dim); font-size: 14px; padding-bottom: 40px; line-height: 1.5; flex-shrink: 0;">
+    <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 10px;">About Farm Fitness Timer</h2>
+    <p style="margin-bottom: 10px;">The ultimate online workout timer for your functional fitness needs. Whether you are doing a high-intensity interval training (HIIT), a CrossFit WOD, a Tabata protocol, or building a custom circuit, our web-based timer works perfectly on both mobile and desktop.</p>
+    <p>Features include programmable AMRAPs (As Many Rounds As Possible), EMOMs (Every Minute On the Minute), and complex compound timers. No app download required.</p>
+  </div>
+</div>
+
+<div id="donate-overlay" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:400; backdrop-filter:blur(6px);">
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a1a1a; border:3px solid #e8a800; border-radius:8px; padding:36px 40px; width:380px; max-width:90vw; text-align:center;">
+    <h3 style="font-family:Oswald,sans-serif; font-weight:700; font-size:22px; text-transform:uppercase; letter-spacing:3px; color:#e8a800; margin-bottom:16px;">Support Farm Fitness Timer</h3>
+    <p style="font-family:Source Sans Pro,sans-serif; font-size:15px; color:#666; line-height:1.5; margin-bottom:20px;">If you enjoy the timer, why not send a donation. You decide the amount :)</p>
+    <div id="paypal-container-R8RFFSZ5RBG4Y" style="min-height:45px; margin-bottom:16px;"></div>
+    <button class="btn btn-back btn-sm" id="btn-donate-close">Close</button>
+  </div>
+</div>
+
+<div id="setup">
+  <h2 id="setup-title"></h2>
+  <div class="preset-bar" id="preset-bar">
+    <select id="preset-select"><option value="">— Saved Presets —</option></select>
+    <button class="preset-btn" id="btn-save-preset">Save</button>
+    <button class="preset-btn danger" id="btn-delete-preset" disabled>Delete</button>
+  </div>
+  <div class="setup-fields" id="setup-fields"></div>
+  <div class="options-row" id="options-row">
+    <div class="option-group">
+      <span class="option-label">Count</span>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="dir-down" data-dir="down">Down</button>
+        <button class="toggle-btn" id="dir-up" data-dir="up">Up</button>
+      </div>
+    </div>
+    <div class="option-group">
+      <span class="option-label">Halfway Beep</span>
+      <div class="toggle-group">
+        <button class="toggle-btn" id="half-on">On</button>
+        <button class="toggle-btn active" id="half-off">Off</button>
+      </div>
+    </div>
+  </div>
+  <div class="setup-actions">
+    <button class="btn btn-back" id="btn-back">← Back</button>
+    <button class="btn" id="btn-start">Start</button>
+  </div>
+  <div class="setup-actions" style="margin-top:0; gap:10px;">
+    <button class="btn btn-back btn-sm" id="btn-copy-url">Copy URL</button>
+    <button class="btn btn-back btn-sm" id="btn-toggle-url">Show URL</button>
+  </div>
+  <div class="url-display" id="url-display">
+    <div class="url-display-inner">
+      <input type="text" id="url-output" readonly>
+    </div>
+  </div>
+</div>
+
+<div id="compound-setup">
+  <h2>Compound</h2>
+  <div class="preset-bar" id="compound-preset-bar">
+    <select id="compound-preset-select"><option value="">— Saved Presets —</option></select>
+    <button class="preset-btn" id="btn-compound-save">Save</button>
+    <button class="preset-btn danger" id="btn-compound-delete" disabled>Delete</button>
+  </div>
+  <div class="setup-fields" style="margin-bottom: 4px;">
+    <div class="field">
+      <label>Compound Rounds</label>
+      <input type="number" id="compound-total-rounds" value="1" min="1" style="width:80px; font-size:26px; padding:8px;">
+    </div>
+  </div>
+  <div class="compound-list" id="compound-list">
+    <div class="compound-empty">No segments added yet</div>
+  </div>
+  <div class="compound-total" id="compound-total"></div>
+  <div class="compound-add-bar">
+    <button class="btn btn-sm" id="btn-add-rounds">+ Rounds</button>
+    <button class="btn btn-sm" id="btn-add-emom">+ EMOM</button>
+    <button class="btn btn-sm" id="btn-add-amrap">+ AMRAP / For Time</button>
+    <button class="btn btn-sm" id="btn-add-circuit">+ Circuit</button>
+    <button class="btn btn-sm btn-back" id="btn-add-rest">+ Rest</button>
+  </div>
+  <div class="setup-actions">
+    <button class="btn btn-back" id="btn-compound-back">← Back</button>
+    <button class="btn btn-back" id="btn-compound-reset">Reset</button>
+    <button class="btn" id="btn-compound-start">Start</button>
+  </div>
+</div>
+
+<div id="circuit-setup">
+  <h2>Circuit</h2>
+  <div class="preset-bar" id="circuit-preset-bar">
+    <select id="circuit-preset-select"><option value="">— Saved Presets —</option></select>
+    <button class="preset-btn" id="btn-circuit-save">Save</button>
+    <button class="preset-btn danger" id="btn-circuit-delete" disabled>Delete</button>
+  </div>
+  <div class="setup-fields" style="margin-bottom: 4px;">
+    <div class="field">
+      <label>Circuit Rounds</label>
+      <input type="number" id="circuit-total-rounds" value="1" min="1" style="width:80px; font-size:26px; padding:8px;">
+    </div>
+    <div class="field">
+      <label>Circuit Rest (s)</label>
+      <input type="number" id="circuit-rest" value="60" min="0" style="width:80px; font-size:26px; padding:8px;">
+    </div>
+  </div>
+  <div class="compound-list" id="circuit-list">
+    <div class="compound-empty">No exercises added yet</div>
+  </div>
+  <div class="compound-total" id="circuit-total"></div>
+  <div class="compound-add-bar">
+    <button class="btn btn-sm" id="btn-add-exercise">+ Exercise</button>
+  </div>
+  <div class="setup-actions">
+    <button class="btn btn-back" id="btn-circuit-back">← Back</button>
+    <button class="btn btn-back" id="btn-circuit-reset">Reset</button>
+    <button class="btn" id="btn-circuit-start">Start</button>
+  </div>
+  <div class="setup-actions" style="margin-top:0; gap:10px;">
+    <button class="btn btn-back btn-sm" id="btn-circuit-copy-url">Copy URL</button>
+    <button class="btn btn-back btn-sm" id="btn-circuit-toggle-url">Show URL</button>
+  </div>
+  <div class="url-display" id="circuit-url-display">
+    <div class="url-display-inner">
+      <input type="text" id="circuit-url-output" readonly>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="add-exercise-dialog" style="z-index: 350;">
+  <div class="dialog-box" style="max-width: 500px;">
+    <h3 id="exercise-dialog-title">Add Exercise</h3>
+    <div class="field" style="width:100%;">
+      <label>Exercise Name</label>
+      <input type="text" id="exercise-name-input" placeholder="e.g. Push Ups" maxlength="40" autocomplete="off" style="width:100%; font-size:18px;">
+    </div>
+    <div class="seg-dialog-fields">
+      <div class="field"><label>Duration (s)</label><input type="number" id="ex-duration" value="45" min="1"></div>
+      <div class="field"><label>Rest (s)</label><input type="number" id="ex-rest" value="15" min="0"></div>
+      <div class="field"><label>Rounds</label><input type="number" id="ex-rounds" value="1" min="1"></div>
+    </div>
+    <div class="dialog-actions">
+      <button class="btn btn-back btn-sm" id="btn-ex-cancel">Cancel</button>
+      <button class="btn btn-sm" id="btn-ex-add">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="circuit-builder-dialog">
+  <div class="dialog-box" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
+    <h3 id="circuit-builder-title">Add Circuit</h3>
+    <div class="preset-bar" style="width:100%; max-width:100%;">
+      <select id="cb-preset-select" style="max-width:100%; flex:1;"><option value="">— Load Circuit Preset —</option></select>
+    </div>
+    <div class="seg-dialog-fields">
+      <div class="field"><label>Circuit Rounds</label><input type="number" id="cb-total-rounds" value="1" min="1"></div>
+      <div class="field"><label>Circuit Rest (s)</label><input type="number" id="cb-rest" value="60" min="0"></div>
+    </div>
+    <div class="compound-list" id="cb-exercise-list" style="width:100%; max-height: 250px; overflow-y: auto;">
+      <div class="compound-empty">No exercises added yet</div>
+    </div>
+    <div class="compound-total" id="cb-total"></div>
+    <button class="btn btn-sm" id="btn-cb-add-exercise" style="margin-top:4px;">+ Exercise</button>
+    <div class="dialog-actions">
+      <button class="btn btn-back btn-sm" id="btn-cb-cancel">Cancel</button>
+      <button class="btn btn-sm" id="btn-cb-save">Add</button>
+    </div>
+  </div>
+</div>
+
+<div id="timer">
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMiIgdmlld0JveD0iMCAwIDM1MDAgMTUwOSIgd2lkdGg9IjE5NyIgaGVpZ2h0PSI4NSI+PHN0eWxlPiAuczAgeyBmaWxsOiAjZWFhNDE2IH0gLnMxIHsgZmlsbDogbm9uZTtzdHJva2U6ICNlYWE0MTQ7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOiA2IH0gLnMyIHsgZmlsbDogI2ZmZmZmZiB9IDwvc3R5bGU+PGcgaWQ9IkxheWVyXzFfa29waSI+PGc+PHBhdGggY2xhc3M9InMwIiBkPSJtMjA1OC44NCA3NzMuMjFjLTUxLjE1LTUuMzgtODIuMzEtOC44Ni0xNDMuODYtMTAuMDkgMTEuMTQtMy42MyAyMS43Ny04LjQyIDMxLjQ0LTE0LjU2IDI0LjkyLTExLjMgNDguMi0yOS4xNCA2Mi40My01My40NSA1Ni41OC05OS44NC02LjQ0LTE5Ni40My05NS43Ny0yMjMuNTggMi4wMS0zLjQxIDguODctNi44IDguODctNi44LTYuNzQtMC4yMy0xNy41NyA0LjAyLTE4Ljg3IDQuNTQtMzguMTQtOS4yMS04MC4xNy02LjI2LTExOS41IDE0LjU3LTEuNDQgMC43OC0yLjY0IDEuNzctNC4wNCAyLjU5LTAuNjktMy45NCAxLjY3LTEwLjcxIDEuNjctMTAuNzEtNC42MyA0LjI5LTguOTggMTMuNzQtOS45OSAxNi4wNC04NC41NyA1Ny4wNy04NS40IDE4NC4zMy02LjUzIDI0My42NS0xLjQxIDEuNTMtOS4zMyAyLjMzLTkuMzMgMi4zMyA1LjI2IDEuOTYgMTAuMzcgMC44NyAxMi42OSAwLjE4IDcuODYgNS41NiAxNi4xOCAxMC43IDI1LjUzIDE0LjggOC43NSA0LjQxIDE3LjY5IDcuNjcgMjYuNjcgMTAuNDMtNjAuODcgMS4yNS05MS40MSA0Ljc0LTE0Mi4wOCAxMC4wN2gzODAuNjhxMCAwLTAuMDEtMC4wMXptLTI3MC45LTI4MS4yMWM5Mi42OC01MS42NyAyMzMuMTIgMTEuMDEgMjMyLjM2IDEyMy42MyAwLjc3IDM2LjYxLTEzLjI4IDcyLjI0LTM4LjQ1IDk3LjU4IDIyLjM3LTMwLjYxIDMxLjI3LTcxLjU2IDE2LjcxLTExOC4xMi0zMS4yMS0xMDYuNjMtMTg3LjIyLTEyMy42NS0yNDAuNzYtMzMuNzgtMy4wNS0wLjc4LTUuNjEtOC41Ny01LjYxLTguNTctMC44NiA0Ljk5IDAuOTIgMTMuMDUgMS40NiAxNS4zMy0zLjUgNi45Mi02LjUgMTQuMzItOC43NyAyMi4zOC0xMy4wOSA1Ni4zOCAyMy44IDExMy45NiA3NC42NSAxMzUuNTMgNDkuOCAyMi42OSAxMjIuNzUgNC4xIDE0My4wNS01MC4yNiA3LjYyLTE4LjU4IDguMzgtMzcuNzIgNC41Ny01NS43MiAzLjk3IDAuMzkgOS45IDQuNjggOS45IDQuNjgtMi41OC01LjMtOS41Ny0xMS42OC0xMi4wOC0xMy44OC0xNS42OC01MC43MS02OS40NS00OC41Ni0xMjAuNTYtNzAuMDMtMC42Ni0zLjk1IDEuNjktMTAuNjcgMS42OS0xMC42Ny0wLjY5IDAuNjQtMS4zNSAxLjYzLTIuMDMgMi40OCAwLTAuMDEgMC4wNC0wLjEzIDAuMDQtMC4xMy0wLjI2IDAuMjYtMC41IDAuNjktMC43NSAxLjAxLTAuNSAwLjY4LTEgMS4yNC0xLjQ3IDEuOTctMC4zNSAwLjU0LTAuNjUgMS4wNi0wLjk3IDEuNjMtMS41MyAyLjUzLTIuODIgNC45My0zLjc0IDYuODMtNi42MyAzLjE0LTEzLjIyIDYuOS0xOS42IDEyLjE0LTIyLjg1IDE3LjIyLTMzLjM5IDQ4Ljg5LTI2LjQ0IDc2LjM3IDYuMiA0MC4zMiA0My4zMyA2Ny40OCA3OS43MyA2Ni4yNS0wLjI0IDMuODUtNi4xNyA5LjY1LTYuMTcgOS42NSA2LjY0LTEuNzggMTYuMzYtOS45NyAxNi4zNi05Ljk3IDAgMC0wLjY1LTAuMjQtMS4wOC0wLjQxIDE0LjgzLTIuNTYgMjkuMTItOS43NiA0MC41OS0yMy43OCAzOS42Ny01Ni41NC00NS4wNS0xMzIuOTctODcuMTItNjguOTctMTIuNjkgMjcuMTQgNC40IDY0LjYzIDM2LjM5IDY3LjM4IDE0Ljc3IDAuNzEgMzIuMDQtOS41NSAzMi43MS0yNi45MSAwLjQyLTE1LjE4LTE4LjYtMzEuMzMtMzEuNDEtMjAuMzcgMTMuNC0zLjQ4IDIzLjQzIDEwLjMxIDIzLjEzIDIwLjE1LTAuMzcgMTAuOTUtMTIuNjMgMTkuMjktMjQuMTcgMTguNjYtMjQuMDQtMS4wNi0zOS43NC0zMy45Ny0yOS4wNi01NS4wOSAxMC44My0yMi4yMiA0NS42MS0yNC45OCA2Mi44Mi03LjY1IDQ1LjYgNDUuNDktMi4wMyAxMDUuMDktNTguMzkgODYuMTgtNDguMjYtMTcuNDUtNjYuMjktOTIuNjItMjIuNDUtMTI0Ljc2IDEwOC43MS03OS41NSAyMDMuODYgMTIwLjU3IDc1LjY2IDE1OC4xNi03Ni4zNCAyOC44MS0xNjMuNy01MC4yOS0xNDUuMTgtMTI4LjQgMTIuNDYtNTEuMDYgNjcuMzgtODMuMzggMTE4LjgzLTgxLjMzIDExNi40My0wLjYzIDE2OS4yMSAxNTcuNzkgNzUuMDkgMjI1Ljg5LTE3MS4wMyA5OC40Mi0zMzEuODktMTM0LjIzLTE1OS41MS0yNDUuMDh6Ij48L3BhdGg+PC9nPjxnPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTMxNS41NiAyNjcuNDN2MTY0LjY1aDI4OC4zNnYxMTUuN2gtMjg4LjM2djIyNi45NWgtMTQ0LjE4di02MjNoNDcwLjgxdjExNS43eiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTEzMDIuNTcgNjQxLjIzaC0yODkuMjVsLTU1LjE4IDEzMy41aC0xNDcuNzRsMjc3LjY4LTYyM2gxNDIuNGwyNzguNTcgNjIzaC0xNTEuM3ptLTQ1LjM5LTEwOS40N2wtOTguNzktMjM4LjUyLTk4Ljc5IDIzOC41MnoiPjwvcGF0aD48cGF0aCBjbGFzcz0iczIiIGQ9Im0zMjA1Ljk2IDc3NC43M2wtMC44OS0zNzMuOC0xODMuMzQgMzA3Ljk0aC02NC45N2wtMTgyLjQ1LTI5OS45M3YzNjUuNzloLTEzNS4yOHYtNjIzaDExOS4yNmwyMzMuMTggMzg3LjE1IDIyOS42Mi0zODcuMTVoMTE4LjM3bDEuNzggNjIzeiI+PC9wYXRoPjwvZz48Zz48cGF0aCBjbGFzcz0iczIiIGQ9Im0xMDQ1LjEyIDEwNDIuMTh2ODhoMTE1Ljg0djIwLjQ4aC0xMTUuODR2OTUuMDRoLTIzLjY4di0yMjRoMTUzLjZ2MjAuNDh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMTI1NiAxMDIxLjdoMjMuNjh2MjI0aC0yMy42OHoiPjwvcGF0aD48cGF0aCBjbGFzcz0iczIiIGQ9Im0xNDI4LjE2IDEwNDIuMThoLTc4Ljcydi0yMC40OGgxODEuMTJ2MjAuNDhoLTc4LjcydjIwMy41MmgtMjMuNjh6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMTc4Ny41MiAxMDIxLjd2MjI0aC0xOS41MmwtMTQ0LTE4MS43NnYxODEuNzZoLTIzLjY4di0yMjRoMTkuNTJsMTQ0LjMyIDE4MS43NnYtMTgxLjc2eiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJzMiIgZD0ibTIwNTAuODcgMTIyNS4yM3YyMC40OGgtMTU4LjR2LTIyNGgxNTMuNnYyMC40OGgtMTI5Ljkydjc5LjY4aDExNS44NHYyMC4xNmgtMTE1Ljg0djgzLjJ6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMjExNy4xMSAxMjE4LjUxbDkuMjgtMTguMjRjMTYgMTUuNjggNDQuNDggMjcuMiA3My45MiAyNy4yIDQxLjkyIDAgNjAuMTYtMTcuNiA2MC4xNi0zOS42OCAwLTYxLjQ0LTEzNy45Mi0yMy42OC0xMzcuOTItMTA2LjU2IDAtMzIuOTYgMjUuNi02MS40NCA4Mi41Ni02MS40NCAyNS4yOCAwIDUxLjUyIDcuMzYgNjkuNDQgMTkuODRsLTggMTguODhjLTE5LjItMTIuNDgtNDEuNi0xOC41Ni02MS40NC0xOC41Ni00MC45NiAwLTU5LjIgMTguMjQtNTkuMiA0MC42NCAwIDYxLjQ0IDEzNy45MiAyNC4zMiAxMzcuOTIgMTA1LjkyIDAgMzIuOTYtMjYuMjQgNjEuMTItODMuNTIgNjEuMTItMzMuNiAwLTY2LjU2LTExLjg0LTgzLjItMjkuMTJ6Ij48L3BhdGg+PHBhdGggY2xhc3M9InMyIiBkPSJtMjM0NS45IDEyMTguNTFsOS4yOC0xOC4yNGMxNiAxNS42OCA0NC40OCAyNy4yIDczLjkyIDI3LjIgNDEuOTIgMCA2MC4xNi0xNy42IDYwLjE2LTM5LjY4IDAtNjEuNDQtMTM3LjkyLTIzLjY4LTEzNy45Mi0xMDYuNTYgMC0zMi45NiAyNS42LTYxLjQ0IDgyLjU2LTYxLjQ0IDI1LjI4IDAgNTEuNTIgNy4zNiA2OS40NCAxOS44NGwtOCAxOC44OGMtMTkuMi0xMi40OC00MS42LTE4LjU2LTYxLjQ0LTE4LjU2LTQwLjk2IDAtNTkuMiAxOC4yNC01OS4yIDQwLjY0IDAgNjEuNDQgMTM3LjkyIDI0LjMyIDEzNy45MiAxMDUuOTIgMCAzMi45Ni0yNi4yNCA2MS4xMi04My41MiA2MS4xMi0zMy42IDAtNjYuNTYtMTEuODQtODMuMi0yOS4xMnoiPjwvcGF0aD48L2c+PHBhdGggY2xhc3M9InMyIiBkPSJtMTg4Ni43NiAyNjkuMjFsLTc5LjY3LTExNy40OGgyOTcuNzhjMTY2LjQzIDAgMjcwLjU2IDg2LjMzIDI3MC41NiAyMjYuMDYgMCA5My40NS00Ny4xNyAxNjEuOTgtMTI4LjE2IDE5Ni42OWwxMzkuNzMgMjAwLjI1aC0xNTQuODZsLTEyMC4xNS0xNzMuNTUtNzcuOTYtMTE0LjgxaDYyLjgzYzg4LjExIDAgMTMyLjYxLTQwLjk0IDEzMi42MS0xMDguNTggMC02Ny42NC00NC41LTEwOC41OC0xMzIuNjEtMTA4LjU4eiI+PC9wYXRoPjwvZz48L3N2Zz4g" alt="Farm Fitness" class="timer-logo">
+  <div class="timer-phase" id="t-phase"></div>
+  <div class="timer-display" id="t-display">00:00</div>
+  <div class="timer-sub" id="t-sub"></div>
+  <div class="timer-controls">
+    <button class="ctrl-btn" id="btn-pause">Pause</button>
+    <button class="ctrl-btn" id="btn-reset">Reset</button>
+    <div class="volume-control">
+      <span class="volume-label">Vol</span>
+      <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="100">
+    </div>
+  </div>
+</div>
+
+<div id="countdown-overlay">
+  <div class="countdown-num" id="cd-num"></div>
+  <div class="countdown-label">Get Ready</div>
+</div>
+
+<div id="tap-overlay" style="display:none; position:fixed; inset:0; background:var(--bg); z-index:250; cursor:pointer;" onclick="">
+  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:16px;">
+    <div style="font-family:Oswald,sans-serif; font-weight:800; font-size:clamp(40px,10vw,80px); color:var(--accent); text-transform:uppercase; letter-spacing:6px;">Tap to Start</div>
+    <div style="font-family:Oswald,sans-serif; font-weight:400; font-size:clamp(14px,3vw,22px); color:var(--dim); letter-spacing:3px; text-transform:uppercase;">Touch required for audio</div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="save-dialog">
+  <div class="dialog-box">
+    <h3>Save Preset</h3>
+    <input type="text" id="save-name" placeholder="Preset name..." maxlength="40" autocomplete="off">
+    <div class="dialog-actions">
+      <button class="btn btn-back btn-sm" id="btn-save-cancel">Cancel</button>
+      <button class="btn btn-sm" id="btn-save-confirm">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="add-segment-dialog">
+  <div class="dialog-box">
+    <h3 id="seg-dialog-title">Add Segment</h3>
+    <div class="preset-bar" id="seg-preset-bar" style="width:100%; max-width:100%;">
+      <select id="seg-preset-select" style="max-width:100%; flex:1;"><option value="">— Load Preset —</option></select>
+    </div>
+    <div class="seg-dialog-fields" id="seg-dialog-fields"></div>
+    <div class="dialog-actions">
+      <button class="btn btn-back btn-sm" id="btn-seg-cancel">Cancel</button>
+      <button class="btn btn-sm" id="btn-seg-add">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="export-dialog">
+  <div class="dialog-box" style="max-width: 450px;">
+    <h3>Export Presets</h3>
+    <div class="export-list-container" id="export-list-container">
+      </div>
+    <div class="dialog-actions" style="margin-top: 15px;">
+      <button class="btn btn-back btn-sm" id="btn-export-cancel">Cancel</button>
+      <button class="btn btn-sm" id="btn-export-confirm">Export</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="import-conflict-dialog">
+  <div class="dialog-box" style="max-width: 450px;">
+    <h3>Import Conflict</h3>
+    <p id="conflict-message" style="color:var(--text); text-align:center; font-size:16px; margin-bottom:10px;"></p>
+    
+    <div style="width:100%; text-align:left; margin-bottom: 15px;">
+      <label style="font-family:'Oswald',sans-serif; font-size:12px; color:var(--dim); text-transform:uppercase;">New name (if renaming):</label>
+      <input type="text" id="conflict-rename-input" placeholder="Enter new name..." style="margin-top:4px;">
+    </div>
+
+    <label style="color:var(--text); font-family:'Source Sans Pro',sans-serif; font-size:15px; display:flex; align-items:center; gap:8px; cursor:pointer;">
+      <input type="checkbox" id="conflict-apply-all" style="accent-color:var(--accent); width:18px; height:18px;">
+      Apply action to all remaining conflicts
+    </label>
+
+    <div class="dialog-actions" style="margin-top: 20px; flex-wrap: wrap; justify-content: center;">
+      <button class="btn btn-back btn-sm" id="btn-conflict-skip">Skip</button>
+      <button class="btn btn-back btn-sm" id="btn-conflict-rename">Rename</button>
+      <button class="btn btn-sm" id="btn-conflict-overwrite">Overwrite</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="import-summary-dialog">
+  <div class="dialog-box" style="max-width: 500px;">
+    <h3>Import Summary</h3>
+    <ul class="import-summary-list" id="import-summary-list"></ul>
+    <div class="dialog-actions" style="margin-top: 15px;">
+      <button class="btn btn-sm" id="btn-summary-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="url-info"></div>
+
+<script>
+// ─── AUDIO ───
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+let masterVolume = 1.0;
+
+// Load saved volume
+try { const sv = localStorage.getItem('farmTimerVolume'); if (sv !== null) masterVolume = parseFloat(sv); } catch {}
+
+function ensureAudio() { if (!audioCtx) audioCtx = new AudioCtx(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
+function beep(freq = 880, duration = 0.15, vol = 1.0) {
+  ensureAudio();
+  const v = vol * masterVolume;
+  if (v <= 0) return;
+  const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+  osc.type = 'square'; osc.frequency.value = freq; gain.gain.value = Math.min(v, 1.0);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + duration);
+}
+function beepHigh()    { beep(1200, 0.15, 1.0); }
+function beepLow()     { beep(600, 0.25, 0.8); }
+function beepLong()    { beep(880, 0.7, 1.0); }
+function beep321()     { beep(700, 0.12, 0.8); }
+function beepGo()      { beep(1400, 0.5, 1.0); }
+function beepHalfway() {
+  // Distinct double-chirp: two quick ascending tones
+  beep(600, 0.12, 0.7);
+  setTimeout(() => beep(900, 0.12, 0.7), 150);
+}
+
+// ─── ELEMENTS ───
+const $menu = document.getElementById('menu'), $setup = document.getElementById('setup'),
+  $timer = document.getElementById('timer'), $compoundSetup = document.getElementById('compound-setup'),
+  $setupTitle = document.getElementById('setup-title'), $setupFields = document.getElementById('setup-fields'),
+  $tPhase = document.getElementById('t-phase'), $tDisplay = document.getElementById('t-display'),
+  $tSub = document.getElementById('t-sub'), $cdOverlay = document.getElementById('countdown-overlay'),
+  $cdNum = document.getElementById('cd-num'), $urlInfo = document.getElementById('url-info'),
+  $presetSelect = document.getElementById('preset-select'),
+  $btnDeletePreset = document.getElementById('btn-delete-preset'),
+  $saveDialog = document.getElementById('save-dialog'), $saveName = document.getElementById('save-name'),
+  $compoundList = document.getElementById('compound-list'),
+  $compoundTotal = document.getElementById('compound-total'),
+  $addSegDialog = document.getElementById('add-segment-dialog'),
+  $compPresetSelect = document.getElementById('compound-preset-select'),
+  $btnCompDelete = document.getElementById('btn-compound-delete');
+
+// ─── STATE ───
+let timerType = null, timerInterval = null, isPaused = false, timerState = {};
+let countDirection = 'down', halfwayBeep = false;
+let compoundSegments = [], compoundRunning = false, compoundIndex = 0;
+let compoundTotalRounds = 1, compoundCurrentRound = 1;
+let saveContext = 'single';
+
+// Circuit state
+let circuitExercises = [];
+let circuitRunning = false;
+let circuitState = {}; // { exIdx, exRound, circuitRound, phase, remaining }
+
+// ─── HELPERS ───
+function show(el) { el.style.display = 'flex'; }
+function hide(el) { el.style.display = 'none'; }
+function fmt(s) { const m = Math.floor(Math.abs(s)/60), sec = Math.abs(s)%60; return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`; }
+function fmtClock(d) { return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`; }
+
+// ─── TOGGLES ───
+function setDirection(dir) { countDirection = dir; document.getElementById('dir-down').classList.toggle('active', dir==='down'); document.getElementById('dir-up').classList.toggle('active', dir==='up'); }
+function setHalfway(on) { halfwayBeep = on; document.getElementById('half-on').classList.toggle('active', on); document.getElementById('half-off').classList.toggle('active', !on); }
+document.getElementById('dir-down').addEventListener('click', () => setDirection('down'));
+document.getElementById('dir-up').addEventListener('click', () => setDirection('up'));
+document.getElementById('half-on').addEventListener('click', () => setHalfway(true));
+document.getElementById('half-off').addEventListener('click', () => setHalfway(false));
+
+// ─── FIELDS ───
+const FIELDS = {
+  rounds: [
+    { key: 'work', label: 'Work (s)', def: 20 },
+    { key: 'rest', label: 'Rest (s)', def: 10 },
+    { key: 'rounds', label: 'Rounds', def: 8 },
+    { key: 'sets', label: 'Sets', def: 1 },
+    { key: 'setrest', label: 'Set Rest (s)', def: 60 },
+  ],
+  emom: [
+    { key: 'interval', label: 'Interval (s)', def: 60 },
+    { key: 'rounds', label: 'Rounds', def: 10 },
+  ],
+  amrap: [
+    { key: 'duration', label: 'Minutes', def: 10 },
+  ],
+  rest: [
+    { key: 'duration', label: 'Rest (s)', def: 60 },
+  ],
+};
+
+// ─── SEGMENT HELPERS ───
+function segmentDuration(seg) {
+  switch (seg.type) {
+    case 'rounds': { const wr = (seg.work + seg.rest) * seg.rounds - seg.rest; const sr = (seg.sets||1) > 1 ? (seg.setrest||60) * ((seg.sets||1)-1) : 0; return wr * (seg.sets||1) + sr; }
+    case 'emom': return seg.interval * seg.rounds;
+    case 'amrap': return seg.duration * 60;
+    case 'rest': return seg.duration;
+    case 'circuit': {
+      let perCircuit = 0;
+      (seg.exercises||[]).forEach(ex => { perCircuit += (ex.duration + ex.rest) * ex.rounds; });
+      return perCircuit * (seg.totalRounds||1) + (seg.circuitRest||0) * Math.max(0, (seg.totalRounds||1) - 1);
+    }
+    default: return 0;
+  }
+}
+function segmentSummary(seg) {
+  switch (seg.type) {
+    case 'rounds': return `${seg.work}/${seg.rest}s × ${seg.rounds}r` + ((seg.sets||1) > 1 ? ` × ${seg.sets} sets` : '');
+    case 'emom': return `${seg.interval}s × ${seg.rounds} rounds`;
+    case 'amrap': return `${seg.duration} min`;
+    case 'rest': return `${seg.duration}s`;
+    case 'circuit': return `${(seg.exercises||[]).length} exercises × ${seg.totalRounds||1} circuits` + (seg._presetName ? ` (${seg._presetName})` : '');
+    default: return '';
+  }
+}
+
+// ─── PRESETS ───
+const STORAGE_KEY = 'farmTimerPresets';
+function loadAllPresets() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+function saveAllPresets(p) { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
+function getPresetsForType(t) { return loadAllPresets()[t] || {}; }
+function savePreset(t, n, v) { const a = loadAllPresets(); if (!a[t]) a[t] = {}; a[t][n] = v; saveAllPresets(a); }
+function deletePreset(t, n) { const a = loadAllPresets(); if (a[t]) { delete a[t][n]; saveAllPresets(a); } }
+
+function populatePresetDropdown(sel, type) {
+  const presets = getPresetsForType(type);
+  sel.innerHTML = '<option value="">— Saved Presets —</option>';
+  Object.keys(presets).sort().forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
+  sel.value = '';
+}
+
+function applyPreset(type, name) {
+  const v = getPresetsForType(type)[name];
+  if (!v) return;
+  if (type === 'compound') {
+    compoundSegments = JSON.parse(JSON.stringify(v.segments || []));
+    document.getElementById('compound-total-rounds').value = v.totalRounds || 1;
+    renderCompoundList(); return;
+  }
+  (FIELDS[type]||[]).forEach(f => { const el = document.getElementById(`f-${f.key}`); if (el && v[f.key] !== undefined) el.value = v[f.key]; });
+  setDirection(v._direction || 'down');
+  setHalfway(v._halfway || false);
+}
+
+function getCurrentValues() {
+  const vals = {};
+  (FIELDS[timerType]||[]).forEach(f => { const el = document.getElementById(`f-${f.key}`); const p = el ? parseInt(el.value) : NaN; vals[f.key] = isNaN(p) ? f.def : p; });
+  vals._direction = countDirection; vals._halfway = halfwayBeep;
+  return vals;
+}
+
+// ─── PRESET EVENTS (single) ───
+$presetSelect.addEventListener('change', () => { const n = $presetSelect.value; $btnDeletePreset.disabled = !n; if (n) { applyPreset(timerType, n); if (document.getElementById('url-display').style.display === 'block') setTimeout(updateTimerUrl, 10); } });
+document.getElementById('btn-save-preset').addEventListener('click', () => { saveContext = 'single'; $saveName.value = $presetSelect.value || ''; show($saveDialog); setTimeout(() => { $saveName.focus(); $saveName.select(); }, 100); });
+document.getElementById('btn-delete-preset').addEventListener('click', () => { const n = $presetSelect.value; if (n && confirm(`Delete preset "${n}"?`)) { deletePreset(timerType, n); populatePresetDropdown($presetSelect, timerType); } });
+
+// ─── PRESET EVENTS (compound) ───
+$compPresetSelect.addEventListener('change', () => { const n = $compPresetSelect.value; $btnCompDelete.disabled = !n; if (n) applyPreset('compound', n); });
+document.getElementById('btn-compound-save').addEventListener('click', () => { saveContext = 'compound'; $saveName.value = $compPresetSelect.value || ''; show($saveDialog); setTimeout(() => { $saveName.focus(); $saveName.select(); }, 100); });
+$btnCompDelete.addEventListener('click', () => { const n = $compPresetSelect.value; if (n && confirm(`Delete preset "${n}"?`)) { deletePreset('compound', n); populatePresetDropdown($compPresetSelect, 'compound'); } });
+
+// ─── SAVE DIALOG ───
+document.getElementById('btn-save-cancel').addEventListener('click', () => hide($saveDialog));
+document.getElementById('btn-save-confirm').addEventListener('click', () => {
+  const name = $saveName.value.trim(); if (!name) return;
+  if (saveContext === 'compound') {
+    if (getPresetsForType('compound')[name] && !confirm(`Preset "${name}" exists already. Overwrite?`)) return;
+    savePreset('compound', name, { segments: compoundSegments, totalRounds: parseInt(document.getElementById('compound-total-rounds').value) || 1 }); hide($saveDialog);
+    populatePresetDropdown($compPresetSelect, 'compound'); $compPresetSelect.value = name; $btnCompDelete.disabled = false;
+  } else if (saveContext === 'circuit') {
+    if (getPresetsForType('circuit')[name] && !confirm(`Preset "${name}" exists already. Overwrite?`)) return;
+    const totalRounds = parseInt(document.getElementById('circuit-total-rounds').value) || 1;
+    const circRest = parseInt(document.getElementById('circuit-rest').value) || 0;
+    savePreset('circuit', name, { exercises: circuitExercises, totalRounds, circuitRest: circRest }); hide($saveDialog);
+    populatePresetDropdown($circPresetSelect, 'circuit'); $circPresetSelect.value = name; $btnCircDelete.disabled = false;
+  } else {
+    if (getPresetsForType(timerType)[name] && !confirm(`Preset "${name}" exists already. Overwrite?`)) return;
+    savePreset(timerType, name, getCurrentValues()); hide($saveDialog);
+    populatePresetDropdown($presetSelect, timerType); $presetSelect.value = name; $btnDeletePreset.disabled = false;
+  }
+});
+$saveName.addEventListener('keydown', (e) => { if (e.key === 'Enter') document.getElementById('btn-save-confirm').click(); if (e.key === 'Escape') hide($saveDialog); });
+
+// ─── URL PARAMS ───
+function getUrlParams() {
+  const s = window.location.search || '', h = window.location.hash ? window.location.hash.substring(1) : '';
+  const r = s ? s : (h ? '?' + h : '');
+  const p = new URLSearchParams(r), res = {};
+  for (const [k, v] of p.entries()) res[k.toLowerCase()] = v;
+  return res;
+}
+function showUrlHelp() {
+  $urlInfo.innerHTML = `URL params: <code>?type=rounds&work=45&rest=15&rounds=8</code> · <code>?type=emom&interval=60&rounds=10</code> · <code>?type=amrap&duration=10</code> · <code>?type=circuit&cr=2&crest=60&ex=Push+Ups:45:15:3,Squats:40:10:2</code> · <code>?type=clock</code>`;
+  show($urlInfo); setTimeout(() => { $urlInfo.style.display = 'none'; }, 8000);
+}
+
+// ─── SETUP ───
+function openSetup(type, params = {}) {
+  timerType = type;
+  hide($menu); hide($timer); hide($compoundSetup); hide($circuitSetup);
+  if (type === 'clock') { startClock(); return; }
+  if (type === 'compound') { openCompoundSetup(); return; }
+  if (type === 'circuit') { openCircuitSetup(); return; }
+
+  // Handle legacy 'fortime' type from old presets/URLs
+  // Handle legacy types from old presets/URLs
+  if (type === 'fortime') { timerType = 'amrap'; type = 'amrap'; }
+  if (type === 'tabata') { timerType = 'rounds'; type = 'rounds'; }
+
+  const hasParams = Object.keys(params).length > 0;
+  let lastUsed = {};
+  if (!hasParams) { try { lastUsed = JSON.parse(localStorage.getItem('farmLastUsed_' + type)) || {}; } catch {} }
+  const source = hasParams ? params : lastUsed;
+
+  $setupTitle.textContent = type === 'amrap' ? 'AMRAP / FOR TIME' : type.toUpperCase();
+  $setupTitle.style.color = 'var(--accent)';
+
+  $setupFields.innerHTML = '';
+  (FIELDS[type]||[]).forEach(f => {
+    const val = source[f.key] !== undefined ? source[f.key] : f.def;
+    const div = document.createElement('div');
+    div.className = 'field';
+    div.innerHTML = `<label>${f.label}</label><input type="number" id="f-${f.key}" value="${val}" min="0">`;
+    $setupFields.appendChild(div);
+  });
+
+  if (source._direction) setDirection(source._direction); else setDirection('down');
+  setHalfway(source._halfway || false);
+
+  populatePresetDropdown($presetSelect, type);
+  show($setup);
+  // Reset URL toggle
+  if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
+  if ($urlDisplay) $urlDisplay.style.display = 'none';
+}
+
+function getSetupValues() { return getCurrentValues(); }
+
+// ─── COUNTDOWN ───
+function startCountdown(callback) {
+  ensureAudio();
+  document.getElementById('btn-reset').textContent = 'Reset';
+  document.querySelector('.timer-logo').classList.remove('clock-mode');
+  show($cdOverlay); let count = 3; $cdNum.textContent = count; beep321();
+  const cdI = setInterval(() => {
+    count--;
+    if (count > 0) { $cdNum.textContent = count; $cdNum.style.animation = 'none'; void $cdNum.offsetWidth; $cdNum.style.animation = 'countPulse 0.6s ease-out'; beep321(); }
+    else if (count === 0) { $cdNum.textContent = 'GO'; $cdNum.style.animation = 'none'; void $cdNum.offsetWidth; $cdNum.style.animation = 'countPulse 0.6s ease-out'; beepGo(); }
+    else { clearInterval(cdI); hide($cdOverlay); callback(); }
+  }, 1000);
+}
+
+// ─── CLOCK ───
+function startClock() {
+  hide($menu); hide($setup); hide($compoundSetup); hide($circuitSetup);
+  $tPhase.textContent = ''; $tSub.textContent = ''; $tDisplay.className = 'clock-display';
+  $timer.style.background = 'var(--bg)'; show($timer);
+  
+  document.getElementById('btn-pause').classList.add('hidden');
+  document.querySelector('.volume-control').classList.add('hidden'); // TILFØJET
+  
+  document.getElementById('btn-reset').textContent = 'Back';
+  document.querySelector('.timer-logo').classList.add('clock-mode');
+  function tick() {
+    const now = new Date(); $tDisplay.textContent = fmtClock(now);
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    $tSub.textContent = `${days[now.getDay()]} · ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`; $tSub.className = 'clock-date';
+  }
+  tick(); clearInterval(timerInterval); timerInterval = setInterval(tick, 500);
+}
+
+// ─── ROUNDS ───
+function startRounds() {
+  const v = compoundRunning ? compoundSegments[compoundIndex] : getSetupValues();
+  hide($setup); hide($compoundSetup); hide($circuitSetup);
+  $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
+  document.getElementById('btn-pause').classList.remove('hidden');  
+  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  timerState = { work: v.work, rest: v.rest, rounds: v.rounds, sets: v.sets||1, setrest: v.setrest||60,
+    currentSet: 1, currentRound: 1, phase: 'work', remaining: v.work, halfwayBeeped: false };
+  isPaused = false; updateRoundsDisplay();
+  clearInterval(timerInterval); timerInterval = setInterval(tickRounds, 1000);
+}
+
+function updateRoundsDisplay() {
+  const s = timerState;
+  let dv; if (countDirection === 'up') { if (s.phase === 'work') dv = s.work - s.remaining; else if (s.phase === 'rest') dv = s.rest - s.remaining; else dv = (s.setrest||60) - s.remaining; } else dv = s.remaining;
+  $tDisplay.textContent = fmt(dv);
+  if (s.phase === 'work') { $tPhase.textContent = 'WORK'; $tDisplay.style.color = 'var(--accent)'; $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)'; $timer.style.background = 'linear-gradient(180deg, rgba(232,168,0,0.08) 0%, var(--bg) 60%)'; }
+  else if (s.phase === 'rest') { $tPhase.textContent = 'REST'; $tDisplay.style.color = 'var(--rest)'; $tDisplay.style.textShadow = '0 0 80px var(--rest-glow)'; $timer.style.background = 'linear-gradient(180deg, rgba(240,237,232,0.05) 0%, var(--bg) 60%)'; }
+  else { $tPhase.textContent = 'SET REST'; $tDisplay.style.color = '#c49000'; $tDisplay.style.textShadow = '0 0 80px var(--amrap-glow)'; $timer.style.background = 'linear-gradient(180deg, rgba(196,144,0,0.08) 0%, var(--bg) 60%)'; }
+  const si = s.sets > 1 ? ` · Set ${s.currentSet}/${s.sets}` : '';
+  let sub = `Round ${s.currentRound}/${s.rounds}${si}`;
+  if (compoundRunning) { const ri = compoundTotalRounds > 1 ? ` R${compoundCurrentRound}/${compoundTotalRounds}` : ''; sub = `[${compoundIndex+1}/${compoundSegments.length}${ri}] ${sub}`; };
+  $tSub.textContent = sub;
+}
+
+function tickRounds() {
+  if (isPaused) return; const s = timerState;
+  if (s.remaining <= 3 && s.remaining > 0) beep321();
+  if (halfwayBeep && s.phase === 'work') { const h = Math.floor(s.work/2); if (s.remaining === h && !s.halfwayBeeped) { beepHalfway(); s.halfwayBeeped = true; } }
+  s.remaining--;
+  if (s.remaining < 0) {
+    if (s.phase === 'work') {
+      if (s.currentRound >= s.rounds && s.currentSet >= s.sets) { finishSegment(); return; }
+      if (s.currentRound >= s.rounds) { beepLong(); s.phase = 'setrest'; s.remaining = s.setrest; s.halfwayBeeped = false; }
+      else { beepHigh(); s.phase = 'rest'; s.remaining = s.rest; s.halfwayBeeped = false; }
+    } else if (s.phase === 'rest') { beepLow(); s.currentRound++; s.phase = 'work'; s.remaining = s.work; s.halfwayBeeped = false; }
+    else if (s.phase === 'setrest') { beepGo(); s.currentSet++; s.currentRound = 1; s.phase = 'work'; s.remaining = s.work; s.halfwayBeeped = false; }
+  }
+  updateRoundsDisplay();
+}
+
+// ─── EMOM ───
+function startEmom() {
+  const v = compoundRunning ? compoundSegments[compoundIndex] : getSetupValues();
+  hide($setup); hide($compoundSetup); hide($circuitSetup);
+  $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
+  document.getElementById('btn-pause').classList.remove('hidden');
+  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  timerState = { interval: v.interval, rounds: v.rounds, currentRound: 1, remaining: v.interval, halfwayBeeped: false };
+  isPaused = false; updateEmomDisplay();
+  clearInterval(timerInterval); timerInterval = setInterval(tickEmom, 1000);
+}
+
+function updateEmomDisplay() {
+  const s = timerState;
+  $tDisplay.textContent = fmt(countDirection === 'up' ? (s.interval - s.remaining) : s.remaining);
+  $tPhase.textContent = 'EMOM'; $tDisplay.style.color = 'var(--accent)'; $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)';
+  $timer.style.background = 'linear-gradient(180deg, rgba(232,168,0,0.06) 0%, var(--bg) 60%)';
+  let sub = `Round ${s.currentRound} / ${s.rounds}`;
+  if (compoundRunning) { const ri = compoundTotalRounds > 1 ? ` R${compoundCurrentRound}/${compoundTotalRounds}` : ''; sub = `[${compoundIndex+1}/${compoundSegments.length}${ri}] ${sub}`; };
+  $tSub.textContent = sub;
+}
+
+function tickEmom() {
+  if (isPaused) return; const s = timerState;
+  if (s.remaining <= 3 && s.remaining > 0) beep321();
+  if (halfwayBeep) { const h = Math.floor(s.interval/2); if (s.remaining === h && !s.halfwayBeeped) { beepHalfway(); s.halfwayBeeped = true; } }
+  s.remaining--;
+  if (s.remaining < 0) { if (s.currentRound >= s.rounds) { finishSegment(); return; } beepGo(); s.currentRound++; s.remaining = s.interval; s.halfwayBeeped = false; }
+  updateEmomDisplay();
+}
+
+// ─── AMRAP / FOR TIME (merged) ───
+function startAmrap() {
+  const v = compoundRunning ? compoundSegments[compoundIndex] : getSetupValues();
+  hide($setup); hide($compoundSetup); hide($circuitSetup);
+  $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
+  document.getElementById('btn-pause').classList.remove('hidden');
+  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  timerState = { total: v.duration * 60, remaining: v.duration * 60, elapsed: 0, halfwayBeeped: false };
+  isPaused = false; updateAmrapDisplay();
+  clearInterval(timerInterval); timerInterval = setInterval(tickAmrap, 1000);
+}
+
+function updateAmrapDisplay() {
+  const s = timerState;
+  const displayVal = countDirection === 'up' ? s.elapsed : s.remaining;
+  $tDisplay.textContent = fmt(displayVal);
+  const label = countDirection === 'up' ? 'FOR TIME' : 'AMRAP';
+  $tPhase.textContent = label;
+  $tDisplay.style.color = countDirection === 'up' ? 'var(--rest)' : '#c49000';
+  $tDisplay.style.textShadow = countDirection === 'up' ? '0 0 80px var(--rest-glow)' : '0 0 80px var(--amrap-glow)';
+  $timer.style.background = countDirection === 'up'
+    ? 'linear-gradient(180deg, rgba(240,237,232,0.04) 0%, var(--bg) 60%)'
+    : 'linear-gradient(180deg, rgba(196,144,0,0.06) 0%, var(--bg) 60%)';
+  const subVal = countDirection === 'up' ? `Cap: ${fmt(s.total)}` : `Elapsed: ${fmt(s.elapsed)}`;
+  let sub = subVal;
+  if (compoundRunning) { const ri = compoundTotalRounds > 1 ? ` R${compoundCurrentRound}/${compoundTotalRounds}` : ''; sub = `[${compoundIndex+1}/${compoundSegments.length}${ri}] ${sub}`; };
+  $tSub.textContent = sub;
+}
+
+function tickAmrap() {
+  if (isPaused) return; const s = timerState;
+  if (s.remaining <= 3 && s.remaining > 0) beep321();
+  if (halfwayBeep) { const h = Math.floor(s.total/2); if (s.elapsed === h && !s.halfwayBeeped) { beepHalfway(); s.halfwayBeeped = true; } }
+  s.remaining--; s.elapsed++;
+  if (s.remaining < 0) { finishSegment(); return; }
+  updateAmrapDisplay();
+}
+
+// ─── REST (compound) ───
+function startRest() {
+  const v = compoundSegments[compoundIndex];
+  hide($compoundSetup); hide($circuitSetup);
+  $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
+  document.getElementById('btn-pause').classList.remove('hidden');
+  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  timerState = { total: v.duration, remaining: v.duration };
+  isPaused = false; updateRestDisplay();
+  clearInterval(timerInterval); timerInterval = setInterval(tickRest, 1000);
+}
+
+function updateRestDisplay() {
+  const s = timerState;
+  $tDisplay.textContent = fmt(s.remaining); $tPhase.textContent = 'REST';
+  $tDisplay.style.color = 'var(--rest)'; $tDisplay.style.textShadow = '0 0 80px var(--rest-glow)';
+  $timer.style.background = 'linear-gradient(180deg, rgba(240,237,232,0.05) 0%, var(--bg) 60%)';
+  const ri = compoundTotalRounds > 1 ? ` R${compoundCurrentRound}/${compoundTotalRounds}` : '';
+  $tSub.textContent = `[${compoundIndex+1}/${compoundSegments.length}${ri}] Rest`;
+}
+
+function tickRest() {
+  if (isPaused) return; const s = timerState;
+  if (s.remaining <= 3 && s.remaining > 0) beep321();
+  s.remaining--;
+  if (s.remaining < 0) { finishSegment(); return; }
+  updateRestDisplay();
+}
+
+// ─── FINISH ───
+function finishSegment() {
+  clearInterval(timerInterval);
+  if (compoundRunning) {
+    compoundIndex++;
+    if (compoundIndex >= compoundSegments.length) {
+      // End of this compound round
+      if (compoundCurrentRound < compoundTotalRounds) {
+        compoundCurrentRound++;
+        compoundIndex = 0;
+        beepLong();
+        $tPhase.textContent = 'NEXT ROUND';
+        $tDisplay.textContent = `${compoundCurrentRound}/${compoundTotalRounds}`;
+        $tDisplay.style.fontSize = 'clamp(40px, 12vw, 120px)';
+        $tDisplay.style.color = 'var(--accent)'; $tDisplay.style.textShadow = '0 0 40px var(--accent-glow)';
+        $tSub.textContent = `Compound Round ${compoundCurrentRound} of ${compoundTotalRounds}`;
+        setTimeout(() => { $tDisplay.style.fontSize = ''; startCompoundSegment(0); }, 3000);
+      } else {
+        compoundRunning = false; finishTimer();
+      }
+    } else {
+      beepLong();
+      $tPhase.textContent = 'NEXT UP';
+      const next = compoundSegments[compoundIndex];
+      $tDisplay.textContent = (next.type === 'amrap' ? 'AMRAP' : next.type).toUpperCase();
+      $tDisplay.style.fontSize = 'clamp(40px, 12vw, 120px)';
+      $tDisplay.style.color = 'var(--accent)'; $tDisplay.style.textShadow = '0 0 40px var(--accent-glow)';
+      const roundInfo = compoundTotalRounds > 1 ? ` · Round ${compoundCurrentRound}/${compoundTotalRounds}` : '';
+      $tSub.textContent = `[${compoundIndex+1}/${compoundSegments.length}]${roundInfo} ${segmentSummary(next)}`;
+      setTimeout(() => { $tDisplay.style.fontSize = ''; startCompoundSegment(compoundIndex); }, 3000);
+    }
+  } else { finishTimer(); }
+}
+
+function finishTimer() {
+  clearInterval(timerInterval);
+  beepLong(); setTimeout(() => beepLong(), 400); setTimeout(() => beepLong(), 800);
+  $tPhase.textContent = 'DONE!'; $tDisplay.style.fontSize = '';
+  $tDisplay.style.color = 'var(--accent)'; $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)';
+  $timer.style.background = 'linear-gradient(180deg, rgba(232,168,0,0.12) 0%, var(--bg) 60%)';
+}
+
+// ─── START ───
+function startTimer() {
+  $urlDisplay.style.display = 'none';
+  document.getElementById('btn-toggle-url').textContent = 'Show URL';
+  localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues()));
+  const starter = { rounds: startRounds, emom: startEmom, amrap: startAmrap }[timerType];
+  if (starter) startCountdown(() => starter());
+}
+
+// ─── COMPOUND ───
+function openCompoundSetup() {
+  timerType = 'compound'; hide($menu); hide($setup); hide($timer);
+  try {
+    const last = JSON.parse(localStorage.getItem('farmLastUsed_compound'));
+    if (last && last.segments && compoundSegments.length === 0) {
+      compoundSegments = last.segments;
+      if (last.totalRounds) document.getElementById('compound-total-rounds').value = last.totalRounds;
+    }
+  } catch {}
+  populatePresetDropdown($compPresetSelect, 'compound');
+  renderCompoundList(); show($compoundSetup);
+}
+
+function renderCompoundList() {
+  $compoundList.innerHTML = '';
+  if (compoundSegments.length === 0) { $compoundList.innerHTML = '<div class="compound-empty">No segments added yet</div>'; $compoundTotal.textContent = ''; return; }
+  let totalSec = 0;
+  compoundSegments.forEach((seg, i) => {
+    totalSec += segmentDuration(seg);
+    const typeLabel = seg.type === 'amrap' ? 'AMRAP/FT' : seg.type.toUpperCase();
+    const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type ${seg.type==='rest'?'rest-type':''}">${typeLabel}</span><span class="seg-details">${segmentSummary(seg)} · ${fmt(segmentDuration(seg))}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
+    // Click row to edit
+    div.addEventListener('click', (e) => {
+      if (e.target.closest('.seg-move-btn') || e.target.closest('.seg-del')) return;
+      if (seg.type === 'circuit') openCircuitBuilder(seg, i);
+      else openAddSegmentDialog(seg.type, seg, i);
+    });
+    $compoundList.appendChild(div);
+  });
+  $compoundTotal.innerHTML = `Total: <strong>${fmt(totalSec)}</strong> (${Math.round(totalSec/60)} min)`;
+  const cRounds = parseInt(document.getElementById('compound-total-rounds').value) || 1;
+  if (cRounds > 1) {
+    const grandTotal = totalSec * cRounds;
+    $compoundTotal.innerHTML = `Per round: <strong>${fmt(totalSec)}</strong> · Total (×${cRounds}): <strong>${fmt(grandTotal)}</strong> (${Math.round(grandTotal/60)} min)`;
+  }
+  $compoundList.querySelectorAll('.seg-del').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); compoundSegments.splice(parseInt(b.dataset.idx), 1); renderCompoundList(); }));
+  $compoundList.querySelectorAll('.seg-move-btn').forEach(b => b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const idx = parseInt(b.dataset.idx), dir = b.dataset.action;
+    if (dir === 'up' && idx > 0) { [compoundSegments[idx], compoundSegments[idx-1]] = [compoundSegments[idx-1], compoundSegments[idx]]; renderCompoundList(); }
+    if (dir === 'down' && idx < compoundSegments.length-1) { [compoundSegments[idx], compoundSegments[idx+1]] = [compoundSegments[idx+1], compoundSegments[idx]]; renderCompoundList(); }
+  }));
+}
+
+// Add segment dialog
+let addSegType = null;
+
+// Recalculate total when compound rounds changes
+document.getElementById('compound-total-rounds').addEventListener('input', () => { if (compoundSegments.length > 0) renderCompoundList(); });
+
+let editSegIndex = -1;
+const $segPresetSelect = document.getElementById('seg-preset-select');
+
+function openAddSegmentDialog(type, existingValues, editIdx) {
+  addSegType = type;
+  editSegIndex = (editIdx !== undefined) ? editIdx : -1;
+  const label = type === 'amrap' ? 'AMRAP / For Time' : type === 'rest' ? 'Rest' : type.charAt(0).toUpperCase() + type.slice(1);
+  document.getElementById('seg-dialog-title').textContent = editSegIndex >= 0 ? `Edit ${label}` : `Add ${label}`;
+  document.getElementById('btn-seg-add').textContent = editSegIndex >= 0 ? 'Save' : 'Add';
+
+  // Populate preset dropdown
+  const presets = getPresetsForType(type);
+  const presetNames = Object.keys(presets).sort();
+  $segPresetSelect.innerHTML = '<option value="">— Load Preset —</option>';
+  presetNames.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; $segPresetSelect.appendChild(o); });
+  document.getElementById('seg-preset-bar').style.display = type !== 'rest' ? 'flex' : 'none';
+
+  const $f = document.getElementById('seg-dialog-fields'); $f.innerHTML = '';
+  (FIELDS[type]||[]).forEach(f => {
+    const val = (existingValues && existingValues[f.key] !== undefined) ? existingValues[f.key] : f.def;
+    const div = document.createElement('div'); div.className = 'field';
+    div.innerHTML = `<label>${f.label}</label><input type="number" id="seg-f-${f.key}" value="${val}" min="0">`;
+    $f.appendChild(div);
+  });
+
+  $segPresetSelect.value = '';
+  if (existingValues && existingValues._presetName) $segPresetSelect.value = existingValues._presetName;
+  show($addSegDialog);
+}
+
+// Preset select in segment dialog — fill fields from preset
+$segPresetSelect.addEventListener('change', () => {
+  const name = $segPresetSelect.value;
+  if (!name || addSegType === 'circuit') return;
+  const presets = getPresetsForType(addSegType);
+  const values = presets[name];
+  if (!values) return;
+  (FIELDS[addSegType]||[]).forEach(f => {
+    const el = document.getElementById(`seg-f-${f.key}`);
+    if (el && values[f.key] !== undefined) el.value = values[f.key];
+  });
+});
+
+document.getElementById('btn-add-rounds').addEventListener('click', () => openAddSegmentDialog('rounds'));
+document.getElementById('btn-add-emom').addEventListener('click', () => openAddSegmentDialog('emom'));
+document.getElementById('btn-add-amrap').addEventListener('click', () => openAddSegmentDialog('amrap'));
+document.getElementById('btn-add-circuit').addEventListener('click', () => openCircuitBuilder());
+document.getElementById('btn-add-rest').addEventListener('click', () => openAddSegmentDialog('rest'));
+document.getElementById('btn-seg-cancel').addEventListener('click', () => hide($addSegDialog));
+document.getElementById('btn-seg-add').addEventListener('click', () => {
+  const seg = { type: addSegType };
+  (FIELDS[addSegType]||[]).forEach(f => { const el = document.getElementById(`seg-f-${f.key}`); const p = el ? parseInt(el.value) : NaN; seg[f.key] = isNaN(p) ? f.def : p; });
+  if (editSegIndex >= 0) compoundSegments[editSegIndex] = seg;
+  else compoundSegments.push(seg);
+  hide($addSegDialog); renderCompoundList();
+});
+
+// ─── CIRCUIT BUILDER (for compound) ───
+let cbExercises = [];
+let cbEditSegIndex = -1;
+let exerciseContext = 'standalone'; // 'standalone' or 'builder'
+let cbEditExIdx = -1;
+const $cbDialog = document.getElementById('circuit-builder-dialog');
+const $cbExList = document.getElementById('cb-exercise-list');
+const $cbTotal = document.getElementById('cb-total');
+const $cbPresetSelect = document.getElementById('cb-preset-select');
+
+function openCircuitBuilder(existingSeg, editIdx) {
+  cbEditSegIndex = (editIdx !== undefined) ? editIdx : -1;
+  document.getElementById('circuit-builder-title').textContent = cbEditSegIndex >= 0 ? 'Edit Circuit' : 'Add Circuit';
+  document.getElementById('btn-cb-save').textContent = cbEditSegIndex >= 0 ? 'Save' : 'Add';
+
+  if (existingSeg && existingSeg.exercises) {
+    cbExercises = JSON.parse(JSON.stringify(existingSeg.exercises));
+    document.getElementById('cb-total-rounds').value = existingSeg.totalRounds || 1;
+    document.getElementById('cb-rest').value = existingSeg.circuitRest || 0;
+  } else {
+    cbExercises = [];
+    document.getElementById('cb-total-rounds').value = 1;
+    document.getElementById('cb-rest').value = 60;
+  }
+
+  // Populate preset dropdown
+  const presets = getPresetsForType('circuit');
+  $cbPresetSelect.innerHTML = '<option value="">— Load Circuit Preset —</option>';
+  Object.keys(presets).sort().forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; $cbPresetSelect.appendChild(o); });
+
+  renderCbExerciseList();
+  show($cbDialog);
+}
+
+function cbCircuitDuration() {
+  const cRounds = parseInt(document.getElementById('cb-total-rounds').value) || 1;
+  const cRest = parseInt(document.getElementById('cb-rest').value) || 0;
+  let perCircuit = 0;
+  cbExercises.forEach(ex => { perCircuit += (ex.duration + ex.rest) * ex.rounds; });
+  return perCircuit * cRounds + cRest * Math.max(0, cRounds - 1);
+}
+
+function renderCbExerciseList() {
+  $cbExList.innerHTML = '';
+  if (cbExercises.length === 0) { $cbExList.innerHTML = '<div class="compound-empty">No exercises added yet</div>'; $cbTotal.textContent = ''; return; }
+  cbExercises.forEach((ex, i) => {
+    const dur = (ex.duration + ex.rest) * ex.rounds;
+    const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
+    div.addEventListener('click', (e) => {
+      if (e.target.closest('.seg-move-btn') || e.target.closest('.seg-del')) return;
+      openCbExerciseDialog(ex, i);
+    });
+    $cbExList.appendChild(div);
+  });
+  $cbTotal.innerHTML = `Total: <strong>${fmt(cbCircuitDuration())}</strong>`;
+  $cbExList.querySelectorAll('.seg-del').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); cbExercises.splice(parseInt(b.dataset.idx), 1); renderCbExerciseList(); }));
+  $cbExList.querySelectorAll('.seg-move-btn').forEach(b => b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const idx = parseInt(b.dataset.idx), dir = b.dataset.action;
+    if (dir === 'up' && idx > 0) { [cbExercises[idx], cbExercises[idx-1]] = [cbExercises[idx-1], cbExercises[idx]]; renderCbExerciseList(); }
+    if (dir === 'down' && idx < cbExercises.length-1) { [cbExercises[idx], cbExercises[idx+1]] = [cbExercises[idx+1], cbExercises[idx]]; renderCbExerciseList(); }
+  }));
+}
+
+document.getElementById('cb-total-rounds').addEventListener('input', renderCbExerciseList);
+document.getElementById('cb-rest').addEventListener('input', renderCbExerciseList);
+
+// Load preset in builder
+$cbPresetSelect.addEventListener('change', () => {
+  const name = $cbPresetSelect.value; if (!name) return;
+  const presets = getPresetsForType('circuit');
+  const data = presets[name]; if (!data) return;
+  cbExercises = JSON.parse(JSON.stringify(data.exercises || []));
+  document.getElementById('cb-total-rounds').value = data.totalRounds || 1;
+  document.getElementById('cb-rest').value = data.circuitRest !== undefined ? data.circuitRest : 60;
+  renderCbExerciseList();
+});
+
+// Add exercise from builder
+function openCbExerciseDialog(existing, editIdx) {
+  exerciseContext = 'builder';
+  cbEditExIdx = (editIdx !== undefined) ? editIdx : -1;
+  document.getElementById('exercise-dialog-title').textContent = cbEditExIdx >= 0 ? 'Edit Exercise' : 'Add Exercise';
+  document.getElementById('btn-ex-add').textContent = cbEditExIdx >= 0 ? 'Save' : 'Add';
+  document.getElementById('exercise-name-input').value = existing ? existing.name : '';
+  document.getElementById('ex-duration').value = existing ? existing.duration : 45;
+  document.getElementById('ex-rest').value = existing ? existing.rest : 15;
+  document.getElementById('ex-rounds').value = existing ? existing.rounds : 1;
+  show($addExDialog);
+  setTimeout(() => document.getElementById('exercise-name-input').focus(), 100);
+}
+
+document.getElementById('btn-cb-add-exercise').addEventListener('click', () => openCbExerciseDialog());
+document.getElementById('btn-cb-cancel').addEventListener('click', () => hide($cbDialog));
+
+document.getElementById('btn-cb-save').addEventListener('click', () => {
+  if (cbExercises.length === 0) return;
+  const seg = {
+    type: 'circuit',
+    exercises: JSON.parse(JSON.stringify(cbExercises)),
+    totalRounds: parseInt(document.getElementById('cb-total-rounds').value) || 1,
+    circuitRest: parseInt(document.getElementById('cb-rest').value) || 0,
+  };
+  if (cbEditSegIndex >= 0) compoundSegments[cbEditSegIndex] = seg;
+  else compoundSegments.push(seg);
+  hide($cbDialog); renderCompoundList();
+});
+
+function startCompoundSegment(idx) {
+  const seg = compoundSegments[idx];
+  if (seg.type === 'circuit') {
+    startCircuitFromCompound(seg);
+  } else {
+    const starters = { rounds: startRounds, emom: startEmom, amrap: startAmrap, rest: startRest };
+    if (starters[seg.type]) starters[seg.type]();
+  }
+}
+
+function startCircuitFromCompound(seg) {
+  circuitRunning = true;
+  circuitState = {
+    exercises: seg.exercises,
+    totalRounds: seg.totalRounds || 1,
+    circRest: seg.circuitRest || 0,
+    circuitRound: 1, exIdx: 0, exRound: 1,
+    phase: 'work', remaining: seg.exercises[0].duration,
+  };
+  $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
+  document.getElementById('btn-pause').classList.remove('hidden');
+  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  isPaused = false;
+  updateCircuitDisplay();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(tickCircuit, 1000);
+}
+
+document.getElementById('btn-compound-start').addEventListener('click', () => {
+  if (compoundSegments.length === 0) return;
+  ensureAudio();
+  const cRounds = parseInt(document.getElementById('compound-total-rounds').value) || 1;
+  localStorage.setItem('farmLastUsed_compound', JSON.stringify({ segments: compoundSegments, totalRounds: cRounds }));
+  compoundRunning = true; compoundIndex = 0; compoundTotalRounds = cRounds; compoundCurrentRound = 1;
+  countDirection = 'down'; halfwayBeep = false;
+  hide($compoundSetup); hide($circuitSetup); startCountdown(() => startCompoundSegment(0));
+});
+
+document.getElementById('btn-compound-back').addEventListener('click', () => { hide($compoundSetup); hide($circuitSetup); hide($cbDialog); show($menu); });
+document.getElementById('btn-compound-reset').addEventListener('click', () => {
+  if (compoundSegments.length === 0 || confirm('Clear all segments?')) {
+    compoundSegments = [];
+    document.getElementById('compound-total-rounds').value = 1;
+    renderCompoundList();
+  }
+});
+
+// ─── CIRCUIT ───
+const $circuitSetup = document.getElementById('circuit-setup');
+const $circuitList = document.getElementById('circuit-list');
+const $circuitTotal = document.getElementById('circuit-total');
+const $circPresetSelect = document.getElementById('circuit-preset-select');
+const $btnCircDelete = document.getElementById('btn-circuit-delete');
+const $addExDialog = document.getElementById('add-exercise-dialog');
+
+function circuitTotalDuration() {
+  const cRounds = parseInt(document.getElementById('circuit-total-rounds').value) || 1;
+  const cRest = parseInt(document.getElementById('circuit-rest').value) || 0;
+  let perCircuit = 0;
+  circuitExercises.forEach(ex => { perCircuit += (ex.duration + ex.rest) * ex.rounds; });
+  return perCircuit * cRounds + cRest * Math.max(0, cRounds - 1);
+}
+
+function exerciseSummary(ex) {
+  return `${ex.duration}s work / ${ex.rest}s rest × ${ex.rounds}r`;
+}
+
+function openCircuitSetup() {
+  timerType = 'circuit';
+  hide($menu); hide($setup); hide($timer); hide($compoundSetup); hide($circuitSetup);
+  try { const last = JSON.parse(localStorage.getItem('farmLastUsed_circuit'));
+    if (last && last.exercises && circuitExercises.length === 0) {
+      circuitExercises = last.exercises;
+      if (last.totalRounds) document.getElementById('circuit-total-rounds').value = last.totalRounds;
+      if (last.circuitRest !== undefined) document.getElementById('circuit-rest').value = last.circuitRest;
+    }
+  } catch {}
+  populatePresetDropdown($circPresetSelect, 'circuit');
+  renderCircuitList();
+  // Reset URL toggle
+  document.getElementById('circuit-url-display').style.display = 'none';
+  document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
+  show($circuitSetup);
+}
+
+function renderCircuitList() {
+  $circuitList.innerHTML = '';
+  if (circuitExercises.length === 0) {
+    $circuitList.innerHTML = '<div class="compound-empty">No exercises added yet</div>';
+    $circuitTotal.textContent = '';
+    if (typeof updateCircuitUrl === 'function') updateCircuitUrl();
+    return;
+  }
+  circuitExercises.forEach((ex, i) => {
+    const dur = (ex.duration + ex.rest) * ex.rounds;
+    const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
+    div.addEventListener('click', (e) => {
+      if (e.target.closest('.seg-move-btn') || e.target.closest('.seg-del')) return;
+      openExerciseDialog(ex, i);
+    });
+    $circuitList.appendChild(div);
+  });
+  $circuitTotal.innerHTML = `Total: <strong>${fmt(circuitTotalDuration())}</strong> (${Math.round(circuitTotalDuration()/60)} min)`;
+  $circuitList.querySelectorAll('.seg-del').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); circuitExercises.splice(parseInt(b.dataset.idx), 1); renderCircuitList(); }));
+  $circuitList.querySelectorAll('.seg-move-btn').forEach(b => b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const idx = parseInt(b.dataset.idx), dir = b.dataset.action;
+    if (dir === 'up' && idx > 0) { [circuitExercises[idx], circuitExercises[idx-1]] = [circuitExercises[idx-1], circuitExercises[idx]]; renderCircuitList(); }
+    if (dir === 'down' && idx < circuitExercises.length-1) { [circuitExercises[idx], circuitExercises[idx+1]] = [circuitExercises[idx+1], circuitExercises[idx]]; renderCircuitList(); }
+  }));
+  if (typeof updateCircuitUrl === 'function') updateCircuitUrl();
+}
+
+// Update total when global fields change
+document.getElementById('circuit-total-rounds').addEventListener('input', renderCircuitList);
+document.getElementById('circuit-rest').addEventListener('input', renderCircuitList);
+
+// Exercise dialog
+let editExIdx = -1;
+function openExerciseDialog(existing, editIdx) {
+  exerciseContext = 'standalone';
+  editExIdx = (editIdx !== undefined) ? editIdx : -1;
+  document.getElementById('exercise-dialog-title').textContent = editExIdx >= 0 ? 'Edit Exercise' : 'Add Exercise';
+  document.getElementById('btn-ex-add').textContent = editExIdx >= 0 ? 'Save' : 'Add';
+  document.getElementById('exercise-name-input').value = existing ? existing.name : '';
+  document.getElementById('ex-duration').value = existing ? existing.duration : 45;
+  document.getElementById('ex-rest').value = existing ? existing.rest : 15;
+  document.getElementById('ex-rounds').value = existing ? existing.rounds : 1;
+  show($addExDialog);
+  setTimeout(() => document.getElementById('exercise-name-input').focus(), 100);
+}
+
+document.getElementById('btn-add-exercise').addEventListener('click', () => openExerciseDialog());
+document.getElementById('btn-ex-cancel').addEventListener('click', () => hide($addExDialog));
+document.getElementById('btn-ex-add').addEventListener('click', () => {
+  const name = document.getElementById('exercise-name-input').value.trim() || 'Exercise';
+  const ex = {
+    name,
+    duration: parseInt(document.getElementById('ex-duration').value) || 45,
+    rest: parseInt(document.getElementById('ex-rest').value) || 0,
+    rounds: parseInt(document.getElementById('ex-rounds').value) || 1,
+  };
+  if (exerciseContext === 'builder') {
+    if (cbEditExIdx >= 0) cbExercises[cbEditExIdx] = ex;
+    else cbExercises.push(ex);
+    hide($addExDialog); renderCbExerciseList();
+  } else {
+    if (editExIdx >= 0) circuitExercises[editExIdx] = ex;
+    else circuitExercises.push(ex);
+    hide($addExDialog); renderCircuitList();
+  }
+});
+
+// Circuit presets
+$circPresetSelect.addEventListener('change', () => {
+  const n = $circPresetSelect.value; $btnCircDelete.disabled = !n;
+  if (n) {
+    const v = getPresetsForType('circuit')[n]; if (!v) return;
+    circuitExercises = JSON.parse(JSON.stringify(v.exercises || []));
+    document.getElementById('circuit-total-rounds').value = v.totalRounds || 1;
+    document.getElementById('circuit-rest').value = v.circuitRest !== undefined ? v.circuitRest : 60;
+    renderCircuitList();
+  }
+});
+document.getElementById('btn-circuit-save').addEventListener('click', () => {
+  saveContext = 'circuit'; $saveName.value = $circPresetSelect.value || '';
+  show($saveDialog); setTimeout(() => { $saveName.focus(); $saveName.select(); }, 100);
+});
+$btnCircDelete.addEventListener('click', () => {
+  const n = $circPresetSelect.value;
+  if (n && confirm(`Delete preset "${n}"?`)) { deletePreset('circuit', n); populatePresetDropdown($circPresetSelect, 'circuit'); }
+});
+
+// Circuit start
+document.getElementById('btn-circuit-start').addEventListener('click', () => {
+  if (circuitExercises.length === 0) return;
+  document.getElementById('circuit-url-display').style.display = 'none';
+  document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
+  ensureAudio();
+  const totalRounds = parseInt(document.getElementById('circuit-total-rounds').value) || 1;
+  const circRest = parseInt(document.getElementById('circuit-rest').value) || 0;
+  localStorage.setItem('farmLastUsed_circuit', JSON.stringify({
+    exercises: circuitExercises, totalRounds, circuitRest: circRest
+  }));
+  circuitRunning = true;
+  circuitState = {
+    exercises: circuitExercises,
+    totalRounds, circRest,
+    circuitRound: 1, exIdx: 0, exRound: 1,
+    phase: 'work', remaining: circuitExercises[0].duration,
+  };
+  hide($circuitSetup);
+  startCountdown(() => {
+    $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
+    document.getElementById('btn-pause').classList.remove('hidden');
+    document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+    isPaused = false;
+    updateCircuitDisplay();
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tickCircuit, 1000);
+  });
+});
+
+document.getElementById('btn-circuit-back').addEventListener('click', () => { document.getElementById('circuit-url-display').style.display = 'none'; document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL'; hide($circuitSetup); show($menu); });
+document.getElementById('btn-circuit-reset').addEventListener('click', () => {
+  if (circuitExercises.length === 0 || confirm('Clear all exercises?')) {
+    circuitExercises = [];
+    document.getElementById('circuit-total-rounds').value = 1;
+    document.getElementById('circuit-rest').value = 60;
+    renderCircuitList();
+  }
+});
+
+function updateCircuitDisplay() {
+  const cs = circuitState;
+  const ex = cs.exercises[cs.exIdx];
+  $tDisplay.textContent = fmt(cs.remaining);
+
+  if (cs.phase === 'work') {
+    $tPhase.textContent = ex.name.toUpperCase();
+    $tDisplay.style.color = 'var(--accent)';
+    $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)';
+    $timer.style.background = 'linear-gradient(180deg, rgba(232,168,0,0.08) 0%, var(--bg) 60%)';
+  } else if (cs.phase === 'rest') {
+    $tPhase.textContent = 'REST';
+    $tDisplay.style.color = 'var(--rest)';
+    $tDisplay.style.textShadow = '0 0 80px var(--rest-glow)';
+    $timer.style.background = 'linear-gradient(180deg, rgba(240,237,232,0.05) 0%, var(--bg) 60%)';
+  } else if (cs.phase === 'circuit-rest') {
+    $tPhase.textContent = 'CIRCUIT REST';
+    $tDisplay.style.color = '#c49000';
+    $tDisplay.style.textShadow = '0 0 80px var(--amrap-glow)';
+    $timer.style.background = 'linear-gradient(180deg, rgba(196,144,0,0.08) 0%, var(--bg) 60%)';
+  }
+
+  const exInfo = ex.rounds > 1 ? ` · Rep ${cs.exRound}/${ex.rounds}` : '';
+  let sub = `${ex.name}${exInfo} · Exercise ${cs.exIdx+1}/${cs.exercises.length} · Circuit ${cs.circuitRound}/${cs.totalRounds}`;
+  if (compoundRunning) { const ri = compoundTotalRounds > 1 ? ` R${compoundCurrentRound}/${compoundTotalRounds}` : ''; sub = `[${compoundIndex+1}/${compoundSegments.length}${ri}] ${sub}`; };
+  $tSub.textContent = sub;
+}
+
+function tickCircuit() {
+  if (isPaused) return;
+  const cs = circuitState;
+  if (cs.remaining <= 3 && cs.remaining > 0) beep321();
+  cs.remaining--;
+
+  if (cs.remaining < 0) {
+    const ex = cs.exercises[cs.exIdx];
+
+    if (cs.phase === 'work') {
+      // Work done → rest (if rest > 0)
+      if (ex.rest > 0) {
+        beepHigh();
+        cs.phase = 'rest'; cs.remaining = ex.rest;
+      } else {
+        // No rest, advance directly
+        advanceCircuit();
+        if (!circuitRunning) return;
+      }
+    } else if (cs.phase === 'rest') {
+      beepLow();
+      advanceCircuit();
+      if (!circuitRunning) return;
+    } else if (cs.phase === 'circuit-rest') {
+      beepGo();
+      cs.circuitRound++;
+      cs.exIdx = 0; cs.exRound = 1;
+      cs.phase = 'work'; cs.remaining = cs.exercises[0].duration;
+    }
+  }
+  if (circuitRunning) updateCircuitDisplay();
+}
+
+function advanceCircuit() {
+  const cs = circuitState;
+  const ex = cs.exercises[cs.exIdx];
+
+  if (cs.exRound < ex.rounds) {
+    // More rounds of this exercise
+    beepLow();
+    cs.exRound++; cs.phase = 'work'; cs.remaining = ex.duration;
+  } else if (cs.exIdx < cs.exercises.length - 1) {
+    // Next exercise
+    beepGo();
+    cs.exIdx++; cs.exRound = 1;
+    cs.phase = 'work'; cs.remaining = cs.exercises[cs.exIdx].duration;
+  } else if (cs.circuitRound < cs.totalRounds) {
+    // Circuit done, but more circuit rounds
+    if (cs.circRest > 0) {
+      beepLong();
+      cs.phase = 'circuit-rest'; cs.remaining = cs.circRest;
+    } else {
+      beepGo();
+      cs.circuitRound++; cs.exIdx = 0; cs.exRound = 1;
+      cs.phase = 'work'; cs.remaining = cs.exercises[0].duration;
+    }
+  } else {
+    // All done
+    circuitRunning = false;
+    if (compoundRunning) {
+      finishSegment();
+    } else {
+      finishTimer();
+    }
+  }
+}
+
+// ─── MAIN EVENTS ───
+document.querySelectorAll('.menu-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    ensureAudio();
+    if (btn.dataset.type === 'compound') { compoundSegments = []; }
+    if (btn.dataset.type === 'circuit') { circuitExercises = []; }
+    
+    // NYT: Fortæl browseren, at vi "skifter side", så tilbage-knappen aktiveres
+    history.pushState({ view: 'app' }, '');
+    
+    openSetup(btn.dataset.type);
+  });
+});
+
+// Opdateret "Tilbage"-logik, der bruger browserens historik
+document.getElementById('btn-back').addEventListener('click', () => { history.back(); });
+document.getElementById('btn-compound-back').addEventListener('click', () => { history.back(); });
+document.getElementById('btn-circuit-back').addEventListener('click', () => { history.back(); });
+
+document.getElementById('btn-start').addEventListener('click', startTimer);
+document.getElementById('btn-pause').addEventListener('click', () => { isPaused = !isPaused; document.getElementById('btn-pause').textContent = isPaused ? 'Resume' : 'Pause'; });
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  clearInterval(timerInterval); compoundRunning = false; circuitRunning = false; hide($timer);
+  if (timerType === 'clock') {
+    history.back(); // Gå til hovedmenu
+  }
+  else if (timerType === 'compound') show($compoundSetup);
+  else if (timerType === 'circuit') show($circuitSetup);
+  else show($setup);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' && $timer.style.display === 'flex') {
+    e.preventDefault(); ensureAudio();
+    if (timerType !== 'clock') { isPaused = !isPaused; document.getElementById('btn-pause').textContent = isPaused ? 'Resume' : 'Pause'; }
+  }
+});
+
+// ─── VOLUME SLIDER ───
+const $volumeSlider = document.getElementById('volume-slider');
+$volumeSlider.value = Math.round(masterVolume * 100);
+$volumeSlider.addEventListener('input', () => {
+  masterVolume = parseInt($volumeSlider.value) / 100;
+  localStorage.setItem('farmTimerVolume', masterVolume);
+});
+
+// ─── DONATE ───
+
+// ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
+window.addEventListener('popstate', (e) => {
+  // 1. Ryd alle timere og stop evt. afspilning
+  clearInterval(timerInterval);
+  compoundRunning = false;
+  circuitRunning = false;
+  isPaused = false;
+  
+  // 2. Skjul countdown-overlays, hvis de var åbne
+  hide($cdOverlay);
+  document.getElementById('tap-overlay').style.display = 'none';
+  
+  // 3. Skjul samtlige timer- og setup-skærme
+  hide($timer);
+  hide($setup);
+  hide($compoundSetup);
+  hide($circuitSetup);
+  
+  // 4. Ryd op i URL-displays (skjul dem)
+  if ($urlDisplay) $urlDisplay.style.display = 'none';
+  if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
+  if (document.getElementById('circuit-url-display')) document.getElementById('circuit-url-display').style.display = 'none';
+  if (document.getElementById('btn-circuit-toggle-url')) document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
+  
+  // 5. Vis hovedmenuen!
+  show($menu);
+});
+
+// ─── URL GENERATOR ───
+const $urlDisplay = document.getElementById('url-display');
+const $urlOutput = document.getElementById('url-output');
+
+function generateTimerUrl() {
+  const base = window.location.origin + window.location.pathname;
+  const vals = getCurrentValues();
+  const params = new URLSearchParams();
+  params.set('type', timerType);
+  (FIELDS[timerType]||[]).forEach(f => {
+    if (vals[f.key] !== undefined) params.set(f.key, vals[f.key]);
+  });
+  
+  return base + '?' + params.toString();
+}
+
+function updateTimerUrl() {
+  if (!timerType || !FIELDS[timerType]) return;
+  $urlOutput.value = generateTimerUrl();
+}
+
+// Live update on field changes
+document.getElementById('setup-fields').addEventListener('input', () => { if ($urlDisplay.style.display === 'block') updateTimerUrl(); });
+['dir-down','dir-up','half-on','half-off'].forEach(id => {
+  document.getElementById(id).addEventListener('click', () => { if ($urlDisplay.style.display === 'block') setTimeout(updateTimerUrl, 10); });
+});
+
+// Toggle URL visibility
+document.getElementById('btn-toggle-url').addEventListener('click', () => {
+  const isVisible = $urlDisplay.style.display === 'block';
+  if (isVisible) {
+    $urlDisplay.style.display = 'none';
+    document.getElementById('btn-toggle-url').textContent = 'Show URL';
+  } else {
+    updateTimerUrl();
+    $urlDisplay.style.display = 'block';
+    document.getElementById('btn-toggle-url').textContent = 'Hide URL';
+  }
+});
+
+// Copy URL
+document.getElementById('btn-copy-url').addEventListener('click', () => {
+  updateTimerUrl();
+  navigator.clipboard.writeText($urlOutput.value).then(() => {
+    const btn = document.getElementById('btn-copy-url');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy URL'; }, 1500);
+  }).catch(() => { $urlOutput.select(); document.execCommand('copy'); });
+});
+
+// Circuit URL
+function generateCircuitUrl() {
+  const base = window.location.origin + window.location.pathname;
+  const params = new URLSearchParams();
+  params.set('type', 'circuit');
+  params.set('cr', document.getElementById('circuit-total-rounds').value || '1');
+  params.set('crest', document.getElementById('circuit-rest').value || '0');
+  const exStr = circuitExercises.map(ex => `${ex.name}:${ex.duration}:${ex.rest}:${ex.rounds}`).join(',');
+  params.set('ex', exStr);
+  
+  return base + '?' + params.toString();
+}
+
+function updateCircuitUrl() {
+  const output = document.getElementById('circuit-url-output');
+  if (circuitExercises.length === 0) { output.value = ''; return; }
+  output.value = generateCircuitUrl();
+}
+
+document.getElementById('circuit-total-rounds').addEventListener('input', () => { if (document.getElementById('circuit-url-display').style.display === 'block') updateCircuitUrl(); });
+document.getElementById('circuit-rest').addEventListener('input', () => { if (document.getElementById('circuit-url-display').style.display === 'block') updateCircuitUrl(); });
+
+// Toggle circuit URL
+document.getElementById('btn-circuit-toggle-url').addEventListener('click', () => {
+  const el = document.getElementById('circuit-url-display');
+  const isVisible = el.style.display === 'block';
+  if (isVisible) {
+    el.style.display = 'none';
+    document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
+  } else {
+    updateCircuitUrl();
+    el.style.display = 'block';
+    document.getElementById('btn-circuit-toggle-url').textContent = 'Hide URL';
+  }
+});
+
+// Copy circuit URL
+document.getElementById('btn-circuit-copy-url').addEventListener('click', () => {
+  updateCircuitUrl();
+  const url = document.getElementById('circuit-url-output').value;
+  if (!url) return;
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('btn-circuit-copy-url');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy URL'; }, 1500);
+  }).catch(() => { document.getElementById('circuit-url-output').select(); document.execCommand('copy'); });
+});
+
+// ─── DONATE ───
+const $donateSection = document.getElementById('donate-section');
+let paypalRendered = false;
+
+// Hide if user dismissed
+if (localStorage.getItem('farmDonateHidden') === '1') {
+  $donateSection.style.display = 'none';
+}
+
+document.getElementById('btn-donate').addEventListener('click', () => {
+  document.getElementById('donate-overlay').style.display = 'block';
+  if (!paypalRendered && typeof paypal !== 'undefined') {
+    try {
+      paypal.HostedButtons({ hostedButtonId: "R8RFFSZ5RBG4Y" }).render("#paypal-container-R8RFFSZ5RBG4Y");
+      paypalRendered = true;
+    } catch(e) { console.log('PayPal render error:', e); }
+  }
+});
+
+document.getElementById('btn-donate-close').addEventListener('click', () => { document.getElementById('donate-overlay').style.display = 'none'; });
+
+document.getElementById('btn-donate-dismiss').addEventListener('click', () => {
+  if (confirm('Hide the donate button? You can bring it back by clearing your browser data.')) {
+    localStorage.setItem('farmDonateHidden', '1');
+    $donateSection.style.display = 'none';
+  }
+});
+
+// ─── LOGO LINK ───
+if (window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostname === 'www.farmfitnesstimer.dk') {
+  // Gør logoet klikbart til farmfitness.dk
+  const logo = document.getElementById('menu-logo');
+  const link = document.createElement('a');
+  link.href = 'https://farmfitness.dk';
+  link.target = '_blank';
+  link.rel = 'noopener';
+  logo.parentNode.insertBefore(link, logo);
+  link.appendChild(logo);
+  logo.style.cursor = 'pointer';
+
+  // Oversæt SEO-teksten til dansk
+  const seoContainer = document.getElementById('seo-text-container');
+  if (seoContainer) {
+    seoContainer.innerHTML = `
+      <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 10px;">Om Farm Fitness Timer</h2>
+      <p style="margin-bottom: 10px;">Det ultimative online stopur til din funktionelle træning. Uanset om du kører højintens intervaltræning (HIIT), en CrossFit WOD, Tabata, eller bygger din egen cirkeltræning, fungerer vores web-timer perfekt på både mobil og desktop.</p>
+      <p>Inkluderer funktioner som AMRAP (As Many Rounds As Possible), EMOM (Every Minute On the Minute) og avancerede sammensatte timere. Kræver ingen download af app.</p>
+    `;
+  }
+}
+
+// ─── TAP TO START (URL autostart) ───
+function showTapOverlay(callback) {
+  const overlay = document.getElementById('tap-overlay');
+  overlay.style.display = 'block';
+  function onTap() {
+    overlay.removeEventListener('click', onTap);
+    overlay.style.display = 'none';
+    ensureAudio();
+    setTimeout(callback, 100);
+  }
+  overlay.addEventListener('click', onTap);
+}
+
+// ─── EXPORT / IMPORT LOGIC ───
+
+// Export DOM
+const $exportDialog = document.getElementById('export-dialog');
+const $exportListContainer = document.getElementById('export-list-container');
+let exportDataMap = {};
+
+document.getElementById('btn-export-ui').addEventListener('click', () => {
+  const allPresets = loadAllPresets();
+  $exportListContainer.innerHTML = '';
+  exportDataMap = {};
+  let hasPresets = false;
+
+  for (const type in allPresets) {
+    const presetsOfType = allPresets[type];
+    if (Object.keys(presetsOfType).length === 0) continue;
+    hasPresets = true;
+
+    // Kategori overskrift med master-checkbox
+    const catDiv = document.createElement('div');
+    catDiv.className = 'export-category-label';
+    catDiv.innerHTML = `<label class="export-category" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                          <input type="checkbox" class="cat-check" data-type="${type}" checked>
+                          ${type === 'amrap' ? 'AMRAP/FT' : type.toUpperCase()}
+                        </label>`;
+    $exportListContainer.appendChild(catDiv);
+
+    exportDataMap[type] = {};
+
+    for (const name in presetsOfType) {
+      exportDataMap[type][name] = presetsOfType[name];
+      const itemDiv = document.createElement('label');
+      itemDiv.className = 'export-item';
+      itemDiv.innerHTML = `<input type="checkbox" class="item-check" data-type="${type}" data-name="${name}" checked> ${name}`;
+      $exportListContainer.appendChild(itemDiv);
+    }
+  }
+
+  if (!hasPresets) {
+    $exportListContainer.innerHTML = '<p style="color:var(--dim); text-align:center;">No presets found to export.</p>';
+    document.getElementById('btn-export-confirm').style.display = 'none';
+  } else {
+    document.getElementById('btn-export-confirm').style.display = 'block';
+  }
+
+  // Master checkbox logik
+  $exportListContainer.querySelectorAll('.cat-check').forEach(cb => {
+    cb.addEventListener('change', (e) => {
+      const type = e.target.dataset.type;
+      $exportListContainer.querySelectorAll(`.item-check[data-type="${type}"]`).forEach(item => item.checked = e.target.checked);
+    });
+  });
+
+  show($exportDialog);
+});
+
+document.getElementById('btn-export-cancel').addEventListener('click', () => hide($exportDialog));
+
+document.getElementById('btn-export-confirm').addEventListener('click', () => {
+  const exportObj = {};
+  $exportListContainer.querySelectorAll('.item-check:checked').forEach(cb => {
+    const type = cb.dataset.type;
+    const name = cb.dataset.name;
+    if (!exportObj[type]) exportObj[type] = {};
+    exportObj[type][name] = exportDataMap[type][name];
+  });
+
+  if (Object.keys(exportObj).length === 0) return alert("Please select at least one preset to export.");
+
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+  const dlAnchorElem = document.createElement('a');
+  dlAnchorElem.setAttribute("href",     dataStr);
+  dlAnchorElem.setAttribute("download", `farm-fitness-presets-${new Date().toISOString().slice(0,10)}.json`);
+  dlAnchorElem.click();
+  dlAnchorElem.remove();
+  hide($exportDialog);
+});
+
+// Import DOM & State Queue
+const $fileImportInput = document.getElementById('file-import-input');
+const $importConflictDialog = document.getElementById('import-conflict-dialog');
+const $conflictMessage = document.getElementById('conflict-message');
+const $conflictRenameInput = document.getElementById('conflict-rename-input');
+const $conflictApplyAll = document.getElementById('conflict-apply-all');
+const $importSummaryDialog = document.getElementById('import-summary-dialog');
+const $importSummaryList = document.getElementById('import-summary-list');
+
+let importQueue = [];
+let importResults = [];
+let applyAllAction = null; // 'skip', 'overwrite', 'rename'
+
+document.getElementById('btn-import-ui').addEventListener('click', () => {
+  $fileImportInput.value = ''; // Nulstil
+  $fileImportInput.click();
+});
+
+$fileImportInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    try {
+      const importedData = JSON.parse(event.target.result);
+      startImportProcess(importedData);
+    } catch (err) {
+      alert("Invalid JSON file.");
+    }
+  };
+  reader.readAsText(file);
+});
+
+function startImportProcess(data) {
+  importQueue = [];
+  importResults = [];
+  applyAllAction = null;
+  $conflictApplyAll.checked = false;
+
+  for (const type in data) {
+    for (const name in data[type]) {
+      importQueue.push({ type, name, originalName: name, data: data[type][name] });
+    }
+  }
+  processNextImport();
+}
+
+function processNextImport() {
+  if (importQueue.length === 0) {
+    finishImportProcess();
+    return;
+  }
+
+  const item = importQueue.shift();
+  const currentPresets = loadAllPresets();
+  const exists = currentPresets[item.type] && currentPresets[item.type][item.name];
+
+  if (!exists) {
+    savePreset(item.type, item.name, item.data);
+    importResults.push({ status: 'added', text: `Added: <strong>${item.name}</strong> (${item.type})` });
+    processNextImport();
+  } else {
+    if (applyAllAction) {
+      executeConflictAction(item, applyAllAction, item.name);
+    } else {
+      showConflictDialog(item);
+    }
+  }
+}
+
+function showConflictDialog(item) {
+  $conflictMessage.innerHTML = `Preset <strong>"${item.name}"</strong> (${item.type}) already exists.`;
+  $conflictRenameInput.value = item.name + ' (Imported)';
+  $conflictApplyAll.checked = false;
+  
+  // Gem nuværende item på knapperne
+  document.getElementById('btn-conflict-skip').onclick = () => handleConflict(item, 'skip');
+  document.getElementById('btn-conflict-overwrite').onclick = () => handleConflict(item, 'overwrite');
+  document.getElementById('btn-conflict-rename').onclick = () => handleConflict(item, 'rename');
+  
+  show($importConflictDialog);
+}
+
+function handleConflict(item, action) {
+  if ($conflictApplyAll.checked) applyAllAction = action;
+  executeConflictAction(item, action, $conflictRenameInput.value.trim());
+  hide($importConflictDialog);
+}
+
+function executeConflictAction(item, action, renameStr) {
+  const currentPresets = loadAllPresets();
+  
+  if (action === 'skip') {
+    importResults.push({ status: 'skipped', text: `Skipped: <strong>${item.originalName}</strong>` });
+  } else if (action === 'overwrite') {
+    savePreset(item.type, item.name, item.data);
+    importResults.push({ status: 'overwritten', text: `Overwritten: <strong>${item.name}</strong>` });
+  } else if (action === 'rename') {
+    let newName = renameStr || `${item.originalName} (1)`;
+    // Hvis vi er i 'apply all' rename state, auto-generer et nummer hvis navnet findes
+    if (applyAllAction === 'rename') {
+      newName = `${item.originalName} (Imported)`;
+      let counter = 1;
+      while (currentPresets[item.type] && currentPresets[item.type][newName]) {
+        counter++;
+        newName = `${item.originalName} (Imported ${counter})`;
+      }
+    } else {
+        // Enkeltstående rename check
+        if (currentPresets[item.type] && currentPresets[item.type][newName]) {
+            alert("This name also exists. Overwriting it.");
+        }
+    }
+    savePreset(item.type, newName, item.data);
+    importResults.push({ status: 'renamed', text: `Renamed: <strong>${item.originalName}</strong> → <strong>${newName}</strong>` });
+  }
+  processNextImport();
+}
+
+function finishImportProcess() {
+  // Opdater åbne dropdowns
+  populatePresetDropdown($presetSelect, timerType || 'rounds');
+  populatePresetDropdown($compPresetSelect, 'compound');
+  populatePresetDropdown($circPresetSelect, 'circuit');
+  
+  $importSummaryList.innerHTML = '';
+  if (importResults.length === 0) {
+    $importSummaryList.innerHTML = '<li>No presets found in file.</li>';
+  } else {
+    importResults.forEach(res => {
+      const li = document.createElement('li');
+      li.className = `import-${res.status}`;
+      li.innerHTML = res.text;
+      $importSummaryList.appendChild(li);
+    });
+  }
+  show($importSummaryDialog);
+}
+
+document.getElementById('btn-summary-close').addEventListener('click', () => hide($importSummaryDialog));
+
+// ─── URL AUTOSTART ───
+// ─── URL AUTOSTART ───
+// ─── URL AUTOSTART ───
+(function init() {
+  const p = getUrlParams();
+
+  // Tjek om vi er på det danske domæne
+  const isDK = window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostname === 'www.farmfitnesstimer.dk';
+
+  // Opdater titel og meta beskrivelser baseret på URL
+  if (p.title) {
+    const decodedTitle = decodeURIComponent(p.title.replace(/\+/g, ' '));
+    
+    // Opdater fanen og overskriften i appen
+    document.title = decodedTitle + " - Farm Fitness";
+    const subtitleEl = document.querySelector('.menu-subtitle');
+    if (subtitleEl) subtitleEl.textContent = decodedTitle;
+
+    // Sæt dynamisk meta beskrivelse på hhv. dansk og engelsk
+    let descText = "";
+    if (isDK) {
+      descText = "Gratis " + decodedTitle + " til din næste træning. Brug vores nemme online timer til CrossFit, HIIT og hjemmetræning.";
+    } else {
+      descText = "Free " + decodedTitle + " for your next workout. Use our easy online timer for CrossFit, HIIT, and home workouts.";
+    }
+
+    // Fang meta-tags fra din <head> og opdater dem
+    const metaDesc = document.getElementById('meta-desc');
+    const ogTitle = document.getElementById('og-title');
+    const ogDesc = document.getElementById('og-desc');
+    
+    if (metaDesc) metaDesc.setAttribute('content', descText);
+    if (ogTitle) ogTitle.setAttribute('content', decodedTitle + " - Farm Fitness Timer");
+    if (ogDesc) ogDesc.setAttribute('content', descText);
+  }
+
+  if (p.type) {
+    let type = p.type.toLowerCase().replace('-', '');
+    // Legacy support
+    if (type === 'fortime') type = 'amrap';
+    if (type === 'tabata') type = 'rounds';
+      if (['rounds','emom','amrap','clock','compound','circuit'].includes(type)) {
+        
+        // NYT: Byg en historik, så man kan trykke "Tilbage" fra et direkte link
+        history.replaceState({ view: 'menu' }, '');
+        history.pushState({ view: 'app' }, '');
+
+        // ... din eksisterende kode fortsætter her ...
+        if (type === 'clock') { hide($menu); startClock(); return; }
+
+      // Circuit URL parsing
+      if (type === 'circuit' && p.ex) {
+        try {
+          circuitExercises = p.ex.split(',').map(s => {
+            const parts = s.split(':');
+            return {
+              name: decodeURIComponent(parts[0] || 'Exercise'),
+              duration: parseInt(parts[1]) || 45,
+              rest: parseInt(parts[2]) || 15,
+              rounds: parseInt(parts[3]) || 1,
+            };
+          });
+        } catch(e) { circuitExercises = []; }
+        openSetup('circuit');
+        // Set global fields after setup opens
+        setTimeout(() => {
+          if (p.cr) document.getElementById('circuit-total-rounds').value = parseInt(p.cr) || 1;
+          if (p.crest) document.getElementById('circuit-rest').value = parseInt(p.crest) || 0;
+          renderCircuitList();
+          if (p.go === 'true' || p.go === '1') {
+            showTapOverlay(() => document.getElementById('btn-circuit-start').click());
+          }
+        }, 100);
+        return;
+      }
+
+      const fields = FIELDS[type] || [];
+      const params = {};
+      fields.forEach(f => { if (p[f.key] !== undefined) { const v = parseInt(p[f.key]); params[f.key] = isNaN(v) ? f.def : v; } });
+      // Support legacy 'cap' param → convert to duration
+      if (p.cap !== undefined && type === 'amrap') { const v = parseInt(p.cap); params.duration = isNaN(v) ? 10 : v; }
+      openSetup(type, params);
+      if (p.go === 'true' || p.go === '1') showTapOverlay(() => startTimer());
+    }
+  } 
+})();
+</script>
+</body>
+</html>
