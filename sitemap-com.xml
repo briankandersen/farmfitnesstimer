@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.farmfitnesstimer.com/</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.farmfitnesstimer.com/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Classic+Tabata+Timer&amp;type=rounds&amp;work=20&amp;rest=10&amp;rounds=8</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Klassisk+Tabata+Timer&amp;type=rounds&amp;work=20&amp;rest=10&amp;rounds=8"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Classic+Tabata+Timer&amp;type=rounds&amp;work=20&amp;rest=10&amp;rounds=8"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Standard+HIIT+Timer&amp;type=rounds&amp;work=45&amp;rest=15&amp;rounds=10</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Standard+HIIT+Timer&amp;type=rounds&amp;work=45&amp;rest=15&amp;rounds=10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Standard+HIIT+Timer&amp;type=rounds&amp;work=45&amp;rest=15&amp;rounds=10"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Beginner+HIIT+Timer&amp;type=rounds&amp;work=30&amp;rest=30&amp;rounds=10</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Begynder+HIIT+Timer&amp;type=rounds&amp;work=30&amp;rest=30&amp;rounds=10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Beginner+HIIT+Timer&amp;type=rounds&amp;work=30&amp;rest=30&amp;rounds=10"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Standard+Boxing+Timer&amp;type=rounds&amp;work=180&amp;rest=60&amp;rounds=12</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Boksning+Standard+Timer&amp;type=rounds&amp;work=180&amp;rest=60&amp;rounds=12"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Standard+Boxing+Timer&amp;type=rounds&amp;work=180&amp;rest=60&amp;rounds=12"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=MMA+UFC+Timer&amp;type=rounds&amp;work=300&amp;rest=60&amp;rounds=5</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=MMA+UFC+Timer&amp;type=rounds&amp;work=300&amp;rest=60&amp;rounds=5"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=MMA+UFC+Timer&amp;type=rounds&amp;work=300&amp;rest=60&amp;rounds=5"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Fast+10+Minute+EMOM+Timer&amp;type=emom&amp;interval=60&amp;rounds=10</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Hurtig+EMOM+10+Minutter+Timer&amp;type=emom&amp;interval=60&amp;rounds=10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Fast+10+Minute+EMOM+Timer&amp;type=emom&amp;interval=60&amp;rounds=10"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Standard+20+Minute+EMOM+Timer&amp;type=emom&amp;interval=60&amp;rounds=20</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Standard+EMOM+20+Minutter+Timer&amp;type=emom&amp;interval=60&amp;rounds=20"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Standard+20+Minute+EMOM+Timer&amp;type=emom&amp;interval=60&amp;rounds=20"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Long+30+Minute+EMOM+Timer&amp;type=emom&amp;interval=60&amp;rounds=30</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Lang+EMOM+30+Minutter+Timer&amp;type=emom&amp;interval=60&amp;rounds=30"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Long+30+Minute+EMOM+Timer&amp;type=emom&amp;interval=60&amp;rounds=30"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=20+Minute+E2MOM+Timer&amp;type=emom&amp;interval=120&amp;rounds=10</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=E2MOM+20+Minutter+Timer&amp;type=emom&amp;interval=120&amp;rounds=10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=20+Minute+E2MOM+Timer&amp;type=emom&amp;interval=120&amp;rounds=10"/>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=10+Minute+AMRAP+Timer&amp;type=amrap&amp;duration=10</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=AMRAP+10+Minutter+Timer&amp;type=amrap&amp;duration=10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=10+Minute+AMRAP+Timer&amp;type=amrap&amp;duration=10"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=15+Minute+AMRAP+Timer&amp;type=amrap&amp;duration=15</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=AMRAP+15+Minutter+Timer&amp;type=amrap&amp;duration=15"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=15+Minute+AMRAP+Timer&amp;type=amrap&amp;duration=15"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=20+Minute+AMRAP+Timer&amp;type=amrap&amp;duration=20</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=AMRAP+20+Minutter+Timer&amp;type=amrap&amp;duration=20"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=20+Minute+AMRAP+Timer&amp;type=amrap&amp;duration=20"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=45+Minute+Murph+Cap+Timer&amp;type=amrap&amp;duration=45</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Murph+Cap+45+Minutter+Timer&amp;type=amrap&amp;duration=45"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=45+Minute+Murph+Cap+Timer&amp;type=amrap&amp;duration=45"/>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Full+Body+Circuit+Timer&amp;type=circuit&amp;cr=3&amp;crest=60&amp;ex=Push+Ups:40:20:1,Squats:40:20:1,Sit+Ups:40:20:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Full+Body+Circuit+Timer&amp;type=circuit&amp;cr=3&amp;crest=60&amp;ex=Push+Ups:40:20:1,Squats:40:20:1,Sit+Ups:40:20:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Full+Body+Circuit+Timer&amp;type=circuit&amp;cr=3&amp;crest=60&amp;ex=Push+Ups:40:20:1,Squats:40:20:1,Sit+Ups:40:20:1"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Core+Circuit+Timer&amp;type=circuit&amp;cr=2&amp;crest=30&amp;ex=Plank:30:10:1,Crunches:30:10:1,Leg+Raises:30:10:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Core+Circuit+Timer&amp;type=circuit&amp;cr=2&amp;crest=30&amp;ex=Plank:30:10:1,Crunches:30:10:1,Leg+Raises:30:10:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Core+Circuit+Timer&amp;type=circuit&amp;cr=2&amp;crest=30&amp;ex=Plank:30:10:1,Crunches:30:10:1,Leg+Raises:30:10:1"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Fight+Gone+Bad+Timer&amp;type=circuit&amp;cr=3&amp;crest=60&amp;ex=Wall+Balls:60:0:1,SDHP:60:0:1,Box+Jumps:60:0:1,Push+Press:60:0:1,Row:60:0:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Fight+Gone+Bad+Timer&amp;type=circuit&amp;cr=3&amp;crest=60&amp;ex=Wall+Balls:60:0:1,SDHP:60:0:1,Box+Jumps:60:0:1,Push+Press:60:0:1,Row:60:0:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Fight+Gone+Bad+Timer&amp;type=circuit&amp;cr=3&amp;crest=60&amp;ex=Wall+Balls:60:0:1,SDHP:60:0:1,Box+Jumps:60:0:1,Push+Press:60:0:1,Row:60:0:1"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Quarter+Gone+Bad+Timer&amp;type=circuit&amp;cr=5&amp;crest=0&amp;ex=Thrusters:15:45:1,Pull-Ups:15:45:1,Burpees:15:45:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Quarter+Gone+Bad+Timer&amp;type=circuit&amp;cr=5&amp;crest=0&amp;ex=Thrusters:15:45:1,Pull-Ups:15:45:1,Burpees:15:45:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Quarter+Gone+Bad+Timer&amp;type=circuit&amp;cr=5&amp;crest=0&amp;ex=Thrusters:15:45:1,Pull-Ups:15:45:1,Burpees:15:45:1"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Tabata+Something+Else+Timer&amp;type=circuit&amp;cr=1&amp;crest=0&amp;ex=Pull-Ups:20:10:8,Push-Ups:20:10:8,Sit-Ups:20:10:8,Air+Squats:20:10:8</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Tabata+Something+Else+Timer&amp;type=circuit&amp;cr=1&amp;crest=0&amp;ex=Pull-Ups:20:10:8,Push-Ups:20:10:8,Sit-Ups:20:10:8,Air+Squats:20:10:8"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Tabata+Something+Else+Timer&amp;type=circuit&amp;cr=1&amp;crest=0&amp;ex=Pull-Ups:20:10:8,Push-Ups:20:10:8,Sit-Ups:20:10:8,Air+Squats:20:10:8"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Ghost+Hero+WOD+Timer&amp;type=circuit&amp;cr=6&amp;crest=60&amp;ex=Rowing:60:0:1,Burpees:60:0:1,Double-Unders:60:0:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Ghost+Hero+WOD+Timer&amp;type=circuit&amp;cr=6&amp;crest=60&amp;ex=Rowing:60:0:1,Burpees:60:0:1,Double-Unders:60:0:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Ghost+Hero+WOD+Timer&amp;type=circuit&amp;cr=6&amp;crest=60&amp;ex=Rowing:60:0:1,Burpees:60:0:1,Double-Unders:60:0:1"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Dumbbell+Full+Body+Grinder+Timer&amp;type=circuit&amp;cr=4&amp;crest=60&amp;ex=DB+Bent+Over+Rows:45:15:1,DB+Ground-to-Overheads:45:15:1,Up-Downs+Mountain+Climbers:45:15:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Dumbbell+Full+Body+Grinder+Timer&amp;type=circuit&amp;cr=4&amp;crest=60&amp;ex=DB+Bent+Over+Rows:45:15:1,DB+Ground-to-Overheads:45:15:1,Up-Downs+Mountain+Climbers:45:15:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Dumbbell+Full+Body+Grinder+Timer&amp;type=circuit&amp;cr=4&amp;crest=60&amp;ex=DB+Bent+Over+Rows:45:15:1,DB+Ground-to-Overheads:45:15:1,Up-Downs+Mountain+Climbers:45:15:1"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Hyrox+Engine+Builder+Timer&amp;type=circuit&amp;cr=4&amp;crest=60&amp;ex=SkiErg:90:30:1,Sled+Push:90:30:1,Rowing:90:30:1,Wall+Balls:90:30:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Hyrox+Engine+Builder+Timer&amp;type=circuit&amp;cr=4&amp;crest=60&amp;ex=SkiErg:90:30:1,Sled+Push:90:30:1,Rowing:90:30:1,Wall+Balls:90:30:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Hyrox+Engine+Builder+Timer&amp;type=circuit&amp;cr=4&amp;crest=60&amp;ex=SkiErg:90:30:1,Sled+Push:90:30:1,Rowing:90:30:1,Wall+Balls:90:30:1"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.farmfitnesstimer.com/?title=Dirty+30s+Core+And+Cardio+Timer&amp;type=circuit&amp;cr=5&amp;crest=60&amp;ex=Jumping+Jacks:30:0:1,Bicycle+Crunches:30:0:1,High+Knees:30:0:1,Plank:30:0:1</loc>
+    <xhtml:link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/?title=Dirty+30s+Core+And+Cardio+Timer&amp;type=circuit&amp;cr=5&amp;crest=60&amp;ex=Jumping+Jacks:30:0:1,Bicycle+Crunches:30:0:1,High+Knees:30:0:1,Plank:30:0:1"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/?title=Dirty+30s+Core+And+Cardio+Timer&amp;type=circuit&amp;cr=5&amp;crest=60&amp;ex=Jumping+Jacks:30:0:1,Bicycle+Crunches:30:0:1,High+Knees:30:0:1,Plank:30:0:1"/>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
