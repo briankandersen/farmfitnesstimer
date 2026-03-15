@@ -784,7 +784,7 @@
   <div class="timer-sub" id="t-sub"></div>
   <div class="timer-controls">
     <button class="ctrl-btn" id="btn-pause">Pause</button>
-    <button class="ctrl-btn" id="btn-reset">Reset</button>
+    <button class="ctrl-btn" id="btn-reset">Back</button>
     <div class="volume-control">
       <span class="volume-label">Vol</span>
       <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="100">
@@ -1131,7 +1131,6 @@ function getSetupValues() { return getCurrentValues(); }
 // ─── COUNTDOWN ───
 function startCountdown(callback) {
   ensureAudio();
-  document.getElementById('btn-reset').textContent = 'Reset';
   document.querySelector('.timer-logo').classList.remove('clock-mode');
   show($cdOverlay); let count = 3; $cdNum.textContent = count; beep321();
   const cdI = setInterval(() => {
@@ -1349,6 +1348,10 @@ function startTimer() {
   $urlDisplay.style.display = 'none';
   document.getElementById('btn-toggle-url').textContent = 'Show URL';
   localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues()));
+  
+  // TILFØJ DENNE LINJE:
+  history.pushState({ view: 'timer' }, '');
+
   const starter = { rounds: startRounds, emom: startEmom, amrap: startAmrap }[timerType];
   if (starter) startCountdown(() => starter());
 }
@@ -1618,7 +1621,9 @@ document.getElementById('btn-compound-start').addEventListener('click', () => {
   localStorage.setItem('farmLastUsed_compound', JSON.stringify({ segments: compoundSegments, totalRounds: cRounds }));
   compoundRunning = true; compoundIndex = 0; compoundTotalRounds = cRounds; compoundCurrentRound = 1;
   countDirection = 'down'; halfwayBeep = false;
-  hide($compoundSetup); hide($circuitSetup); startCountdown(() => startCompoundSegment(0));
+  hide($compoundSetup); hide($circuitSetup); 
+  history.pushState({ view: 'timer' }, '');
+  startCountdown(() => startCompoundSegment(0));
 });
 
 document.getElementById('btn-compound-back').addEventListener('click', () => { hide($compoundSetup); hide($circuitSetup); hide($cbDialog); show($menu); });
@@ -1776,6 +1781,7 @@ document.getElementById('btn-circuit-start').addEventListener('click', () => {
     phase: 'work', remaining: circuitExercises[0].duration,
   };
   hide($circuitSetup);
+  history.pushState({ view: 'timer' }, '');
   startCountdown(() => {
     $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
     document.getElementById('btn-pause').classList.remove('hidden');
@@ -1899,8 +1905,8 @@ document.querySelectorAll('.menu-btn').forEach(btn => {
     if (btn.dataset.type === 'compound') { compoundSegments = []; }
     if (btn.dataset.type === 'circuit') { circuitExercises = []; }
     
-    // NYT: Fortæl browseren, at vi "skifter side", så tilbage-knappen aktiveres
-    history.pushState({ view: 'app' }, '');
+    // NYT: Gem præcis hvilken type setup vi går ind i
+    history.pushState({ view: 'setup', type: btn.dataset.type }, '');
     
     openSetup(btn.dataset.type);
   });
@@ -1915,13 +1921,9 @@ document.getElementById('btn-start').addEventListener('click', startTimer);
 document.getElementById('btn-pause').addEventListener('click', () => { isPaused = !isPaused; document.getElementById('btn-pause').textContent = isPaused ? 'Resume' : 'Pause'; });
 
 document.getElementById('btn-reset').addEventListener('click', () => {
-  clearInterval(timerInterval); compoundRunning = false; circuitRunning = false; hide($timer);
-  if (timerType === 'clock') {
-    history.back(); // Gå til hovedmenu
-  }
-  else if (timerType === 'compound') show($compoundSetup);
-  else if (timerType === 'circuit') show($circuitSetup);
-  else show($setup);
+  // Vi kalder bare history.back(), og lader popstate-funktionen (nedenfor) 
+  // klare overvejelsen om, hvorvidt der skal advares.
+  history.back();
 });
 
 document.addEventListener('keydown', (e) => {
@@ -1943,31 +1945,55 @@ $volumeSlider.addEventListener('input', () => {
 
 // ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
 window.addEventListener('popstate', (e) => {
-  // 1. Ryd alle timere og stop evt. afspilning
+  const isRunning = timerInterval !== null && $tPhase.textContent !== 'DONE!';
+
+  if (isRunning) {
+    // Brugeren har trykket 'tilbage', men timeren kører.
+    // Vi tvinger dem lynhurtigt "frem" igen i historikken, så vi kan vise advarslen.
+    history.pushState(e.state, ''); 
+
+    const msg = (window.location.hostname.includes('.dk')) 
+                ? "Vil du stoppe træningen og gå tilbage?" 
+                : "Stop the workout and go back?";
+
+    if (confirm(msg)) {
+      // Hvis de trykker OK:
+      // 1. Stop alt
+      stopEverything();
+      // 2. Gå tilbage (denne gang uden at blive fanget, da isRunning nu er false)
+      history.back(); 
+    }
+    // Hvis de trykker Annuller: Vi gør intet. De er allerede "pushet" tilbage på timeren.
+    return;
+  }
+
+  // Hvis ingen timer kører, så ryd op og naviger normalt
+  stopEverything();
+  handleNavigation(e.state);
+});
+
+// To hjælpefunktioner for at holde koden ren:
+function stopEverything() {
   clearInterval(timerInterval);
+  timerInterval = null;
   compoundRunning = false;
   circuitRunning = false;
   isPaused = false;
-  
-  // 2. Skjul countdown-overlays, hvis de var åbne
   hide($cdOverlay);
   document.getElementById('tap-overlay').style.display = 'none';
-  
-  // 3. Skjul samtlige timer- og setup-skærme
-  hide($timer);
-  hide($setup);
-  hide($compoundSetup);
-  hide($circuitSetup);
-  
-  // 4. Ryd op i URL-displays (skjul dem)
-  if ($urlDisplay) $urlDisplay.style.display = 'none';
-  if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
-  if (document.getElementById('circuit-url-display')) document.getElementById('circuit-url-display').style.display = 'none';
-  if (document.getElementById('btn-circuit-toggle-url')) document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
-  
-  // 5. Vis hovedmenuen!
-  show($menu);
-});
+}
+
+function handleNavigation(state) {
+  if (state && state.view === 'setup') {
+    hide($timer); hide($menu);
+    if (state.type === 'compound') show($compoundSetup);
+    else if (state.type === 'circuit') show($circuitSetup);
+    else show($setup);
+  } else {
+    hide($timer); hide($setup); hide($compoundSetup); hide($circuitSetup);
+    show($menu);
+  }
+}
 
 // ─── URL GENERATOR ───
 const $urlDisplay = document.getElementById('url-display');
@@ -2399,7 +2425,7 @@ document.getElementById('btn-summary-close').addEventListener('click', () => hid
         
         // NYT: Byg en historik, så man kan trykke "Tilbage" fra et direkte link
         history.replaceState({ view: 'menu' }, '');
-        history.pushState({ view: 'app' }, '');
+        history.pushState({ view: 'setup', type: type }, '');
 
         // ... din eksisterende kode fortsætter her ...
         if (type === 'clock') { hide($menu); startClock(); return; }
