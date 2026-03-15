@@ -2,7 +2,7 @@
 
 A powerful, standalone browser-based workout timer for Functional Fitness, HIIT, CrossFit, and general training. Built as a Single Page Application (SPA) in a single HTML file, optimized for both mobile and desktop.
 
-Created by [Farm Fitness](https://farmfitness.com).
+Created by [Farm Fitness Timer](https://www.farmfitnesstimer.com).
 
 ## Timer Modes
 
@@ -49,4 +49,4 @@ This entire application is self-contained within a single `index.html` file. It 
 
 ## License
 
-© [Farm Fitness](https://farmfitness.com)
+© [Farm Fitness Timer](https://www.farmfitnesstimer.com)
