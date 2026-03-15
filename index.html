@@ -72,7 +72,9 @@
   /* ── MENU ── */
   #menu {
     display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-    height: 100vh; height: 100dvh; gap: 16px; padding: 2vh 20px 40px; position: relative;
+    height: 100vh; height: 100dvh; 
+    gap: clamp(8px, 1.2vh, 20px); /* Dynamisk afstand mellem knapper */
+    padding: 2vh 20px 40px; position: relative;
     overflow-y: auto;
   }
   #menu h1 {
@@ -92,16 +94,24 @@
     text-transform: uppercase;
     letter-spacing: 10px;
     color: var(--dim);
-    margin-bottom: 20px;
+    margin-bottom: clamp(10px, 2vh, 30px); /* Dynamisk luft under "TIMER" */
   }
 
   .menu-btn {
     font-family: 'Oswald', sans-serif; font-weight: 700;
-    font-size: clamp(18px, 4vw, 28px); text-transform: uppercase;
-    letter-spacing: 3px; padding: 16px 48px; width: min(420px, 85vw);
+    /* Fonten skalerer nu med højden (vh) i stedet for kun bredden (vw) */
+    font-size: clamp(16px, 2vh, 26px); 
+    text-transform: uppercase;
+    letter-spacing: 3px; 
+    /* Padding bliver dynamisk: min 10px, max 18px afhængig af skærmhøjde */
+    padding: clamp(10px, 1.8vh, 18px) 48px; 
+    width: min(420px, 85vw);
     border: 3px solid var(--border); background: var(--surface);
     color: var(--text); cursor: pointer; transition: all 0.2s; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1.2;
   }
+
   .menu-btn:hover, .menu-btn:focus {
     border-color: var(--accent); color: var(--accent); transform: scale(1.03); outline: none;
   }
@@ -194,11 +204,16 @@
   .setup-actions { display: flex; gap: 14px; margin-top: 4px; align-items: center; flex-wrap: wrap; justify-content: center; }
 
   .btn {
-    font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 20px;
-    text-transform: uppercase; letter-spacing: 3px; padding: 14px 40px;
+    font-family: 'Oswald', sans-serif; font-weight: 700; 
+    font-size: clamp(16px, 1.8vh, 22px);
+    text-transform: uppercase; letter-spacing: 3px; 
+    /* Gør højden dynamisk her også */
+    padding: clamp(8px, 1.5vh, 16px) 40px;
     border: 3px solid var(--accent); background: transparent; color: var(--accent);
     cursor: pointer; border-radius: 4px; transition: all 0.15s;
+    display: inline-flex; align-items: center; justify-content: center;
   }
+
   .btn:hover { background: var(--accent); color: var(--bg); }
   .btn-back { border-color: var(--dim); color: var(--dim); }
   .btn-back:hover { background: var(--dim); color: var(--bg); }
