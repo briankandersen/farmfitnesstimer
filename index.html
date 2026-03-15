@@ -2097,6 +2097,9 @@ document.getElementById('btn-donate-dismiss').addEventListener('click', () => {
 
 // ─── LOGO LINK ───
 if (window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostname === 'www.farmfitnesstimer.dk') {
+  // Skjul donate-sektionen helt på .dk domænet
+  if ($donateSection) $donateSection.style.display = 'none';
+
   // Gør logoet klikbart til farmfitness.dk
   const logo = document.getElementById('menu-logo');
   const link = document.createElement('a');
