@@ -118,8 +118,13 @@
 
   /* ── SETUP SCREEN ── */
   #setup {
-    display: none; flex-direction: column; align-items: center; justify-content: center;
-    height: 100vh; height: 100dvh; padding: 20px 20px 60px; gap: 20px; overflow-y: auto;
+    display: none; flex-direction: column; align-items: center; 
+    /* Ret justify-content til flex-start for at tillade scrolling fra toppen */
+    justify-content: flex-start; 
+    height: 100vh; height: 100dvh; 
+    /* Tilføj lidt mere padding i toppen (40px) */
+    padding: 40px 20px 60px; 
+    gap: 20px; overflow-y: auto;
     position: relative;
   }
   #setup h2 {
@@ -221,31 +226,41 @@
 
   /* ── TIMER SCREEN ── */
   #timer {
-    display: none; flex-direction: column; align-items: center; justify-content: center;
-    height: 100vh; height: 100dvh; position: relative; transition: background-color 0.4s;
-    overflow: hidden; width: 100%;
+    display: none; flex-direction: column; 
+    /* Vi ændrer fra center til space-evenly for at sprede elementerne ud */
+    align-items: center; justify-content: space-evenly; 
+    height: 100vh; height: 100dvh; position: relative;
+    padding: 20px; overflow: hidden;
   }
+
   .timer-phase {
     font-family: 'Oswald', sans-serif; font-weight: 800;
-    font-size: clamp(20px, 5vw, 40px); text-transform: uppercase;
-    letter-spacing: 8px; margin-bottom: 8px; opacity: 0.9;
-    padding-right: 8px; /* compensate letter-spacing on last char */
+    /* Mindre font på mobilen */
+    font-size: clamp(18px, 4vh, 32px); 
+    text-transform: uppercase; letter-spacing: 6px;
+    margin-bottom: 0; /* Fjern margin for at undgå overlap */
+    z-index: 10;
   }
+
   .timer-display {
     font-family: 'JetBrains Mono', monospace; font-weight: 800;
-    font-size: clamp(80px, 28vw, 480px); line-height: 1;
-    transition: color 0.3s, text-shadow 0.3s; text-align: center;
-    width: 100%; padding: 0 20px;
+    /* Vi bruger vh i stedet for vw, så uret aldrig bliver højere end skærmen */
+    font-size: clamp(80px, 25vh, 400px); 
+    line-height: 0.9; /* Strammere linjehøjde for at undgå overlap */
+    text-align: center; width: 100%;
   }
+
   .timer-sub {
     font-family: 'Oswald', sans-serif; font-weight: 400;
-    font-size: clamp(16px, 3.5vw, 28px); color: var(--dim);
-    margin-top: 8px; letter-spacing: 3px;
-    padding-right: 3px; /* compensate letter-spacing */
+    font-size: clamp(14px, 3vh, 24px); color: var(--dim);
+    letter-spacing: 2px;
   }
-  .timer-controls { position: absolute; bottom: 40px; display: flex; gap: 16px; align-items: center; }
-  .volume-control {
-    display: flex; align-items: center; gap: 8px;
+
+  .timer-controls {
+    /* Vi fjerner 'absolute' positionering, så knapperne følger flowet */
+    position: relative; bottom: 0; 
+    display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+    justify-content: center; margin-top: 10px;
   }
   .volume-label {
     font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px;
@@ -348,7 +363,8 @@
   /* ── COMPOUND ── */
   #compound-setup {
     display: none; flex-direction: column; align-items: center;
-    height: 100vh; height: 100dvh; padding: 20px; gap: 16px; overflow-y: auto;
+    justify-content: flex-start; /* Sørg for at den starter fra toppen */
+    height: 100vh; height: 100dvh; padding: 40px 20px; gap: 16px; overflow-y: auto;
   }
   #compound-setup h2, #circuit-setup h2 {
     font-family: 'Oswald', sans-serif; font-weight: 800;
@@ -357,7 +373,8 @@
   }
   #circuit-setup {
     display: none; flex-direction: column; align-items: center;
-    height: 100vh; height: 100dvh; padding: 20px 20px 60px; gap: 16px; overflow-y: auto;
+    justify-content: flex-start; /* Sørg for at den starter fra toppen */
+    height: 100vh; height: 100dvh; padding: 40px 20px 60px; gap: 16px; overflow-y: auto;
     position: relative;
   }
   .compound-list {
@@ -480,6 +497,16 @@
   }
   .step-btn:hover { background: rgba(232, 168, 0, 0.1); }
   .step-btn:active { background: rgba(232, 168, 0, 0.2); }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    #timer { padding: 10px; justify-content: space-around; }
+    .timer-logo { display: none; } /* Skjul logo i landskab for at spare plads */
+    .timer-phase { font-size: 16px; letter-spacing: 4px; }
+    .timer-display { font-size: 35vh; }
+    .timer-sub { font-size: 14px; }
+    .ctrl-btn { padding: 6px 16px; font-size: 14px; }
+    .volume-control { display: none; } /* Skjul volumen i landskab for plads */
+  }
 </style>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA6kS-ZX6WufszTSah7j6MPwfB0s41IU6weyE_vbQLvx8_1ui9OiFY0qOtmuJz-szIb4SSxxhJ4vu45Xg&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
