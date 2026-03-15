@@ -459,6 +459,27 @@
     .timer-controls { bottom: 15px; }
     .ctrl-btn { padding: 8px 24px; font-size: 16px; }
   }
+  /* Skjul standard browser-pile */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type=number] { -moz-appearance: textfield; }
+
+  /* Styling af de nye stepper-knapper */
+  .stepper-container {
+    display: flex; align-items: center; gap: 5px; background: var(--surface);
+    border: 3px solid var(--border); border-radius: 4px; padding: 2px;
+  }
+  .stepper-container:focus-within { border-color: var(--accent); }
+  .stepper-container input {
+    border: none !important; width: 70px !important; padding: 10px 0 !important; background: transparent !important;
+  }
+  .step-btn {
+    background: transparent; border: none; color: var(--accent); font-family: 'Oswald', sans-serif;
+    font-size: 24px; font-weight: 700; width: 45px; height: 45px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background 0.2s; border-radius: 4px;
+  }
+  .step-btn:hover { background: rgba(232, 168, 0, 0.1); }
+  .step-btn:active { background: rgba(232, 168, 0, 0.2); }
 </style>
 <script src="https://www.paypal.com/sdk/js?client-id=BAA6kS-ZX6WufszTSah7j6MPwfB0s41IU6weyE_vbQLvx8_1ui9OiFY0qOtmuJz-szIb4SSxxhJ4vu45Xg&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
 </head>
@@ -550,7 +571,11 @@
   <div class="setup-fields" style="margin-bottom: 4px;">
     <div class="field">
       <label>Compound Rounds</label>
-      <input type="number" id="compound-total-rounds" value="1" min="1" style="width:80px; font-size:26px; padding:8px;">
+      <div class="stepper-container">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <input type="number" id="compound-total-rounds" value="1" min="1">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+      </div>
     </div>
   </div>
   <div class="compound-list" id="compound-list">
@@ -581,11 +606,19 @@
   <div class="setup-fields" style="margin-bottom: 4px;">
     <div class="field">
       <label>Circuit Rounds</label>
-      <input type="number" id="circuit-total-rounds" value="1" min="1" style="width:80px; font-size:26px; padding:8px;">
+      <div class="stepper-container">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <input type="number" id="circuit-total-rounds" value="1" min="1">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+      </div>
     </div>
     <div class="field">
       <label>Circuit Rest (s)</label>
-      <input type="number" id="circuit-rest" value="60" min="0" style="width:80px; font-size:26px; padding:8px;">
+      <div class="stepper-container">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <input type="number" id="circuit-rest" value="60" min="0" step="5">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+      </div>
     </div>
   </div>
   <div class="compound-list" id="circuit-list">
@@ -620,9 +653,30 @@
       <input type="text" id="exercise-name-input" placeholder="e.g. Push Ups" maxlength="40" autocomplete="off" style="width:100%; font-size:18px;">
     </div>
     <div class="seg-dialog-fields">
-      <div class="field"><label>Duration (s)</label><input type="number" id="ex-duration" value="45" min="1"></div>
-      <div class="field"><label>Rest (s)</label><input type="number" id="ex-rest" value="15" min="0"></div>
-      <div class="field"><label>Rounds</label><input type="number" id="ex-rounds" value="1" min="1"></div>
+      <div class="field">
+        <label>Duration (s)</label>
+        <div class="stepper-container">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <input type="number" id="ex-duration" value="45" min="5" step="5">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Rest (s)</label>
+        <div class="stepper-container">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <input type="number" id="ex-rest" value="15" min="0" step="5">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Rounds</label>
+        <div class="stepper-container">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <input type="number" id="ex-rounds" value="1" min="1">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+        </div>
+      </div>
     </div>
     <div class="dialog-actions">
       <button class="btn btn-back btn-sm" id="btn-ex-cancel">Cancel</button>
@@ -638,8 +692,22 @@
       <select id="cb-preset-select" style="max-width:100%; flex:1;"><option value="">— Load Circuit Preset —</option></select>
     </div>
     <div class="seg-dialog-fields">
-      <div class="field"><label>Circuit Rounds</label><input type="number" id="cb-total-rounds" value="1" min="1"></div>
-      <div class="field"><label>Circuit Rest (s)</label><input type="number" id="cb-rest" value="60" min="0"></div>
+      <div class="field">
+        <label>Circuit Rounds</label>
+        <div class="stepper-container">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <input type="number" id="cb-total-rounds" value="1" min="1">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Circuit Rest (s)</label>
+        <div class="stepper-container">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <input type="number" id="cb-rest" value="60" min="0" step="5">
+          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+        </div>
+      </div>    
     </div>
     <div class="compound-list" id="cb-exercise-list" style="width:100%; max-height: 250px; overflow-y: auto;">
       <div class="compound-empty">No exercises added yet</div>
@@ -977,7 +1045,18 @@ function openSetup(type, params = {}) {
     const val = source[f.key] !== undefined ? source[f.key] : f.def;
     const div = document.createElement('div');
     div.className = 'field';
-    div.innerHTML = `<label>${f.label}</label><input type="number" id="f-${f.key}" value="${val}" min="0">`;
+    
+    // Her definerer vi, at tids-relaterede felter skal springe med 5
+    const stepVal = ['work', 'rest', 'interval', 'duration', 'setrest'].includes(f.key) ? 5 : 1;
+    
+    div.innerHTML = `
+      <label>${f.label}</label>
+      <div class="stepper-container">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <input type="number" id="f-${f.key}" value="${val}" min="0" step="${stepVal}">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+      </div>
+    `;
     $setupFields.appendChild(div);
   });
 
@@ -1287,11 +1366,23 @@ function openAddSegmentDialog(type, existingValues, editIdx) {
   presetNames.forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; $segPresetSelect.appendChild(o); });
   document.getElementById('seg-preset-bar').style.display = type !== 'rest' ? 'flex' : 'none';
 
-  const $f = document.getElementById('seg-dialog-fields'); $f.innerHTML = '';
+  const $f = document.getElementById('seg-dialog-fields'); 
+  $f.innerHTML = '';
   (FIELDS[type]||[]).forEach(f => {
     const val = (existingValues && existingValues[f.key] !== undefined) ? existingValues[f.key] : f.def;
-    const div = document.createElement('div'); div.className = 'field';
-    div.innerHTML = `<label>${f.label}</label><input type="number" id="seg-f-${f.key}" value="${val}" min="0">`;
+    const div = document.createElement('div'); 
+    div.className = 'field';
+    
+    const stepVal = ['work', 'rest', 'interval', 'duration', 'setrest'].includes(f.key) ? 5 : 1;
+    
+    div.innerHTML = `
+      <label>${f.label}</label>
+      <div class="stepper-container">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+        <input type="number" id="seg-f-${f.key}" value="${val}" min="0" step="${stepVal}">
+        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+      </div>
+    `;
     $f.appendChild(div);
   });
 
