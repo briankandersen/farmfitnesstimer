@@ -785,6 +785,7 @@
   <div class="timer-controls">
     <button class="ctrl-btn" id="btn-pause">Pause</button>
     <button class="ctrl-btn" id="btn-reset">Back</button>
+    <button class="ctrl-btn hidden" id="btn-main">Main</button>
     <div class="volume-control">
       <span class="volume-label">Vol</span>
       <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="100">
@@ -935,8 +936,8 @@ let circuitRunning = false;
 let circuitState = {}; // { exIdx, exRound, circuitRound, phase, remaining }
 
 // ─── HELPERS ───
-function show(el) { el.style.display = 'flex'; }
-function hide(el) { el.style.display = 'none'; }
+function show(el) { el.classList.remove('hidden'); el.style.display = 'flex'; }
+function hide(el) { el.classList.add('hidden'); el.style.display = 'none'; }
 function fmt(s) { const m = Math.floor(Math.abs(s)/60), sec = Math.abs(s)%60; return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`; }
 function fmtClock(d) { return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`; }
 
@@ -1029,6 +1030,15 @@ function getCurrentValues() {
   vals._direction = countDirection; vals._halfway = halfwayBeep;
   return vals;
 }
+
+document.getElementById('btn-main').addEventListener('click', () => {
+  stopEverything();
+  // Vi går helt tilbage til menuen ved at nulstille historikken eller gå til rod-staten
+  hide($timer);
+  show($menu);
+  // Dette rydder historik-stakken op, så vi er tilbage på "forsiden"
+  history.pushState({ view: 'menu' }, '');
+});
 
 // ─── PRESET EVENTS (single) ───
 $presetSelect.addEventListener('change', () => { const n = $presetSelect.value; $btnDeletePreset.disabled = !n; if (n) { applyPreset(timerType, n); if (document.getElementById('url-display').style.display === 'block') setTimeout(updateTimerUrl, 10); } });
@@ -1131,6 +1141,13 @@ function getSetupValues() { return getCurrentValues(); }
 // ─── COUNTDOWN ───
 function startCountdown(callback) {
   ensureAudio();
+  
+  // Nulstil knapperne til kamp-klar tilstand
+  show(document.getElementById('btn-pause'));
+  show(document.getElementById('btn-reset'));
+  hide(document.getElementById('btn-main'));
+  document.getElementById('btn-pause').textContent = 'Pause';
+  
   document.querySelector('.timer-logo').classList.remove('clock-mode');
   show($cdOverlay); let count = 3; $cdNum.textContent = count; beep321();
   const cdI = setInterval(() => {
@@ -1337,10 +1354,20 @@ function finishSegment() {
 
 function finishTimer() {
   clearInterval(timerInterval);
-  beepLong(); setTimeout(() => beepLong(), 400); setTimeout(() => beepLong(), 800);
-  $tPhase.textContent = 'DONE!'; $tDisplay.style.fontSize = '';
-  $tDisplay.style.color = 'var(--accent)'; $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)';
+  beepLong(); 
+  setTimeout(() => beepLong(), 400); 
+  setTimeout(() => beepLong(), 800);
+  
+  $tPhase.textContent = 'DONE!'; 
+  $tDisplay.style.fontSize = '';
+  $tDisplay.style.color = 'var(--accent)'; 
+  $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)';
   $timer.style.background = 'linear-gradient(180deg, rgba(232,168,0,0.12) 0%, var(--bg) 60%)';
+
+  // Skjul kun Pause. Vis både Back (btn-reset) og Main
+  hide(document.getElementById('btn-pause'));
+  show(document.getElementById('btn-reset'));
+  show(document.getElementById('btn-main'));
 }
 
 // ─── START ───
