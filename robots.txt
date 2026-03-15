@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Henvisning til dine to sitemaps
+Sitemap: https://www.farmfitnesstimer.com/sitemap-com.xml
+Sitemap: https://www.farmfitnesstimer.dk/sitemap-dk.xml
