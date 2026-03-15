@@ -80,7 +80,9 @@
     line-height: 1;
   }
   .menu-logo {
-    width: clamp(200px, 50vw, 400px);
+    /* Vi bruger min() for at tjekke både bredde og højde. 
+       Den tager max 30% af skærmens højde, dog mindst 150px og max 350px */
+    width: clamp(150px, min(40vw, 30vh), 350px);
     height: auto;
   }
   .menu-subtitle {
