@@ -2,6 +2,8 @@
 
 A powerful, standalone browser-based workout timer for Functional Fitness, HIIT, CrossFit, and general training. Built as a Single Page Application (SPA) in a single HTML file, optimized for both mobile and desktop.
 
+Created by [Farm Fitness](https://farmfitness.com).
+
 ## Timer Modes
 
 - **Clock** — Full-screen digital clock.
@@ -25,18 +27,15 @@ You can share a complete workout setup via a simple URL. By default, the URL ope
 
 **Pro Tip for SEO:** Add the `&title=` parameter to dynamically change the browser tab and meta description (spaces should be written as `+`).
 
-### Examples:
-**Rounds (e.g., Tabata):**
-`?title=Classic+Tabata&type=rounds&work=20&rest=10&rounds=8&sets=1&setrest=0`
+### Ready-to-Use Examples
+Test the app instantly by clicking these pre-configured workout timers:
 
-**EMOM:**
-`?title=Standard+EMOM&type=emom&interval=60&rounds=10`
+* **[Classic Tabata Timer](https://www.farmfitnesstimer.com/?title=Classic+Tabata+Timer&type=rounds&work=20&rest=10&rounds=8)** (Rounds)
+* **[Standard 20 Minute EMOM](https://www.farmfitnesstimer.com/?title=Standard+20+Minute+EMOM+Timer&type=emom&interval=60&rounds=20)** (EMOM)
+* **[15 Minute AMRAP](https://www.farmfitnesstimer.com/?title=15+Minute+AMRAP+Timer&type=amrap&duration=15)** (AMRAP)
+* **[Fight Gone Bad](https://www.farmfitnesstimer.com/?title=Fight+Gone+Bad+Timer&type=circuit&cr=3&crest=60&ex=Wall+Balls:60:0:1,SDHP:60:0:1,Box+Jumps:60:0:1,Push+Press:60:0:1,Row:60:0:1)** (Advanced Circuit)
+* **[Hyrox Engine Builder](https://www.farmfitnesstimer.com/?title=Hyrox+Engine+Builder+Timer&type=circuit&cr=4&crest=60&ex=SkiErg:90:30:1,Sled+Push:90:30:1,Rowing:90:30:1,Wall+Balls:90:30:1)** (Advanced Circuit)
 
-**AMRAP:**
-`?title=15+Minute+AMRAP&type=amrap&duration=15`
-
-**Circuit (Advanced):**
-`?title=Fight+Gone+Bad&type=circuit&cr=3&crest=60&ex=Wall+Balls:60:0:1,SDHP:60:0:1,Box+Jumps:60:0:1,Push+Press:60:0:1,Row:60:0:1`
 *(Format for `ex`: `name:duration:rest:rounds` separated by commas. `cr` = total circuit rounds, `crest` = rest between circuits).*
 
 **Auto-Start:**
@@ -50,4 +49,4 @@ This entire application is self-contained within a single `index.html` file. It 
 
 ## License
 
-© Farm Fitness
+© [Farm Fitness](https://farmfitness.com)
