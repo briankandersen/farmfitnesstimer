@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" id="meta-desc" content="Free online fitness timer for EMOM, AMRAP, Tabata, Rounds and Circuit workouts. Custom interval timers for CrossFit, HIIT, and functional fitness.">
 <meta property="og:title" id="og-title" content="Farm Fitness Timer">
 <meta property="og:description" id="og-desc" content="Custom online interval timers for CrossFit, HIIT, and functional fitness."><title>Farm Fitness Timer</title>
@@ -900,6 +900,7 @@
 <script>
 // ─── GLOBAL STATE ───
 const isDK = window.location.hostname.includes('.dk');
+if (isDK) document.documentElement.lang = 'da';
 
 // Advarsel ved refresh eller hvis fanen lukkes, mens timeren kører
 window.addEventListener('beforeunload', (e) => {
@@ -1571,7 +1572,7 @@ function renderCompoundList() {
     totalSec += segmentDuration(seg);
     const typeLabel = seg.type === 'amrap' ? 'AMRAP/FT' : seg.type.toUpperCase();
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
-    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type ${seg.type==='rest'?'rest-type':''}">${typeLabel}</span><span class="seg-details">${segmentSummary(seg)} · ${fmt(segmentDuration(seg))}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type ${seg.type==='rest'?'rest-type':''}">${typeLabel}</span><span class="seg-details">${segmentSummary(seg)} · ${fmt(segmentDuration(seg))}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}" aria-label="Move up">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}" aria-label="Move down">▼</button></div><button class="seg-del" data-idx="${i}" aria-label="Delete">✕</button>`;
     $compoundList.appendChild(div);
   });
   $compoundTotal.innerHTML = `Total: <strong>${fmt(totalSec)}</strong> (${Math.round(totalSec/60)} min)`;
@@ -1705,7 +1706,7 @@ function renderCbExerciseList() {
   cbExercises.forEach((ex, i) => {
     const dur = (ex.duration + ex.rest) * ex.rounds;
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
-    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" aria-label="Flyt op" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" aria-label="Flyt ned" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" aria-label="Slet" data-idx="${i}">✕</button>`;
     $cbExList.appendChild(div);
   });
   $cbTotal.innerHTML = `Total: <strong>${fmt(cbCircuitDuration())}</strong>`;
@@ -1854,7 +1855,7 @@ function renderCircuitList() {
   circuitExercises.forEach((ex, i) => {
     const dur = (ex.duration + ex.rest) * ex.rounds;
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
-    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" aria-label="Flyt op" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" aria-label="Flyt ned" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" aria-label="Slet" data-idx="${i}">✕</button>`;
     $circuitList.appendChild(div);
   });
   $circuitTotal.innerHTML = `Total: <strong>${fmt(circuitTotalDuration())}</strong> (${Math.round(circuitTotalDuration()/60)} min)`;
