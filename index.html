@@ -608,6 +608,9 @@
       </div>
     </div>
   </div>
+  
+  <div class="compound-total" id="setup-total" style="margin-top: 15px; text-align: center;"></div>
+  
   <div class="setup-actions">
     <button class="btn btn-back" id="btn-back">← Back</button>
     <button class="btn" id="btn-start">Start</button>
@@ -1052,24 +1055,30 @@ function metronomeTick() {
   
   const now = performance.now();
   if (now >= expectedNextTick) {
-    // Udregn hvor mange sekunder vi reelt mangler (normalt 1, men mange hvis skærmen var slukket)
     let MathTicks = Math.floor((now - expectedNextTick) / 1000) + 1;
-    let ticksToProcess = MathTicks > 3600 ? 3600 : MathTicks; // Max 1 times catch-up (sikkerhedsnet)
+    let ticksToProcess = MathTicks > 3600 ? 3600 : MathTicks; // Max 1 times catch-up
+    let actualTicksProcessed = 0;
 
     for (let i = 0; i < ticksToProcess; i++) {
-      // Slå lyden fra, indtil vi når det allersidste tick, så vi ikke afspiller 10 bip på ét sekund
+      // Slå UI/Lyd fra, indtil vi når det allersidste tick
       isCatchingUp = (ticksToProcess > 2 && i < ticksToProcess - 1);
       
       if (currentTickFunction) currentTickFunction();
+      actualTicksProcessed++;
       
-      // Stop hvis timeren pludselig bliver færdig midt i fremspolingen
-      if (document.getElementById('t-phase').textContent === 'DONE!') {
-        break;
+      // Stop fremspoling, hvis vi rammer en skærm, der kræver en tidsmæssig overgang
+      const phaseText = document.getElementById('t-phase').textContent;
+      if (phaseText === 'DONE!' || phaseText === 'NEXT UP' || phaseText === 'NEXT ROUND') {
+        isCatchingUp = false;
+        // Nulstil expectedNextTick til nuværende tid, da transition-timeren (setTimeout) tager over
+        expectedNextTick = performance.now() + 1000; 
+        return; 
       }
     }
     
     isCatchingUp = false; // Nulstil altid!
-    expectedNextTick += ticksToProcess * 1000;
+    // Skub forventet tid frem baseret på de ticks, vi faktisk har kørt
+    expectedNextTick += actualTicksProcessed * 1000;
   }
 }
 
@@ -1139,6 +1148,24 @@ function segmentSummary(seg) {
   }
 }
 
+function updateSetupTotal() {
+  const $setupTotal = document.getElementById('setup-total');
+  if (!$setupTotal) return;
+  
+  // Skjul for timere, der enten ikke har en sluttid, eller som håndterer det selv
+  if (!timerType || ['clock', 'compound', 'circuit'].includes(timerType)) {
+    $setupTotal.style.display = 'none';
+    return;
+  }
+  
+  const vals = getCurrentValues();
+  vals.type = timerType; // segmentDuration har brug for at kende timertypen
+  const totalSec = segmentDuration(vals);
+  
+  $setupTotal.style.display = 'block';
+  $setupTotal.innerHTML = `Total: <strong>${fmt(totalSec)}</strong> (${Math.round(totalSec/60)} min)`;
+}
+
 // ─── PRESETS ───
 const STORAGE_KEY = 'farmTimerPresets';
 function loadAllPresets() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
@@ -1192,6 +1219,7 @@ $presetSelect.addEventListener('change', () => {
     if (document.getElementById('url-display').style.display === 'block') setTimeout(updateTimerUrl, 10);
     if (timerType && !['clock', 'compound', 'circuit'].includes(timerType)) {
       setTimeout(() => localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues())), 10);
+      updateSetupTotal();
     }
   } 
 });
@@ -1315,6 +1343,7 @@ function openSetup(type, params = {}) {
   if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
   if ($urlDisplay) $urlDisplay.style.display = 'none';
   localStorage.setItem('farmActiveView', type); // Husk visningen
+  updateSetupTotal();
 }
 
 function getSetupValues() { return getCurrentValues(); }
@@ -1407,7 +1436,7 @@ function tickRounds() {
     } else if (s.phase === 'rest') { beepLow(); s.currentRound++; s.phase = 'work'; s.remaining = s.work; s.halfwayBeeped = false; }
     else if (s.phase === 'setrest') { beepGo(); s.currentSet++; s.currentRound = 1; s.phase = 'work'; s.remaining = s.work; s.halfwayBeeped = false; }
   }
-  updateRoundsDisplay();
+  if (!isCatchingUp) updateRoundsDisplay();
 }
 
 // ─── EMOM ───
@@ -1439,7 +1468,7 @@ function tickEmom() {
   if (halfwayBeep) { const h = Math.floor(s.interval/2); if (s.remaining === h && !s.halfwayBeeped) { beepHalfway(); s.halfwayBeeped = true; } }
   s.remaining--;
   if (s.remaining < 0) { if (s.currentRound >= s.rounds) { finishSegment(); return; } beepGo(); s.currentRound++; s.remaining = s.interval; s.halfwayBeeped = false; }
-  updateEmomDisplay();
+  if (!isCatchingUp) updateEmomDisplay();
 }
 
 // ─── AMRAP / FOR TIME (merged) ───
@@ -1478,7 +1507,7 @@ function tickAmrap() {
   if (halfwayBeep) { const h = Math.floor(s.total/2); if (s.elapsed === h && !s.halfwayBeeped) { beepHalfway(); s.halfwayBeeped = true; } }
   s.remaining--; s.elapsed++;
   if (s.remaining < 0) { finishSegment(); return; }
-  updateAmrapDisplay();
+  if (!isCatchingUp) updateAmrapDisplay();
 }
 
 // ─── REST (compound) ───
@@ -1507,7 +1536,7 @@ function tickRest() {
   if (s.remaining <= 3 && s.remaining > 0) beep321();
   s.remaining--;
   if (s.remaining < 0) { finishSegment(); return; }
-  updateRestDisplay();
+  if (!isCatchingUp) updateRestDisplay();
 }
 
 // ─── FINISH ───
@@ -2071,7 +2100,7 @@ function tickCircuit() {
       cs.phase = 'work'; cs.remaining = cs.exercises[0].duration;
     }
   }
-  if (circuitRunning) updateCircuitDisplay();
+  if (circuitRunning && !isCatchingUp) updateCircuitDisplay();
 }
 
 function advanceCircuit() {
@@ -2406,9 +2435,14 @@ function generateTimerUrl() {
   const vals = getCurrentValues();
   const params = new URLSearchParams();
   params.set('type', timerType);
+  
   (FIELDS[timerType]||[]).forEach(f => {
     if (vals[f.key] !== undefined) params.set(f.key, vals[f.key]);
   });
+  
+  // NYT: Tilføj retning og halfway til URL'en (hvis de afviger fra standard)
+  if (vals._direction && vals._direction !== 'down') params.set('dir', vals._direction);
+  if (vals._halfway) params.set('half', '1');
   
   return base + '?' + params.toString();
 }
@@ -2423,6 +2457,7 @@ document.getElementById('setup-fields').addEventListener('input', () => {
   if ($urlDisplay.style.display === 'block') updateTimerUrl(); 
   if (timerType && !['clock', 'compound', 'circuit'].includes(timerType)) {
     localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues()));
+    updateSetupTotal();
   }
 });
 ['dir-down','dir-up','half-on','half-off'].forEach(id => {
@@ -2963,6 +2998,11 @@ document.addEventListener('click', (e) => {
       fields.forEach(f => { if (p[f.key] !== undefined) { const v = parseInt(p[f.key]); params[f.key] = isNaN(v) ? f.def : v; } });
       // Support legacy 'cap' param → convert to duration
       if (p.cap !== undefined && type === 'amrap') { const v = parseInt(p.cap); params.duration = isNaN(v) ? 10 : v; }
+      
+      // NYT: Hent 'dir' og 'half' fra URL'en
+      if (p.dir) params._direction = p.dir;
+      if (p.half === '1' || p.half === 'true') params._halfway = true;
+      
       openSetup(type, params);
       if (p.go === 'true' || p.go === '1') showTapOverlay(() => startTimer());
     }
