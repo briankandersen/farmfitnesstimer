@@ -923,6 +923,28 @@ function askConfirmation(message, onConfirm, yesText, noText) {
   $no.onclick = () => { hide($dlg); };
 }
 
+// ─── WAKE LOCK API (Hold skærmen tændt) ───
+let wakeLock = null;
+
+async function requestWakeLock() {
+  // Tjek om browseren understøtter Wake Lock API'et
+  if ('wakeLock' in navigator) {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+    } catch (err) {
+      console.log(`Wake Lock fejlede: ${err.name}, ${err.message}`);
+    }
+  }
+}
+
+function releaseWakeLock() {
+  if (wakeLock !== null) {
+    wakeLock.release().then(() => {
+      wakeLock = null;
+    });
+  }
+}
+
 // ─── AUDIO ───
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
@@ -1258,6 +1280,7 @@ function getSetupValues() { return getCurrentValues(); }
 // ─── COUNTDOWN ───
 function startCountdown(callback) {
   ensureAudio();
+  requestWakeLock(); // TILFØJET: Hold skærmen tændt
   
   // Nulstil knapperne til kamp-klar tilstand
   show(document.getElementById('btn-pause'));
@@ -1277,6 +1300,7 @@ function startCountdown(callback) {
 
 // ─── CLOCK ───
 function startClock() {
+  requestWakeLock(); // TILFØJET: Hold skærmen tændt i Clock-mode
   hide($menu); hide($setup); hide($compoundSetup); hide($circuitSetup);
   $tPhase.textContent = ''; $tSub.textContent = ''; $tDisplay.className = 'clock-display';
   $timer.style.background = 'var(--bg)'; show($timer);
@@ -1473,6 +1497,7 @@ function finishSegment() {
 }
 
 function finishTimer() {
+  releaseWakeLock(); // TILFØJET: Giv slip på skærmen
   updateNavVisibility();
   clearInterval(timerInterval);
   beepLong(); 
@@ -2307,6 +2332,7 @@ function updateNavVisibility() {
 
 // To hjælpefunktioner for at holde koden ren:
 function stopEverything() {
+  releaseWakeLock(); // TILFØJET: Giv slip på skærmen ved afbrydelse
   clearInterval(timerInterval);
   timerInterval = null;
   currentTickFunction = null; // TILFØJET
@@ -2328,6 +2354,14 @@ function handleNavigation(state) {
     show($menu);
   }
 }
+
+// Genaktivér Wake Lock, hvis brugeren vender tilbage fra en anden fane/app, 
+// og timeren stadig kører (timerInterval er ikke null)
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && timerInterval !== null) {
+    requestWakeLock();
+  }
+});
 
 // ─── URL GENERATOR ───
 const $urlDisplay = document.getElementById('url-display');
