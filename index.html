@@ -1232,11 +1232,10 @@ function openSetup(type, params = {}) {
   if (type === 'compound') { openCompoundSetup(); return; }
   if (type === 'circuit') { openCircuitSetup(); return; }
 
-  // Handle legacy 'fortime' type from old presets/URLs
-  // Handle legacy types from old presets/URLs
+   // Handle legacy types from old presets/URLs
   if (type === 'fortime') { timerType = 'amrap'; type = 'amrap'; }
   if (type === 'tabata') { timerType = 'rounds'; type = 'rounds'; }
-
+  
   const hasParams = Object.keys(params).length > 0;
   let lastUsed = {};
   if (!hasParams) { try { lastUsed = JSON.parse(localStorage.getItem('farmLastUsed_' + type)) || {}; } catch {} }
@@ -2656,26 +2655,31 @@ function startImportProcess(data) {
 }
 
 function processNextImport() {
-  if (importQueue.length === 0) {
-    finishImportProcess();
-    return;
-  }
+  // Brug et while-loop til lynhurtigt at køre alt igennem, der ikke kræver et klik fra brugeren
+  while (importQueue.length > 0) {
+    const item = importQueue[0]; // Kig på næste item uden at fjerne det endnu
+    const currentPresets = loadAllPresets();
+    const exists = currentPresets[item.type] && currentPresets[item.type][item.name];
 
-  const item = importQueue.shift();
-  const currentPresets = loadAllPresets();
-  const exists = currentPresets[item.type] && currentPresets[item.type][item.name];
-
-  if (!exists) {
-    savePreset(item.type, item.name, item.data);
-    importResults.push({ status: 'added', text: `Added: <strong>${item.name}</strong> (${item.type})` });
-    processNextImport();
-  } else {
-    if (applyAllAction) {
-      executeConflictAction(item, applyAllAction, item.name);
+    if (!exists) {
+      importQueue.shift(); // Fjern fra køen
+      savePreset(item.type, item.name, item.data);
+      importResults.push({ status: 'added', text: `Added: <strong>${item.name}</strong> (${item.type})` });
     } else {
-      showConflictDialog(item);
+      if (applyAllAction) {
+        importQueue.shift(); // Fjern fra køen
+        executeConflictActionSync(item, applyAllAction, item.name);
+      } else {
+        // Vi har brug for brugerens valg! Bryd loopet, vis dialogen, og stop funktionen.
+        const itemToAsk = importQueue.shift(); 
+        showConflictDialog(itemToAsk);
+        return; 
+      }
     }
   }
+
+  // Hvis vi når hertil, er køen tom
+  finishImportProcess();
 }
 
 function showConflictDialog(item) {
@@ -2693,11 +2697,12 @@ function showConflictDialog(item) {
 
 function handleConflict(item, action) {
   if ($conflictApplyAll.checked) applyAllAction = action;
-  executeConflictAction(item, action, $conflictRenameInput.value.trim());
+  executeConflictActionSync(item, action, $conflictRenameInput.value.trim());
   hide($importConflictDialog);
+  processNextImport(); // Genstart loopet for at tage de næste
 }
 
-function executeConflictAction(item, action, renameStr) {
+function executeConflictActionSync(item, action, renameStr) {
   const currentPresets = loadAllPresets();
   
   if (action === 'skip') {
@@ -2715,16 +2720,10 @@ function executeConflictAction(item, action, renameStr) {
         counter++;
         newName = `${item.originalName} (Imported ${counter})`;
       }
-    } else {
-        // Enkeltstående rename check
-        if (currentPresets[item.type] && currentPresets[item.type][newName]) {
-            alert("This name also exists. Overwriting it.");
-        }
     }
     savePreset(item.type, newName, item.data);
     importResults.push({ status: 'renamed', text: `Renamed: <strong>${item.originalName}</strong> → <strong>${newName}</strong>` });
   }
-  processNextImport();
 }
 
 function finishImportProcess() {
@@ -2749,8 +2748,6 @@ function finishImportProcess() {
 
 document.getElementById('btn-summary-close').addEventListener('click', () => hide($importSummaryDialog));
 
-// ─── URL AUTOSTART ───
-// ─── URL AUTOSTART ───
 // ─── URL AUTOSTART ───
 (function init() {
   const p = getUrlParams();
