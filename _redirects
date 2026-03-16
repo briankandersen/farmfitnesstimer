@@ -1,0 +1,7 @@
+# Omskrivninger for .com domænet
+https://www.farmfitnesstimer.com/robots.txt   /robots-com.txt   200
+https://farmfitnesstimer.com/robots.txt       /robots-com.txt   200
+
+# Omskrivninger for .dk domænet
+https://www.farmfitnesstimer.dk/robots.txt    /robots-dk.txt    200
+https://farmfitnesstimer.dk/robots.txt        /robots-dk.txt    200
