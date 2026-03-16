@@ -556,6 +556,7 @@
   <button class="menu-btn" data-type="amrap">AMRAP / For Time</button>
   <button class="menu-btn" data-type="circuit">Circuit</button>
   <button class="menu-btn" data-type="compound">Compound</button>
+  <button class="menu-btn" data-type="settings" style="margin-top: 10px; border-color: var(--dim); color: var(--dim);">⚙ Settings</button>
   
   <div style="display: flex; gap: 10px; margin-top: 10px;">
     <button class="preset-btn" id="btn-export-ui" style="border-color: var(--dim);">Export Presets</button>
@@ -581,6 +582,68 @@
     <p style="font-family:Source Sans 3,sans-serif; font-size:15px; color:#666; line-height:1.5; margin-bottom:20px;">If you enjoy the timer, why not send a donation. You decide the amount :)</p>
     <div id="paypal-container-R8RFFSZ5RBG4Y" style="min-height:45px; margin-bottom:16px;"></div>
     <button class="btn btn-back btn-sm" id="btn-donate-close">Close</button>
+  </div>
+</div>
+
+<div id="global-settings" style="display: none; flex-direction: column; align-items: center; justify-content: flex-start; height: 100vh; height: 100dvh; padding: 40px 20px 60px; gap: 20px; overflow-y: auto;">
+  <h2 style="font-family: 'Oswald', sans-serif; font-weight: 800; font-size: clamp(24px, 5vw, 44px); text-transform: uppercase; letter-spacing: 4px; color: var(--accent);">Settings</h2>
+  
+  <div class="setup-fields" style="flex-direction: column; max-width: 450px; width: 100%; gap: 20px;">
+    
+    <div class="option-group" style="justify-content: space-between; width: 100%; padding: 10px 0; border-bottom: 1px solid var(--border);">
+      <span class="option-label">Show URL Buttons</span>
+      <div class="toggle-group">
+        <button class="toggle-btn" id="set-url-on">On</button>
+        <button class="toggle-btn active" id="set-url-off">Off</button>
+      </div>
+    </div>
+
+    <div class="option-group" style="justify-content: space-between; width: 100%; padding: 10px 0; border-bottom: 1px solid var(--border);">
+      <span class="option-label">Default Direction</span>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="set-dir-down">Down</button>
+        <button class="toggle-btn" id="set-dir-up">Up</button>
+      </div>
+    </div>
+
+    <div class="option-group" style="justify-content: space-between; width: 100%; padding: 10px 0; border-bottom: 1px solid var(--border);">
+      <span class="option-label">Default Halfway Beep</span>
+      <div class="toggle-group">
+        <button class="toggle-btn" id="set-half-on">On</button>
+        <button class="toggle-btn active" id="set-half-off">Off</button>
+      </div>
+    </div>
+
+    <div class="field" style="width: 100%; flex-direction: row; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border);">
+      <label style="align-self: center;">Pre-Timer Countdown (s)</label>
+      <div class="stepper-container">
+        <button class="step-btn step-down" type="button">-</button>
+        <input type="number" id="set-countdown" value="3" min="0">
+        <button class="step-btn step-up" type="button">+</button>
+      </div>
+    </div>
+
+    <div class="field" style="width: 100%; flex-direction: row; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border);">
+      <label style="align-self: center;">Minutes Step (+/-)</label>
+      <div class="stepper-container">
+        <button class="step-btn step-down" type="button">-</button>
+        <input type="number" id="set-min-step" value="1" min="1">
+        <button class="step-btn step-up" type="button">+</button>
+      </div>
+    </div>
+
+    <div class="field" style="width: 100%; flex-direction: row; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border);">
+      <label style="align-self: center;">Seconds Step (+/-)</label>
+      <div class="stepper-container">
+        <button class="step-btn step-down" type="button">-</button>
+        <input type="number" id="set-sec-step" value="5" min="1">
+        <button class="step-btn step-up" type="button">+</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="setup-actions" style="margin-top: 10px;">
+    <button class="btn btn-back" id="btn-settings-back">← Back</button>
   </div>
 </div>
 
@@ -615,7 +678,7 @@
     <button class="btn btn-back" id="btn-back">← Back</button>
     <button class="btn" id="btn-start">Start</button>
   </div>
-  <div class="setup-actions" style="margin-top:0; gap:10px;">
+  <div class="setup-actions url-actions-container" style="margin-top:0; gap:10px; display: none;">
     <button class="btn btn-back btn-sm" id="btn-copy-url">Copy URL</button>
     <button class="btn btn-back btn-sm" id="btn-toggle-url">Show URL</button>
   </div>
@@ -698,7 +761,7 @@
     <button class="btn btn-back" id="btn-circuit-reset">Reset</button>
     <button class="btn" id="btn-circuit-start">Start</button>
   </div>
-  <div class="setup-actions" style="margin-top:0; gap:10px;">
+  <div class="setup-actions url-actions-container" style="margin-top:0; gap:10px; display: none;">
     <button class="btn btn-back btn-sm" id="btn-circuit-copy-url">Copy URL</button>
     <button class="btn btn-back btn-sm" id="btn-circuit-toggle-url">Show URL</button>
   </div>
@@ -1033,6 +1096,15 @@ let compoundSegments = [], compoundRunning = false, compoundIndex = 0;
 let compoundTotalRounds = 1, compoundCurrentRound = 1;
 let saveContext = 'single';
 
+// Global Settings State
+let globalSettings = { showUrl: false, dir: 'down', halfway: false, countdown: 3, minStep: 1, secStep: 5 };
+try { 
+  const savedSettings = JSON.parse(localStorage.getItem('farmGlobalSettings'));
+  if (savedSettings) globalSettings = { ...globalSettings, ...savedSettings };
+} catch(e) {}
+
+// Tilføj disse i bunden af STATE-sektionen
+
 // Tilføj disse i bunden af STATE-sektionen
 let expectedNextTick = 0;
 let currentTickFunction = null;
@@ -1100,6 +1172,52 @@ document.getElementById('dir-down').addEventListener('click', () => setDirection
 document.getElementById('dir-up').addEventListener('click', () => setDirection('up'));
 document.getElementById('half-on').addEventListener('click', () => setHalfway(true));
 document.getElementById('half-off').addEventListener('click', () => setHalfway(false));
+
+// Settings Logic
+const $globalSettings = document.getElementById('global-settings');
+function applyGlobalSettingsUI() {
+  const setUrlOn = document.getElementById('set-url-on');
+  if (!setUrlOn) return; // Stop hvis vi ikke er klar endnu
+  
+  setUrlOn.classList.toggle('active', globalSettings.showUrl);
+  document.getElementById('set-url-off').classList.toggle('active', !globalSettings.showUrl);
+  document.getElementById('set-dir-down').classList.toggle('active', globalSettings.dir === 'down');
+  document.getElementById('set-dir-up').classList.toggle('active', globalSettings.dir === 'up');
+  document.getElementById('set-half-on').classList.toggle('active', globalSettings.halfway);
+  document.getElementById('set-half-off').classList.toggle('active', !globalSettings.halfway);
+  document.getElementById('set-countdown').value = globalSettings.countdown;
+  document.getElementById('set-min-step').value = globalSettings.minStep;
+  document.getElementById('set-sec-step').value = globalSettings.secStep;
+  
+  // Tving statiske felter til at bruge brugerens valgte "secStep"
+  const cbRest = document.getElementById('cb-rest'); if(cbRest) cbRest.step = globalSettings.secStep;
+  const circRest = document.getElementById('circuit-rest'); if(circRest) circRest.step = globalSettings.secStep;
+
+  document.querySelectorAll('.url-actions-container').forEach(el => {
+    el.style.display = globalSettings.showUrl ? 'flex' : 'none';
+  });
+}
+applyGlobalSettingsUI(); // Kør ved opstart
+
+function saveSettings() {
+  globalSettings.countdown = parseInt(document.getElementById('set-countdown').value) || 0;
+  globalSettings.minStep = parseInt(document.getElementById('set-min-step').value) || 1;
+  globalSettings.secStep = parseInt(document.getElementById('set-sec-step').value) || 1;
+  localStorage.setItem('farmGlobalSettings', JSON.stringify(globalSettings));
+  applyGlobalSettingsUI();
+}
+
+document.getElementById('set-url-on').addEventListener('click', () => { globalSettings.showUrl = true; saveSettings(); });
+document.getElementById('set-url-off').addEventListener('click', () => { globalSettings.showUrl = false; saveSettings(); });
+document.getElementById('set-dir-down').addEventListener('click', () => { globalSettings.dir = 'down'; saveSettings(); });
+document.getElementById('set-dir-up').addEventListener('click', () => { globalSettings.dir = 'up'; saveSettings(); });
+document.getElementById('set-half-on').addEventListener('click', () => { globalSettings.halfway = true; saveSettings(); });
+document.getElementById('set-half-off').addEventListener('click', () => { globalSettings.halfway = false; saveSettings(); });
+document.getElementById('set-countdown').addEventListener('input', saveSettings);
+document.getElementById('set-min-step').addEventListener('input', saveSettings);
+document.getElementById('set-sec-step').addEventListener('input', saveSettings);
+
+document.getElementById('btn-settings-back').addEventListener('click', goToMenu);
 
 // ─── FIELDS ───
 const FIELDS = {
@@ -1320,8 +1438,10 @@ function openSetup(type, params = {}) {
     const div = document.createElement('div');
     div.className = 'field';
     
-    // Her definerer vi, at tids-relaterede felter skal springe med 5
-    const stepVal = ['work', 'rest', 'interval', 'duration', 'setrest'].includes(f.key) ? 5 : 1;
+    // Brug globale indstillinger til steps
+    let stepVal = 1;
+    if (f.key === 'duration' && type === 'amrap') stepVal = globalSettings.minStep; // AMRAP (Minutter)
+    else if (['work', 'rest', 'interval', 'setrest', 'duration'].includes(f.key)) stepVal = globalSettings.secStep; // Sekunder
     
     div.innerHTML = `
       <label>${f.label}</label>
@@ -1334,8 +1454,8 @@ function openSetup(type, params = {}) {
     $setupFields.appendChild(div);
   });
 
-  if (source._direction) setDirection(source._direction); else setDirection('down');
-  setHalfway(source._halfway || false);
+  if (source._direction) setDirection(source._direction); else setDirection(globalSettings.dir);
+  setHalfway(source._halfway !== undefined ? source._halfway : globalSettings.halfway);
 
   populatePresetDropdown($presetSelect, type);
   show($setup);
@@ -1360,7 +1480,14 @@ function startCountdown(callback) {
   document.getElementById('btn-pause').textContent = 'Pause';
   
   document.querySelector('.timer-logo').classList.remove('clock-mode');
-  show($cdOverlay); let count = 3; $cdNum.textContent = count; beep321();
+  show($cdOverlay); 
+  
+  let count = globalSettings.countdown; 
+  if (count <= 0) { // Brugeren har valgt 0 sekunder, start timeren direkte!
+    hide($cdOverlay); callback(); return; 
+  }
+  
+  $cdNum.textContent = count; beep321();
   const cdI = setInterval(() => {
     count--;
     if (count > 0) { $cdNum.textContent = count; $cdNum.style.animation = 'none'; void $cdNum.offsetWidth; $cdNum.style.animation = 'countPulse 0.6s ease-out'; beep321(); }
@@ -1679,7 +1806,9 @@ function openAddSegmentDialog(type, existingValues, editIdx) {
     const div = document.createElement('div'); 
     div.className = 'field';
     
-    const stepVal = ['work', 'rest', 'interval', 'duration', 'setrest'].includes(f.key) ? 5 : 1;
+    let stepVal = 1;
+    if (f.key === 'duration' && type === 'amrap') stepVal = globalSettings.minStep; // AMRAP
+    else if (['work', 'rest', 'interval', 'duration', 'setrest'].includes(f.key)) stepVal = globalSettings.secStep;
     
     div.innerHTML = `
       <label>${f.label}</label>
@@ -1799,8 +1928,12 @@ function openCbExerciseDialog(existing, editIdx) {
   document.getElementById('exercise-dialog-title').textContent = cbEditExIdx >= 0 ? 'Edit Exercise' : 'Add Exercise';
   document.getElementById('btn-ex-add').textContent = cbEditExIdx >= 0 ? 'Save' : 'Add';
   document.getElementById('exercise-name-input').value = existing ? existing.name : '';
-  document.getElementById('ex-duration').value = existing ? existing.duration : 45;
-  document.getElementById('ex-rest').value = existing ? existing.rest : 15;
+  const durInput = document.getElementById('ex-duration');
+  const restInput = document.getElementById('ex-rest');
+  durInput.value = existing ? existing.duration : 45;
+  restInput.value = existing ? existing.rest : 15;
+  durInput.step = globalSettings.secStep;
+  restInput.step = globalSettings.secStep;
   document.getElementById('ex-rounds').value = existing ? existing.rounds : 1;
   show($addExDialog);
   setTimeout(() => document.getElementById('exercise-name-input').focus(), 100);
@@ -1945,8 +2078,12 @@ function openExerciseDialog(existing, editIdx) {
   document.getElementById('exercise-dialog-title').textContent = editExIdx >= 0 ? 'Edit Exercise' : 'Add Exercise';
   document.getElementById('btn-ex-add').textContent = editExIdx >= 0 ? 'Save' : 'Add';
   document.getElementById('exercise-name-input').value = existing ? existing.name : '';
-  document.getElementById('ex-duration').value = existing ? existing.duration : 45;
-  document.getElementById('ex-rest').value = existing ? existing.rest : 15;
+  const durInput = document.getElementById('ex-duration');
+  const restInput = document.getElementById('ex-rest');
+  durInput.value = existing ? existing.duration : 45;
+  restInput.value = existing ? existing.rest : 15;
+  durInput.step = globalSettings.secStep;
+  restInput.step = globalSettings.secStep;
   document.getElementById('ex-rounds').value = existing ? existing.rounds : 1;
   show($addExDialog);
   setTimeout(() => document.getElementById('exercise-name-input').focus(), 100);
@@ -2144,18 +2281,23 @@ document.querySelectorAll('.menu-btn').forEach(btn => {
     if (btn.dataset.type === 'compound') { compoundSegments = []; }
     if (btn.dataset.type === 'circuit') { circuitExercises = []; }
     
-    // NYT: Gem præcis hvilken type setup vi går ind i
-    history.pushState({ view: 'setup', type: btn.dataset.type }, '');
+    if (btn.dataset.type === 'settings') { 
+      hide($menu); hide($timer); hide($compoundSetup); hide($circuitSetup); show($globalSettings); 
+      history.pushState({ view: 'settings' }, ''); 
+      return; 
+    }
     
+    // NYT: Gem præcis hvilken type setup vi går ind i (gælder alt undtagen Settings)
+    history.pushState({ view: 'setup', type: btn.dataset.type }, '');
     openSetup(btn.dataset.type);
   });
 });
 
 // Opdateret "Tilbage"-logik, der bruger browserens historik
-const goToMenu = () => {
+function goToMenu() {
   stopEverything();
   localStorage.removeItem('farmActiveView'); // Slet hukommelsen om skærmen
-  hide($setup); hide($compoundSetup); hide($circuitSetup); hide($timer);
+  hide($setup); hide($compoundSetup); hide($circuitSetup); hide($timer); hide($globalSettings);
   // Skjul eventuelle åbne dialoger og nulstil URL-visning
   hide($cbDialog); hide($addSegDialog); hide($addExDialog);
   document.getElementById('circuit-url-display').style.display = 'none';
@@ -2167,7 +2309,7 @@ const goToMenu = () => {
   if (!history.state || history.state.view !== 'menu') {
     history.pushState({ view: 'menu' }, '');
   }
-};
+}
 
 document.getElementById('btn-back').addEventListener('click', goToMenu);
 document.getElementById('btn-compound-back').addEventListener('click', goToMenu);
@@ -2407,13 +2549,15 @@ function stopEverything() {
 }
 
 function handleNavigation(state) {
+  hide($timer); hide($setup); hide($compoundSetup); hide($circuitSetup); hide($globalSettings); hide($menu);
+  
   if (state && state.view === 'setup') {
-    hide($timer); hide($menu);
     if (state.type === 'compound') show($compoundSetup);
     else if (state.type === 'circuit') show($circuitSetup);
     else show($setup);
+  } else if (state && state.view === 'settings') {
+    show($globalSettings);
   } else {
-    hide($timer); hide($setup); hide($compoundSetup); hide($circuitSetup);
     show($menu);
   }
 }
