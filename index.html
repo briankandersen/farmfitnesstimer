@@ -537,7 +537,7 @@
     .volume-control { display: none; } /* Skjul volumen i landskab for plads */
   }
 </style>
-<script src="https://www.paypal.com/sdk/js?client-id=BAA6kS-ZX6WufszTSah7j6MPwfB0s41IU6weyE_vbQLvx8_1ui9OiFY0qOtmuJz-szIb4SSxxhJ4vu45Xg&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA6kS-ZX6WufszTSah7j6MPwfB0s41IU6weyE_vbQLvx8_1ui9OiFY0qOtmuJz-szIb4SSxxhJ4vu45Xg&components=hosted-buttons&disable-funding=venmo&currency=USD" defer></script>
 </head>
 <body>
 
@@ -629,9 +629,9 @@
     <div class="field">
       <label>Compound Rounds</label>
       <div class="stepper-container">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
         <input type="number" id="compound-total-rounds" value="1" min="1">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
       </div>
     </div>
   </div>
@@ -664,17 +664,17 @@
     <div class="field">
       <label>Circuit Rounds</label>
       <div class="stepper-container">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
         <input type="number" id="circuit-total-rounds" value="1" min="1">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
       </div>
     </div>
     <div class="field">
       <label>Circuit Rest (s)</label>
       <div class="stepper-container">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
         <input type="number" id="circuit-rest" value="60" min="0" step="5">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
       </div>
     </div>
   </div>
@@ -713,25 +713,25 @@
       <div class="field">
         <label>Duration (s)</label>
         <div class="stepper-container">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
           <input type="number" id="ex-duration" value="45" min="5" step="5">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
         </div>
       </div>
       <div class="field">
         <label>Rest (s)</label>
         <div class="stepper-container">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
           <input type="number" id="ex-rest" value="15" min="0" step="5">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
         </div>
       </div>
       <div class="field">
         <label>Rounds</label>
         <div class="stepper-container">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
           <input type="number" id="ex-rounds" value="1" min="1">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
         </div>
       </div>
     </div>
@@ -752,17 +752,17 @@
       <div class="field">
         <label>Circuit Rounds</label>
         <div class="stepper-container">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
           <input type="number" id="cb-total-rounds" value="1" min="1">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
         </div>
       </div>
       <div class="field">
         <label>Circuit Rest (s)</label>
         <div class="stepper-container">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
           <input type="number" id="cb-rest" value="60" min="0" step="5">
-          <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
         </div>
       </div>    
     </div>
@@ -1278,9 +1278,9 @@ function openSetup(type, params = {}) {
     div.innerHTML = `
       <label>${f.label}</label>
       <div class="stepper-container">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
         <input type="number" id="f-${f.key}" value="${val}" min="0" step="${stepVal}">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp(); this.parentNode.querySelector('input').dispatchEvent(new Event('input'));">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
       </div>
     `;
     $setupFields.appendChild(div);
@@ -1618,9 +1618,9 @@ function openAddSegmentDialog(type, existingValues, editIdx) {
     div.innerHTML = `
       <label>${f.label}</label>
       <div class="stepper-container">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepDown();">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
         <input type="number" id="seg-f-${f.key}" value="${val}" min="0" step="${stepVal}">
-        <button class="step-btn" type="button" onclick="this.parentNode.querySelector('input').stepUp();">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
       </div>
     `;
     $f.appendChild(div);
@@ -2796,6 +2796,28 @@ if ($cbExList) {
     handleListClick(e, cbExercises, renderCbExerciseList, openCbExerciseDialog);
   });
 }
+
+// ─── GLOBAL EVENT DELEGATION FOR STEPPER KNAPPER (+ / -) ───
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.step-btn');
+  if (!btn) return; // Klikket var ikke på en stepper-knap
+
+  const container = btn.closest('.stepper-container');
+  if (!container) return;
+  
+  const input = container.querySelector('input[type="number"]');
+  if (!input) return;
+
+  // Tjek om det er plus eller minus
+  if (btn.classList.contains('step-down') || btn.textContent.trim() === '-') {
+    input.stepDown();
+  } else if (btn.classList.contains('step-up') || btn.textContent.trim() === '+') {
+    input.stepUp();
+  }
+  
+  // Udløs et "input" event, så lister og URL'er reagerer på ændringen med det samme
+  input.dispatchEvent(new Event('input'));
+});
 
 // ─── URL AUTOSTART ───
 (function init() {
