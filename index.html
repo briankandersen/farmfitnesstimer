@@ -1028,18 +1028,18 @@ let isCatchingUp = false;
 function startMetronome(tickFn) {
   clearInterval(timerInterval);
   currentTickFunction = tickFn;
-  expectedNextTick = Date.now() + 1000;
+  expectedNextTick = performance.now() + 1000;
   // Kører hver 200ms for altid at fange afvigelser præcist
   timerInterval = setInterval(metronomeTick, 200); 
 }
 
 function metronomeTick() {
   if (isPaused) {
-    expectedNextTick = Date.now() + 1000; // Skub forventet tid frem mens vi er på pause
+    expectedNextTick = performance.now() + 1000; // Skub forventet tid frem mens vi er på pause
     return;
   }
   
-  const now = Date.now();
+  const now = performance.now();
   if (now >= expectedNextTick) {
     // Udregn hvor mange sekunder vi reelt mangler (normalt 1, men mange hvis skærmen var slukket)
     let MathTicks = Math.floor((now - expectedNextTick) / 1000) + 1;
