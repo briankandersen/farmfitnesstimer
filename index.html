@@ -1572,12 +1572,6 @@ function renderCompoundList() {
     const typeLabel = seg.type === 'amrap' ? 'AMRAP/FT' : seg.type.toUpperCase();
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
     div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type ${seg.type==='rest'?'rest-type':''}">${typeLabel}</span><span class="seg-details">${segmentSummary(seg)} · ${fmt(segmentDuration(seg))}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
-    // Click row to edit
-    div.addEventListener('click', (e) => {
-      if (e.target.closest('.seg-move-btn') || e.target.closest('.seg-del')) return;
-      if (seg.type === 'circuit') openCircuitBuilder(seg, i);
-      else openAddSegmentDialog(seg.type, seg, i);
-    });
     $compoundList.appendChild(div);
   });
   $compoundTotal.innerHTML = `Total: <strong>${fmt(totalSec)}</strong> (${Math.round(totalSec/60)} min)`;
@@ -1586,13 +1580,6 @@ function renderCompoundList() {
     const grandTotal = totalSec * cRounds;
     $compoundTotal.innerHTML = `Per round: <strong>${fmt(totalSec)}</strong> · Total (×${cRounds}): <strong>${fmt(grandTotal)}</strong> (${Math.round(grandTotal/60)} min)`;
   }
-  $compoundList.querySelectorAll('.seg-del').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); compoundSegments.splice(parseInt(b.dataset.idx), 1); renderCompoundList(); }));
-  $compoundList.querySelectorAll('.seg-move-btn').forEach(b => b.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const idx = parseInt(b.dataset.idx), dir = b.dataset.action;
-    if (dir === 'up' && idx > 0) { [compoundSegments[idx], compoundSegments[idx-1]] = [compoundSegments[idx-1], compoundSegments[idx]]; renderCompoundList(); }
-    if (dir === 'down' && idx < compoundSegments.length-1) { [compoundSegments[idx], compoundSegments[idx+1]] = [compoundSegments[idx+1], compoundSegments[idx]]; renderCompoundList(); }
-  }));
 }
 
 // Add segment dialog
@@ -1719,20 +1706,9 @@ function renderCbExerciseList() {
     const dur = (ex.duration + ex.rest) * ex.rounds;
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
     div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
-    div.addEventListener('click', (e) => {
-      if (e.target.closest('.seg-move-btn') || e.target.closest('.seg-del')) return;
-      openCbExerciseDialog(ex, i);
-    });
     $cbExList.appendChild(div);
   });
   $cbTotal.innerHTML = `Total: <strong>${fmt(cbCircuitDuration())}</strong>`;
-  $cbExList.querySelectorAll('.seg-del').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); cbExercises.splice(parseInt(b.dataset.idx), 1); renderCbExerciseList(); }));
-  $cbExList.querySelectorAll('.seg-move-btn').forEach(b => b.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const idx = parseInt(b.dataset.idx), dir = b.dataset.action;
-    if (dir === 'up' && idx > 0) { [cbExercises[idx], cbExercises[idx-1]] = [cbExercises[idx-1], cbExercises[idx]]; renderCbExerciseList(); }
-    if (dir === 'down' && idx < cbExercises.length-1) { [cbExercises[idx], cbExercises[idx+1]] = [cbExercises[idx+1], cbExercises[idx]]; renderCbExerciseList(); }
-  }));
 }
 
 document.getElementById('cb-total-rounds').addEventListener('input', renderCbExerciseList);
@@ -1879,20 +1855,9 @@ function renderCircuitList() {
     const dur = (ex.duration + ex.rest) * ex.rounds;
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
     div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" data-idx="${i}">✕</button>`;
-    div.addEventListener('click', (e) => {
-      if (e.target.closest('.seg-move-btn') || e.target.closest('.seg-del')) return;
-      openExerciseDialog(ex, i);
-    });
     $circuitList.appendChild(div);
   });
   $circuitTotal.innerHTML = `Total: <strong>${fmt(circuitTotalDuration())}</strong> (${Math.round(circuitTotalDuration()/60)} min)`;
-  $circuitList.querySelectorAll('.seg-del').forEach(b => b.addEventListener('click', (e) => { e.stopPropagation(); circuitExercises.splice(parseInt(b.dataset.idx), 1); renderCircuitList(); }));
-  $circuitList.querySelectorAll('.seg-move-btn').forEach(b => b.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const idx = parseInt(b.dataset.idx), dir = b.dataset.action;
-    if (dir === 'up' && idx > 0) { [circuitExercises[idx], circuitExercises[idx-1]] = [circuitExercises[idx-1], circuitExercises[idx]]; renderCircuitList(); }
-    if (dir === 'down' && idx < circuitExercises.length-1) { [circuitExercises[idx], circuitExercises[idx+1]] = [circuitExercises[idx+1], circuitExercises[idx]]; renderCircuitList(); }
-  }));
   if (typeof updateCircuitUrl === 'function') updateCircuitUrl();
 }
 
@@ -2774,6 +2739,62 @@ function finishImportProcess() {
 }
 
 document.getElementById('btn-summary-close').addEventListener('click', () => hide($importSummaryDialog));
+
+// ─── EVENT DELEGATION FOR LISTER ───
+function handleListClick(e, listArray, renderFunc, openDialogFunc) {
+  const segItem = e.target.closest('.compound-segment');
+  if (!segItem) return;
+
+  const idx = parseInt(segItem.dataset.idx);
+
+  // Slet knap
+  if (e.target.closest('.seg-del')) {
+    listArray.splice(idx, 1);
+    renderFunc();
+    return;
+  }
+
+  // Flyt knap (Op/Ned)
+  const moveBtn = e.target.closest('.seg-move-btn');
+  if (moveBtn) {
+    const dir = moveBtn.dataset.action;
+    if (dir === 'up' && idx > 0) {
+      [listArray[idx], listArray[idx-1]] = [listArray[idx-1], listArray[idx]];
+    } else if (dir === 'down' && idx < listArray.length-1) {
+      [listArray[idx], listArray[idx+1]] = [listArray[idx+1], listArray[idx]];
+    }
+    renderFunc();
+    return;
+  }
+
+  // Klik på rækken åbner Edit-dialogen
+  const item = listArray[idx];
+  if (openDialogFunc) openDialogFunc(item, idx);
+}
+
+// Lyt på Compound Listen
+if ($compoundList) {
+  $compoundList.addEventListener('click', (e) => {
+    handleListClick(e, compoundSegments, renderCompoundList, (seg, idx) => {
+      if (seg.type === 'circuit') openCircuitBuilder(seg, idx);
+      else openAddSegmentDialog(seg.type, seg, idx);
+    });
+  });
+}
+
+// Lyt på Circuit Listen
+if ($circuitList) {
+  $circuitList.addEventListener('click', (e) => {
+    handleListClick(e, circuitExercises, renderCircuitList, openExerciseDialog);
+  });
+}
+
+// Lyt på Circuit Builder Listen
+if ($cbExList) {
+  $cbExList.addEventListener('click', (e) => {
+    handleListClick(e, cbExercises, renderCbExerciseList, openCbExerciseDialog);
+  });
+}
 
 // ─── URL AUTOSTART ───
 (function init() {
