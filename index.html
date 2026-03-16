@@ -953,7 +953,28 @@ let masterVolume = 1.0;
 // Load saved volume
 try { const sv = localStorage.getItem('farmTimerVolume'); if (sv !== null) masterVolume = parseFloat(sv); } catch {}
 
-function ensureAudio() { if (!audioCtx) audioCtx = new AudioCtx(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
+let audioUnlocked = false; // Holder styr på, om vi har låst iOS op
+
+function ensureAudio() { 
+  if (!audioCtx) audioCtx = new AudioCtx(); 
+  if (audioCtx.state === 'suspended') audioCtx.resume(); 
+  
+  // Det magiske trick til iOS Safari: Afspil en lydløs lyd ved første interaktion
+  if (!audioUnlocked) {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    gain.gain.value = 0; // Fuldstændig lydløs (0 volume)
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    osc.start(0);
+    osc.stop(audioCtx.currentTime + 0.01); // Stop den efter 10 millisekunder
+    
+    audioUnlocked = true;
+  }
+}
+
 function beep(freq = 880, duration = 0.15, vol = 1.0) {
   if (isCatchingUp) return; // TILFØJET: Spring lyden over, hvis vi er ved at indhente tid
   ensureAudio();
@@ -2519,12 +2540,18 @@ if (window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostna
 function showTapOverlay(callback) {
   const overlay = document.getElementById('tap-overlay');
   overlay.style.display = 'block';
+  
   function onTap() {
     overlay.removeEventListener('click', onTap);
     overlay.style.display = 'none';
-    ensureAudio();
-    setTimeout(callback, 100);
+    
+    // Kald funktionen straks mens vi er inde i 'click'-eventet!
+    ensureAudio(); 
+    
+    // Kør callback (start timeren) med det samme
+    callback(); 
   }
+  
   overlay.addEventListener('click', onTap);
 }
 
