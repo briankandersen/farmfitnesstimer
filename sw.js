@@ -25,36 +25,45 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Fetch: cache-first for alt undtagen PayPal
+// Fetch: Network-first for HTML, Cache-first for alt andet (fonts etc.)
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
 
-  // Lad PayPal og analytics gå direkte til netværket (aldrig cache)
+  // Lad PayPal og analytics gå direkte til netværket
   if (url.hostname.includes('paypal.com') || url.hostname.includes('google-analytics')) {
     return;
   }
 
+  // NETWORK FIRST for selve appen (HTML-filen)
+  if (e.request.mode === 'navigate' || e.request.headers.get('accept').includes('text/html')) {
+    e.respondWith(
+      fetch(e.request).then(response => {
+        // Vi har forbindelse! Gem den nyeste version i cachen til offline-brug
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(e.request, response.clone());
+          return response;
+        });
+      }).catch(() => {
+        // Hvis brugeren er offline, vis den gemte version
+        return caches.match('./index.html');
+      })
+    );
+    return;
+  }
+
+  // CACHE FIRST for alt andet (f.eks. Google Fonts)
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
 
       return fetch(e.request).then(response => {
-        // Cache kun gyldige svar (ikke fejl, ikke opaque redirects)
         if (!response || response.status !== 200) return response;
-
-        // Cache Google Fonts CSS og font-filer for offline brug
         if (url.hostname.includes('fonts.googleapis.com') || url.hostname.includes('fonts.gstatic.com')) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
         }
-
         return response;
-      }).catch(() => {
-        // Offline fallback: hvis alt fejler, vis cached index
-        if (e.request.mode === 'navigate') {
-          return caches.match('./index.html');
-        }
-      });
+      }).catch(() => {});
     })
   );
 });
