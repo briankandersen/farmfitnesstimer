@@ -893,6 +893,15 @@
 // ─── GLOBAL STATE ───
 const isDK = window.location.hostname.includes('.dk');
 
+// Advarsel ved refresh eller hvis fanen lukkes, mens timeren kører
+window.addEventListener('beforeunload', (e) => {
+  const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!';
+  if (isRunning) {
+    e.preventDefault();
+    e.returnValue = ''; // Standard browser-besked vises
+  }
+});
+
 function askConfirmation(message, onConfirm, yesText, noText) {
   const $dlg = document.getElementById('confirm-dialog');
   document.getElementById('confirm-title').textContent = isDK ? "Er du sikker?" : "Are you sure?";
@@ -2049,23 +2058,18 @@ $volumeSlider.addEventListener('input', () => {
 
 // ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
 window.addEventListener('popstate', (e) => {
-  const isRunning = timerInterval !== null && $tPhase.textContent !== 'DONE!';
+  const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!';
 
   if (isRunning) {
-    // Vi tvinger dem "frem" igen mens vi spørger, så de ikke forlader siden ved en fejl
+    // Skub staten tilbage, så URL'en ikke ændrer sig, før de har svaret
     history.pushState(e.state, ''); 
 
     const msg = isDK ? "Vil du stoppe træningen og gå tilbage?" : "Stop the workout and go back?";
 
     askConfirmation(msg, () => {
-      // Hvis de trykker JA:
       stopEverything();
-      // Vi går manuelt tilbage til setup-staten
-      if (e.state && e.state.view === 'setup') {
-        handleNavigation(e.state);
-      } else {
-        history.back();
-      }
+      // Nu kan vi sikkert gå tilbage til den forrige skærm
+      handleNavigation(e.state);
     }, (isDK ? "Stop træning" : "Stop workout"), (isDK ? "Bliv her" : "Stay here"));
     return;
   }
