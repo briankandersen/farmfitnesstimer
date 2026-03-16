@@ -19,7 +19,7 @@
   "applicationCategory": "HealthAndFitnessApplication",
   "offers": {
     "@type": "Offer",
-    "price": "0",11
+    "price": "0",
     "priceCurrency": "USD"
   },
   "description": "Free online interval, Tabata, EMOM, and AMRAP timer for workouts and CrossFit.",
@@ -933,6 +933,7 @@ try { const sv = localStorage.getItem('farmTimerVolume'); if (sv !== null) maste
 
 function ensureAudio() { if (!audioCtx) audioCtx = new AudioCtx(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
 function beep(freq = 880, duration = 0.15, vol = 1.0) {
+  if (isCatchingUp) return; // TILFØJET: Spring lyden over, hvis vi er ved at indhente tid
   ensureAudio();
   const v = vol * masterVolume;
   if (v <= 0) return;
@@ -974,6 +975,49 @@ let countDirection = 'down', halfwayBeep = false;
 let compoundSegments = [], compoundRunning = false, compoundIndex = 0;
 let compoundTotalRounds = 1, compoundCurrentRound = 1;
 let saveContext = 'single';
+
+// Tilføj disse i bunden af STATE-sektionen
+let expectedNextTick = 0;
+let currentTickFunction = null;
+let isCatchingUp = false;
+
+// Indsæt Metronomen herunder (f.eks. lige før // ─── HELPERS ───)
+function startMetronome(tickFn) {
+  clearInterval(timerInterval);
+  currentTickFunction = tickFn;
+  expectedNextTick = Date.now() + 1000;
+  // Kører hver 200ms for altid at fange afvigelser præcist
+  timerInterval = setInterval(metronomeTick, 200); 
+}
+
+function metronomeTick() {
+  if (isPaused) {
+    expectedNextTick = Date.now() + 1000; // Skub forventet tid frem mens vi er på pause
+    return;
+  }
+  
+  const now = Date.now();
+  if (now >= expectedNextTick) {
+    // Udregn hvor mange sekunder vi reelt mangler (normalt 1, men mange hvis skærmen var slukket)
+    let MathTicks = Math.floor((now - expectedNextTick) / 1000) + 1;
+    let ticksToProcess = MathTicks > 3600 ? 3600 : MathTicks; // Max 1 times catch-up (sikkerhedsnet)
+
+    for (let i = 0; i < ticksToProcess; i++) {
+      // Slå lyden fra, indtil vi når det allersidste tick, så vi ikke afspiller 10 bip på ét sekund
+      isCatchingUp = (ticksToProcess > 2 && i < ticksToProcess - 1);
+      
+      if (currentTickFunction) currentTickFunction();
+      
+      // Stop hvis timeren pludselig bliver færdig midt i fremspolingen
+      if (document.getElementById('t-phase').textContent === 'DONE!') {
+        break;
+      }
+    }
+    
+    isCatchingUp = false; // Nulstil altid!
+    expectedNextTick += ticksToProcess * 1000;
+  }
+}
 
 // Circuit state
 let circuitExercises = [];
@@ -1261,7 +1305,7 @@ function startRounds() {
   timerState = { work: v.work, rest: v.rest, rounds: v.rounds, sets: v.sets||1, setrest: v.setrest||60,
     currentSet: 1, currentRound: 1, phase: 'work', remaining: v.work, halfwayBeeped: false };
   isPaused = false; updateRoundsDisplay(); updateNavVisibility();
-  clearInterval(timerInterval); timerInterval = setInterval(tickRounds, 1000);
+  startMetronome(tickRounds);
   updateNavVisibility();
 }
 
@@ -1303,7 +1347,7 @@ function startEmom() {
   document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
   timerState = { interval: v.interval, rounds: v.rounds, currentRound: 1, remaining: v.interval, halfwayBeeped: false };
   isPaused = false; updateEmomDisplay(); updateNavVisibility();
-  clearInterval(timerInterval); timerInterval = setInterval(tickEmom, 1000);
+  startMetronome(tickEmom);
   updateNavVisibility();
 }
 
@@ -1335,7 +1379,7 @@ function startAmrap() {
   document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
   timerState = { total: v.duration * 60, remaining: v.duration * 60, elapsed: 0, halfwayBeeped: false };
   isPaused = false; updateAmrapDisplay(); updateNavVisibility();
-  clearInterval(timerInterval); timerInterval = setInterval(tickAmrap, 1000);
+  startMetronome(tickAmrap);
   updateNavVisibility();
 }
 
@@ -1374,7 +1418,7 @@ function startRest() {
   document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
   timerState = { total: v.duration, remaining: v.duration };
   isPaused = false; updateRestDisplay();
-  clearInterval(timerInterval); timerInterval = setInterval(tickRest, 1000);
+  startMetronome(tickRest);
 }
 
 function updateRestDisplay() {
@@ -1714,8 +1758,7 @@ function startCircuitFromCompound(seg) {
   document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
   isPaused = false;
   updateCircuitDisplay(); updateNavVisibility();
-  clearInterval(timerInterval);
-  timerInterval = setInterval(tickCircuit, 1000);
+  startMetronome(tickCircuit);
 }
 
 document.getElementById('btn-compound-start').addEventListener('click', () => {
@@ -1902,8 +1945,7 @@ document.getElementById('btn-circuit-start').addEventListener('click', () => {
     isPaused = false;
     updateCircuitDisplay();
     updateNavVisibility();
-    clearInterval(timerInterval);
-    timerInterval = setInterval(tickCircuit, 1000);
+    startMetronome(tickCircuit);
   });
 });
 
@@ -2267,6 +2309,7 @@ function updateNavVisibility() {
 function stopEverything() {
   clearInterval(timerInterval);
   timerInterval = null;
+  currentTickFunction = null; // TILFØJET
   compoundRunning = false;
   circuitRunning = false;
   isPaused = false;
