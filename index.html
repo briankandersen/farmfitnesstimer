@@ -26,9 +26,10 @@
   "url": "https://www.farmfitnesstimer.com/"
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Oswald:wght@400;600;700;800&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Oswald:wght@400;600;700;800&family=Source+Sans+Pro:wght@300;400;600&display=swap');
-
   :root {
     --bg: #111;
     --surface: #1a1a1a;
@@ -1174,7 +1175,17 @@ document.getElementById('btn-main').addEventListener('click', () => {
 });
 
 // ─── PRESET EVENTS (single) ───
-$presetSelect.addEventListener('change', () => { const n = $presetSelect.value; $btnDeletePreset.disabled = !n; if (n) { applyPreset(timerType, n); if (document.getElementById('url-display').style.display === 'block') setTimeout(updateTimerUrl, 10); } });
+$presetSelect.addEventListener('change', () => { 
+  const n = $presetSelect.value; 
+  $btnDeletePreset.disabled = !n; 
+  if (n) { 
+    applyPreset(timerType, n); 
+    if (document.getElementById('url-display').style.display === 'block') setTimeout(updateTimerUrl, 10);
+    if (timerType && !['clock', 'compound', 'circuit'].includes(timerType)) {
+      setTimeout(() => localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues())), 10);
+    }
+  } 
+});
 document.getElementById('btn-save-preset').addEventListener('click', () => { saveContext = 'single'; $saveName.value = $presetSelect.value || ''; show($saveDialog); setTimeout(() => { $saveName.focus(); $saveName.select(); }, 100); });
 document.getElementById('btn-delete-preset').addEventListener('click', () => {
   const n = $presetSelect.value;
@@ -1294,6 +1305,7 @@ function openSetup(type, params = {}) {
   // Reset URL toggle
   if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
   if ($urlDisplay) $urlDisplay.style.display = 'none';
+  localStorage.setItem('farmActiveView', type); // Husk visningen
 }
 
 function getSetupValues() { return getCurrentValues(); }
@@ -1562,6 +1574,7 @@ function openCompoundSetup() {
   } catch {}
   populatePresetDropdown($compPresetSelect, 'compound');
   renderCompoundList(); show($compoundSetup);
+  localStorage.setItem('farmActiveView', 'compound'); // Husk visningen
 }
 
 function renderCompoundList() {
@@ -1581,13 +1594,22 @@ function renderCompoundList() {
     const grandTotal = totalSec * cRounds;
     $compoundTotal.innerHTML = `Per round: <strong>${fmt(totalSec)}</strong> · Total (×${cRounds}): <strong>${fmt(grandTotal)}</strong> (${Math.round(grandTotal/60)} min)`;
   }
+  // Gem til localStorage hver gang listen eller runder ændres
+  localStorage.setItem('farmLastUsed_compound', JSON.stringify({ segments: compoundSegments, totalRounds: cRounds }));
 }
 
 // Add segment dialog
 let addSegType = null;
 
 // Recalculate total when compound rounds changes
-document.getElementById('compound-total-rounds').addEventListener('input', () => { if (compoundSegments.length > 0) renderCompoundList(); });
+document.getElementById('compound-total-rounds').addEventListener('input', () => { 
+  if (compoundSegments.length > 0) {
+    renderCompoundList(); 
+  } else {
+    const cRounds = parseInt(document.getElementById('compound-total-rounds').value) || 1;
+    localStorage.setItem('farmLastUsed_compound', JSON.stringify({ segments: compoundSegments, totalRounds: cRounds }));
+  }
+});
 
 let editSegIndex = -1;
 const $segPresetSelect = document.getElementById('seg-preset-select');
@@ -1842,6 +1864,7 @@ function openCircuitSetup() {
   document.getElementById('circuit-url-display').style.display = 'none';
   document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
   show($circuitSetup);
+  localStorage.setItem('farmActiveView', 'circuit'); // Husk visningen
 }
 
 function renderCircuitList() {
@@ -1860,6 +1883,11 @@ function renderCircuitList() {
   });
   $circuitTotal.innerHTML = `Total: <strong>${fmt(circuitTotalDuration())}</strong> (${Math.round(circuitTotalDuration()/60)} min)`;
   if (typeof updateCircuitUrl === 'function') updateCircuitUrl();
+  
+  // Gem til localStorage hver gang listen eller runder ændres
+  const cRounds = parseInt(document.getElementById('circuit-total-rounds').value) || 1;
+  const cRest = parseInt(document.getElementById('circuit-rest').value) || 0;
+  localStorage.setItem('farmLastUsed_circuit', JSON.stringify({ exercises: circuitExercises, totalRounds: cRounds, circuitRest: cRest }));
 }
 
 // Update total when global fields change
@@ -2084,6 +2112,7 @@ document.querySelectorAll('.menu-btn').forEach(btn => {
 // Opdateret "Tilbage"-logik, der bruger browserens historik
 const goToMenu = () => {
   stopEverything();
+  localStorage.removeItem('farmActiveView'); // Slet hukommelsen om skærmen
   hide($setup); hide($compoundSetup); hide($circuitSetup); hide($timer);
   show($menu);
   // Vi sikrer os at historikken ved vi er i menuen nu
@@ -2370,10 +2399,20 @@ function updateTimerUrl() {
   $urlOutput.value = generateTimerUrl();
 }
 
-// Live update on field changes
-document.getElementById('setup-fields').addEventListener('input', () => { if ($urlDisplay.style.display === 'block') updateTimerUrl(); });
+// Live update on field changes and save state
+document.getElementById('setup-fields').addEventListener('input', () => { 
+  if ($urlDisplay.style.display === 'block') updateTimerUrl(); 
+  if (timerType && !['clock', 'compound', 'circuit'].includes(timerType)) {
+    localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues()));
+  }
+});
 ['dir-down','dir-up','half-on','half-off'].forEach(id => {
-  document.getElementById(id).addEventListener('click', () => { if ($urlDisplay.style.display === 'block') setTimeout(updateTimerUrl, 10); });
+  document.getElementById(id).addEventListener('click', () => { 
+    if ($urlDisplay.style.display === 'block') setTimeout(updateTimerUrl, 10); 
+    if (timerType && !['clock', 'compound', 'circuit'].includes(timerType)) {
+      setTimeout(() => localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues())), 10);
+    }
+  });
 });
 
 // Toggle URL visibility
@@ -2815,8 +2854,8 @@ document.addEventListener('click', (e) => {
     input.stepUp();
   }
   
-  // Udløs et "input" event, så lister og URL'er reagerer på ændringen med det samme
-  input.dispatchEvent(new Event('input'));
+  // Udløs et "input" event (med bubbles: true), så beholderen kan lytte med og gemme ændringen
+  input.dispatchEvent(new Event('input', { bubbles: true }));
 });
 
 // ─── URL AUTOSTART ───
@@ -2901,7 +2940,16 @@ document.addEventListener('click', (e) => {
       openSetup(type, params);
       if (p.go === 'true' || p.go === '1') showTapOverlay(() => startTimer());
     }
-  } 
+  } else {
+    // Hvis ingen URL parametre er sat, tjek om vi skal gendanne en tidligere visning fra F5/Refresh
+    const activeView = localStorage.getItem('farmActiveView');
+    if (activeView) {
+      if (activeView === 'compound') openCompoundSetup();
+      else if (activeView === 'circuit') openCircuitSetup();
+      else if (activeView === 'clock') startClock();
+      else openSetup(activeView);
+    }
+  }
 })();
 </script>
 </body>
