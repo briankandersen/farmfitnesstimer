@@ -1,0 +1,25 @@
+{
+  "name": "Farm Fitness Timer",
+  "short_name": "Farm Timer",
+  "description": "Free online fitness timer for EMOM, AMRAP, Tabata, Rounds and Circuit workouts.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#e8a800",
+  "background_color": "#111111",
+  "categories": ["fitness", "health"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%23111'/%3E%3Ctext x='256' y='300' font-family='sans-serif' font-weight='800' font-size='220' fill='%23e8a800' text-anchor='middle'%3EFF%3C/text%3E%3Ctext x='256' y='410' font-family='sans-serif' font-weight='600' font-size='80' fill='%23666' text-anchor='middle' letter-spacing='12'%3ETIMER%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%23111'/%3E%3Ctext x='256' y='300' font-family='sans-serif' font-weight='800' font-size='220' fill='%23e8a800' text-anchor='middle'%3EFF%3C/text%3E%3Ctext x='256' y='410' font-family='sans-serif' font-weight='600' font-size='80' fill='%23666' text-anchor='middle' letter-spacing='12'%3ETIMER%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
