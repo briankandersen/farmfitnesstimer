@@ -1,4 +1,4 @@
-const CACHE_NAME = 'farm-fitness-timer-v4';
+const CACHE_NAME = 'farm-fitness-timer-v5';
 
 const PRECACHE_URLS = [
   './',
@@ -35,7 +35,7 @@ self.addEventListener('fetch', (e) => {
   }
 
   // NETWORK FIRST for selve appen (HTML-filen)
-  if (e.request.mode === 'navigate' || e.request.headers.get('accept').includes('text/html')) {
+  if (e.request.mode === 'navigate' || (e.request.headers.get('accept') || '').includes('text/html')) {
     e.respondWith(
       fetch(e.request).then(response => {
         // Vi har forbindelse! Gem den nyeste version i cachen til offline-brug
