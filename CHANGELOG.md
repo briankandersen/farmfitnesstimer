@@ -4,6 +4,12 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.43] - 2026-03-18
+### Changed
+* Refactored codebase to use English comments globally for improved readability and maintainability.
+* Cleaned up minor duplicate code fragments and dead logic across the `index.html` file.
+* Streamlined the state management sections and internal function documentation.
+
 ## [1.0.42] - 2026-03-18
 ### Added
 * Implemented a "Smart Install" button (`btn-install-app`) in the main menu, specifically targeting `.com` users.

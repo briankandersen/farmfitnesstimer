@@ -93,7 +93,6 @@
     position: relative;
     overflow-y: auto;
     overflow-x: hidden;
-    /* Den ultimative løsning: Skjul selve scrollbaren, så midten ikke forskydes! */
     scrollbar-width: none; /* Firefox */
   }
   #menu::-webkit-scrollbar {
@@ -106,7 +105,7 @@
   .menu-logo {
     width: clamp(150px, min(40vw, 30vh), 350px);
     height: auto;
-    display: block; /* NYT: Fjerner de sidste drilske tekst-pixels under logoet */
+    display: block;
   }
   .menu-subtitle {
     font-family: 'Oswald', sans-serif;
@@ -115,16 +114,14 @@
     text-transform: uppercase;
     letter-spacing: 10px;
     color: var(--dim);
-    margin-bottom: clamp(10px, 2vh, 30px); /* Dynamisk luft under "TIMER" */
+    margin-bottom: clamp(10px, 2vh, 30px); /* Dynamic spacing below subtitle */
   }
 
   .menu-btn {
     font-family: 'Oswald', sans-serif; font-weight: 700;
-    /* Fonten skalerer nu med højden (vh) i stedet for kun bredden (vw) */
     font-size: clamp(16px, 2vh, 26px); 
     text-transform: uppercase;
     letter-spacing: 3px; 
-    /* Padding bliver dynamisk: min 10px, max 18px afhængig af skærmhøjde */
     padding: clamp(10px, 1.8vh, 18px) 48px; 
     width: min(420px, 85vw);
     border: 3px solid var(--border); background: var(--surface);
@@ -140,10 +137,8 @@
   /* ── SETUP SCREEN ── */
   #setup {
     display: none; flex-direction: column; align-items: center; 
-    /* Ret justify-content til flex-start for at tillade scrolling fra toppen */
     justify-content: flex-start; 
     height: 100vh; height: 100dvh; 
-    /* Tilføj lidt mere padding i toppen (40px) */
     padding: 40px 20px 60px; 
     gap: 20px; overflow-y: auto;
     position: relative;
@@ -233,7 +228,6 @@
     font-family: 'Oswald', sans-serif; font-weight: 700; 
     font-size: clamp(16px, 1.8vh, 22px);
     text-transform: uppercase; letter-spacing: 3px; 
-    /* Gør højden dynamisk her også */
     padding: clamp(8px, 1.5vh, 16px) 40px;
     border: 3px solid var(--accent); background: transparent; color: var(--accent);
     cursor: pointer; border-radius: 4px; transition: all 0.15s;
@@ -248,7 +242,6 @@
   /* ── TIMER SCREEN ── */
   #timer {
     display: none; flex-direction: column; 
-    /* Vi ændrer fra center til space-evenly for at sprede elementerne ud */
     align-items: center; justify-content: space-evenly; 
     height: 100vh; height: 100dvh; position: relative;
     padding: 20px; overflow: hidden;
@@ -256,21 +249,18 @@
 
   .timer-phase {
     font-family: 'Oswald', sans-serif; font-weight: 800;
-    /* Mindre font på mobilen */
     font-size: clamp(18px, 4vh, 32px); 
     text-transform: uppercase; letter-spacing: 6px;
-    margin-bottom: 0; /* Fjern margin for at undgå overlap */
+    margin-bottom: 0;
     z-index: 10;
   }
 
   .timer-display {
     font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-weight: 800;
-    /* Vi begrænser størrelsen til 19% af skærmens bredde (vw), 
-       så 5 tegn (00:00) aldrig fylder mere end ca. 95% af skærmen */
+    /* Limit width so 5 chars (00:00) never exceed ~95% of viewport */
     font-size: clamp(60px, min(25vh, 19vw), 400px); 
     line-height: 1;
-    /* Trækker tallene en lille smule sammen for at vinde plads på smalle skærme */
     letter-spacing: -0.03em; 
     text-align: center;
     width: 100%;
@@ -285,7 +275,6 @@
   }
 
   .timer-controls {
-    /* Vi fjerner 'absolute' positionering, så knapperne følger flowet */
     position: relative; bottom: 0; 
     display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
     justify-content: center; margin-top: 10px;
@@ -311,7 +300,7 @@
   }
   .timer-logo {
     position: absolute; 
-    top: 2vh; /* ÆNDRET: top er nu 2vh i stedet for 24px */
+    top: 2vh; 
     left: 50%; transform: translateX(-50%);
     width: clamp(100px, 20vw, 200px); height: auto; opacity: 0.2;
     pointer-events: none; transition: opacity 0.4s, width 0.4s;
@@ -393,7 +382,6 @@
   /* ── COMPOUND ── */
   #compound-setup {
     display: none; flex-direction: column; align-items: center;
-    /* Tving indholdet til at starte fra toppen */
     justify-content: flex-start; 
     height: 100vh; height: 100dvh; 
     padding: 40px 20px; gap: 16px; 
@@ -406,7 +394,6 @@
   }
   #circuit-setup {
     display: none; flex-direction: column; align-items: center;
-    /* Tving indholdet til at starte fra toppen */
     justify-content: flex-start; 
     height: 100vh; height: 100dvh; 
     padding: 40px 20px 80px; gap: 16px; 
@@ -417,7 +404,6 @@
     width: 100%; max-width: 600px; 
     display: flex; flex-direction: column;
     gap: 8px; 
-    /* Ændret: Tillad listen at fylde det den har brug for, men minimum 200px på mobilen */
     flex: 0 0 auto; 
     min-height: 200px; 
     margin-bottom: 20px;
@@ -512,14 +498,12 @@
   }
   
   @media (max-height: 500px) {
-    /* Dine eksisterende timer-rettelser */
     .timer-display { font-size: clamp(60px, 20vh, 200px); }
     .clock-display { font-size: clamp(50px, 18vh, 180px); }
     .timer-logo { top: 10px; width: clamp(80px, 15vw, 150px); }
     .timer-controls { bottom: 15px; }
     .ctrl-btn { padding: 8px 24px; font-size: 16px; }
 
-    /* NYT: Fix til Circuit/Compound listerne, så de fylder mindre i højden */
     #compound-setup h2, #circuit-setup h2 { 
       font-size: 24px; 
       margin-top: 0; 
@@ -528,12 +512,11 @@
     .compound-list { min-height: 100px; }
   }
 
-  /* Skjul standard browser-pile */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   input[type=number] { -moz-appearance: textfield; }
 
-  /* Styling af de nye stepper-knapper */
+  /* Stepper buttons (+/-) */
   .stepper-container {
     display: flex; align-items: center; gap: 5px; background: var(--surface);
     border: 3px solid var(--border); border-radius: 4px; padding: 2px;
@@ -552,12 +535,12 @@
 
   @media (max-height: 500px) and (orientation: landscape) {
     #timer { padding: 10px; justify-content: space-around; }
-    .timer-logo { display: none; } /* Skjul logo i landskab for at spare plads */
+    .timer-logo { display: none; }
     .timer-phase { font-size: 16px; letter-spacing: 4px; }
     .timer-display { font-size: 35vh; }
     .timer-sub { font-size: 14px; }
     .ctrl-btn { padding: 6px 16px; font-size: 14px; }
-    .volume-control { display: none; } /* Skjul volumen i landskab for plads */
+    .volume-control { display: none; }
   }
 </style>
 
@@ -739,9 +722,9 @@
     <div class="field">
       <label>Compound Rounds</label>
       <div class="stepper-container">
-        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
         <input type="number" id="compound-total-rounds" value="1" min="1">
-        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
       </div>
     </div>
   </div>
@@ -774,17 +757,17 @@
     <div class="field">
       <label>Circuit Rounds</label>
       <div class="stepper-container">
-        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
         <input type="number" id="circuit-total-rounds" value="1" min="1">
-        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
       </div>
     </div>
     <div class="field">
       <label>Circuit Rest (s)</label>
       <div class="stepper-container">
-        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
         <input type="number" id="circuit-rest" value="60" min="0" step="5">
-        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
       </div>
     </div>
   </div>
@@ -822,25 +805,25 @@
       <div class="field">
         <label>Duration (s)</label>
         <div class="stepper-container">
-          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
           <input type="number" id="ex-duration" value="45" min="5" step="5">
-          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
         </div>
       </div>
       <div class="field">
         <label>Rest (s)</label>
         <div class="stepper-container">
-          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
           <input type="number" id="ex-rest" value="15" min="0" step="5">
-          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
         </div>
       </div>
       <div class="field">
         <label>Rounds</label>
         <div class="stepper-container">
-          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
           <input type="number" id="ex-rounds" value="1" min="1">
-          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
         </div>
       </div>
     </div>
@@ -861,17 +844,17 @@
       <div class="field">
         <label>Circuit Rounds</label>
         <div class="stepper-container">
-          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
           <input type="number" id="cb-total-rounds" value="1" min="1">
-          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
         </div>
       </div>
       <div class="field">
         <label>Circuit Rest (s)</label>
         <div class="stepper-container">
-          <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+          <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
           <input type="number" id="cb-rest" value="60" min="0" step="5">
-          <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+          <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
         </div>
       </div>    
     </div>
@@ -1008,16 +991,16 @@
 
 <script>
 // ─── GLOBAL STATE ───
-// Sæt logo-src fra favicon (undgår at duplikere den store SVG base64 i HTML'en)
+// Reuse the favicon SVG as logo source to avoid duplicating the base64 data
 const LOGO_SRC = document.querySelector('link[rel="icon"]').href;
 document.querySelector('.menu-logo').src = LOGO_SRC;
 document.querySelector('.timer-logo').src = LOGO_SRC;
 
+// Detect Danish domain and set language + localized SEO content
 const isDK = window.location.hostname.includes('.dk');
 if (isDK) {
   document.documentElement.lang = 'da';
   
-  // Oversæt SEO-teksten til dansk
   const seoContainer = document.getElementById('seo-text-container');
   if (seoContainer) {
     seoContainer.innerHTML = `
@@ -1028,12 +1011,12 @@ if (isDK) {
   }
 }
 
-// Advarsel ved refresh eller hvis fanen lukkes, mens timeren kører
+// Warn before closing/refreshing if a workout is in progress
 window.addEventListener('beforeunload', (e) => {
   const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!' && timerType !== 'clock';
   if (isRunning) {
     e.preventDefault();
-    e.returnValue = ''; // Standard browser-besked vises
+    e.returnValue = '';
   }
 });
 
@@ -1050,11 +1033,11 @@ function askConfirmation(message, onConfirm, yesText, noText) {
   $no.onclick = () => { hide($dlg); };
 }
 
-// ─── WAKE LOCK API (Hold skærmen tændt) ───
+// ─── WAKE LOCK (keep screen on) ───
 let wakeLock = null;
 
+// Request a screen wake lock to prevent the display from sleeping during workouts
 async function requestWakeLock() {
-  // Tjek om browseren understøtter Wake Lock API'et
   if ('wakeLock' in navigator) {
     try {
       wakeLock = await navigator.wakeLock.request('screen');
@@ -1075,9 +1058,9 @@ function releaseWakeLock() {
 // ─── AUDIO ───
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 
-// Opret et lydløst HTML5 audio element
+// Silent looping audio element keeps the browser tab alive during background timers
+
 const silentAudio = new Audio();
-// En tiny base64 kodet fuldstændig lydløs WAV fil
 silentAudio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 silentAudio.loop = true;
 
@@ -1087,30 +1070,31 @@ let masterVolume = 1.0;
 // Load saved volume
 try { const sv = localStorage.getItem('farmTimerVolume'); if (sv !== null) masterVolume = parseFloat(sv); } catch {}
 
-let audioUnlocked = false; // Holder styr på, om vi har låst iOS op
+let audioUnlocked = false; // Tracks whether iOS audio context has been unlocked
 
+// Initialize audio context and unlock iOS silent mode on first user interaction
 function ensureAudio() { 
   if (!audioCtx) audioCtx = new AudioCtx(); 
   if (audioCtx.state === 'suspended') audioCtx.resume(); 
   
-  // Det magiske trick til iOS Safari: Afspil en lydløs lyd ved første interaktion
   if (!audioUnlocked) {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     
-    gain.gain.value = 0; // Fuldstændig lydløs (0 volume)
+    gain.gain.value = 0;
     osc.connect(gain);
     gain.connect(audioCtx.destination);
     
     osc.start(0);
-    osc.stop(audioCtx.currentTime + 0.01); // Stop den efter 10 millisekunder
+    osc.stop(audioCtx.currentTime + 0.01);
     
     audioUnlocked = true;
   }
 }
 
+// Generate a short beep tone via Web Audio API oscillator
 function beep(freq = 880, duration = 0.15, vol = 1.0) {
-  if (isCatchingUp) return; // TILFØJET: Spring lyden over, hvis vi er ved at indhente tid
+  if (isCatchingUp) return;
   ensureAudio();
   const v = vol * masterVolume;
   if (v <= 0) return;
@@ -1130,7 +1114,7 @@ function beepHalfway() {
   setTimeout(() => beep(900, 0.12, 0.7), 150);
 }
 
-// ─── ELEMENTS ───
+// ─── DOM REFERENCES ───
 const $menu = document.getElementById('menu'), $setup = document.getElementById('setup'),
   $timer = document.getElementById('timer'), $compoundSetup = document.getElementById('compound-setup'),
   $setupTitle = document.getElementById('setup-title'), $setupFields = document.getElementById('setup-fields'),
@@ -1161,53 +1145,52 @@ try {
   if (savedSettings) globalSettings = { ...globalSettings, ...savedSettings };
 } catch(e) {}
 
-// Tilføj disse i bunden af STATE-sektionen
+// Metronome state — handles drift correction when tab is backgrounded
 let expectedNextTick = 0;
 let currentTickFunction = null;
 let isCatchingUp = false;
 
-// Indsæt Metronomen herunder (f.eks. lige før // ─── HELPERS ───)
+// Self-correcting metronome: polls at 200ms to catch drift from tab throttling
 function startMetronome(tickFn) {
   clearInterval(timerInterval);
   currentTickFunction = tickFn;
   expectedNextTick = performance.now() + 1000;
-  // Kører hver 200ms for altid at fange afvigelser præcist
   timerInterval = setInterval(metronomeTick, 200); 
 }
 
 function metronomeTick() {
   if (isPaused) {
-    expectedNextTick = performance.now() + 1000; // Skub forventet tid frem mens vi er på pause
+    // Reset expected time while paused to avoid burst of catch-up ticks on resume
+    expectedNextTick = performance.now() + 1000;
     return;
   }
   
   const now = performance.now();
   if (now >= expectedNextTick) {
+    // Calculate missed ticks and process them (cap at 3600 to prevent runaway)
     let MathTicks = Math.floor((now - expectedNextTick) / 1000) + 1;
     let ticksToProcess = MathTicks > 3600 ? 3600 : MathTicks; // Max 1 times catch-up
     let actualTicksProcessed = 0;
 
     for (let i = 0; i < ticksToProcess; i++) {
-      // Slå UI/Lyd fra, indtil vi når det allersidste tick
+      // Suppress UI updates and sounds during catch-up, only render on the final tick
       isCatchingUp = (ticksToProcess > 2 && i < ticksToProcess - 1);
       
       if (currentTickFunction) currentTickFunction();
       actualTicksProcessed++;
       
-      if (eowRemainingSeconds > 0) eowRemainingSeconds--; // NYT: Tæl EOW ned
+      if (eowRemainingSeconds > 0) eowRemainingSeconds--;
       
-      // Stop fremspoling, hvis vi rammer en skærm, der kræver en tidsmæssig overgang
+      // Stop fast-forwarding at transition points that use setTimeout for display
       const phaseText = document.getElementById('t-phase').textContent;
       if (phaseText === 'DONE!' || phaseText === 'NEXT UP' || phaseText === 'NEXT ROUND') {
         isCatchingUp = false;
-        // Nulstil expectedNextTick til nuværende tid, da transition-timeren (setTimeout) tager over
         expectedNextTick = performance.now() + 1000; 
         return; 
       }
     }
     
-    isCatchingUp = false; // Nulstil altid!
-    // Skub forventet tid frem baseret på de ticks, vi faktisk har kørt
+    isCatchingUp = false;
     expectedNextTick += actualTicksProcessed * 1000;
   }
 }
@@ -1218,6 +1201,7 @@ let circuitRunning = false;
 let circuitState = {}; // { exIdx, exRound, circuitRound, phase, remaining }
 
 // ─── HELPERS ───
+// Utility: show/hide elements, format seconds as MM:SS, format Date as HH:MM:SS
 function show(el) { el.classList.remove('hidden'); el.style.display = 'flex'; }
 function hide(el) { el.classList.add('hidden'); el.style.display = 'none'; }
 function fmt(s) { const m = Math.floor(Math.abs(s)/60), sec = Math.abs(s)%60; return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`; }
@@ -1235,7 +1219,7 @@ document.getElementById('half-off').addEventListener('click', () => setHalfway(f
 const $globalSettings = document.getElementById('global-settings');
 function applyGlobalSettingsUI() {
   const setUrlOn = document.getElementById('set-url-on');
-  if (!setUrlOn) return; // Stop hvis vi ikke er klar endnu
+  if (!setUrlOn) return; // DOM not ready yet
   
   setUrlOn.classList.toggle('active', globalSettings.showUrl);
   document.getElementById('set-url-off').classList.toggle('active', !globalSettings.showUrl);
@@ -1247,7 +1231,6 @@ function applyGlobalSettingsUI() {
   document.getElementById('set-min-step').value = globalSettings.minStep;
   document.getElementById('set-sec-step').value = globalSettings.secStep;
   
-  // Tving statiske felter til at bruge brugerens valgte "secStep"
   const cbRest = document.getElementById('cb-rest'); if(cbRest) cbRest.step = globalSettings.secStep;
   const circRest = document.getElementById('circuit-rest'); if(circRest) circRest.step = globalSettings.secStep;
 
@@ -1255,7 +1238,7 @@ function applyGlobalSettingsUI() {
     el.style.display = globalSettings.showUrl ? 'flex' : 'none';
   });
 }
-applyGlobalSettingsUI(); // Kør ved opstart
+applyGlobalSettingsUI();
 
 function saveSettings() {
   globalSettings.countdown = parseInt(document.getElementById('set-countdown').value) || 0;
@@ -1277,7 +1260,7 @@ document.getElementById('set-sec-step').addEventListener('input', saveSettings);
 
 document.getElementById('btn-settings-back').addEventListener('click', goToMenu);
 
-// ─── FIELDS ───
+// ─── FIELD DEFINITIONS ───
 const FIELDS = {
   rounds: [
     { key: 'work', label: 'Work (s)', def: 20 },
@@ -1299,6 +1282,7 @@ const FIELDS = {
 };
 
 // ─── SEGMENT HELPERS ───
+// Calculate the total duration (in seconds) for any segment type
 function segmentDuration(seg) {
   switch (seg.type) {
     case 'rounds': { const wr = (seg.work + seg.rest) * seg.rounds - seg.rest; const sr = (seg.sets||1) > 1 ? (seg.setrest||60) * ((seg.sets||1)-1) : 0; return wr * (seg.sets||1) + sr; }
@@ -1324,11 +1308,11 @@ function segmentSummary(seg) {
   }
 }
 
+// Display estimated total workout time on the setup screen
 function updateSetupTotal() {
   const $setupTotal = document.getElementById('setup-total');
   if (!$setupTotal) return;
   
-  // Skjul for timere, der enten ikke har en sluttid, eller som håndterer det selv
   if (!timerType || ['clock', 'compound', 'circuit'].includes(timerType)) {
     $setupTotal.style.display = 'none';
     return;
@@ -1342,7 +1326,7 @@ function updateSetupTotal() {
   $setupTotal.innerHTML = `Total: <strong>${fmt(totalSec)}</strong> (${Math.round(totalSec/60)} min)`;
 }
 
-// Beregner den totale varighed af hele den valgte workout i sekunder
+// Calculate total workout duration across all segments/circuits
 function calculateTotalWorkoutTime() {
   if (timerType === 'compound') {
     let t = 0;
@@ -1357,7 +1341,7 @@ function calculateTotalWorkoutTime() {
   }
 }
 
-// Beregner præcis hvor meget tid der er gået af et specifikt segment baseret på dets nuværende 'state'
+// Calculate elapsed seconds within a specific segment based on its current state
 function getElapsedInSegment(type, state, setup) {
   if (type === 'amrap') return state.elapsed || 0;
   if (type === 'rest') return (setup.duration || 0) - state.remaining;
@@ -1402,7 +1386,8 @@ function getElapsedInSegment(type, state, setup) {
   return 0;
 }
 
-// Master-funktion: Udregner dynamisk den eksakte resttid for hele workouten
+// Master function: dynamically compute exact remaining time for the entire workout
+// Used by the mini-clock to show estimated end-of-workout (EOW) time
 function calculateExactRemainingTime() {
   const total = calculateTotalWorkoutTime();
   let elapsed = 0;
@@ -1435,7 +1420,8 @@ function calculateExactRemainingTime() {
   return Math.max(0, total - Math.floor(elapsed));
 }
 
-// ─── PRESETS ───
+// ─── PRESETS (localStorage) ───
+// Presets are stored as { type: { name: values } } in localStorage
 const STORAGE_KEY = 'farmTimerPresets';
 function loadAllPresets() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
 function saveAllPresets(p) { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
@@ -1472,14 +1458,12 @@ function getCurrentValues() {
 
 document.getElementById('btn-main').addEventListener('click', () => {
   stopEverything();
-  // Vi går helt tilbage til menuen ved at nulstille historikken eller gå til rod-staten
   hide($timer);
   show($menu);
-  // Dette rydder historik-stakken op, så vi er tilbage på "forsiden"
   history.pushState({ view: 'menu' }, '');
 });
 
-// ─── PRESET EVENTS (single) ───
+// ─── PRESET EVENTS (single timer) ───
 $presetSelect.addEventListener('change', () => { 
   const n = $presetSelect.value; 
   $btnDeletePreset.disabled = !n; 
@@ -1563,7 +1547,8 @@ function showUrlHelp() {
   show($urlInfo); setTimeout(() => { $urlInfo.style.display = 'none'; }, 8000);
 }
 
-// ─── SETUP ───
+// ─── SETUP SCREEN ───
+// Open the setup screen for a given timer type, optionally pre-filling from URL params or last-used values
 function openSetup(type, params = {}) {
   timerType = type;
   hide($menu); hide($timer); hide($compoundSetup); hide($circuitSetup);
@@ -1589,7 +1574,6 @@ function openSetup(type, params = {}) {
     const div = document.createElement('div');
     div.className = 'field';
     
-    // Brug globale indstillinger til steps
     let stepVal = 1;
     if (f.key === 'duration' && type === 'amrap') stepVal = globalSettings.minStep; // AMRAP (Minutter)
     else if (['work', 'rest', 'interval', 'setrest', 'duration'].includes(f.key)) stepVal = globalSettings.secStep; // Sekunder
@@ -1597,9 +1581,9 @@ function openSetup(type, params = {}) {
     div.innerHTML = `
       <label>${f.label}</label>
       <div class="stepper-container">
-        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
         <input type="number" id="f-${f.key}" value="${val}" min="0" step="${stepVal}">
-        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
       </div>
     `;
     $setupFields.appendChild(div);
@@ -1613,28 +1597,22 @@ function openSetup(type, params = {}) {
   // Reset URL toggle
   if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
   if ($urlDisplay) $urlDisplay.style.display = 'none';
-  localStorage.setItem('farmActiveView', type); // Husk visningen
+  localStorage.setItem('farmActiveView', type);
   updateSetupTotal();
 }
 
 function getSetupValues() { return getCurrentValues(); }
 
-// ─── COUNTDOWN ───
+// ─── COUNTDOWN OVERLAY ───
+// Show a visual countdown (3, 2, 1, GO) before starting the timer
 function startCountdown(callback) {
   ensureAudio();
-  requestWakeLock(); // TILFØJET: Hold skærmen tændt
+  requestWakeLock();
   
-  // NYT: Start den lydløse afspiller for at holde browseren vågen
+  // Keep the browser alive in the background via silent audio loop
   silentAudio.play().catch(e => console.log("Silent audio blocked", e));
   
-  // Nulstil knapperne til kamp-klar tilstandfunction startCountdown(callback) {
-  ensureAudio();
-  requestWakeLock(); // TILFØJET: Hold skærmen tændt
-  
-  // NYT: Start den lydløse afspiller for at holde browseren vågen
-  silentAudio.play().catch(e => console.log("Silent audio blocked", e));
-  
-  // Nulstil knapperne til kamp-klar tilstand
+  // Reset control button states
   show(document.getElementById('btn-pause'));
   show(document.getElementById('btn-reset'));
   hide(document.getElementById('btn-main'));
@@ -1644,7 +1622,7 @@ function startCountdown(callback) {
   show($cdOverlay); 
   
   let count = globalSettings.countdown; 
-  if (count <= 0) { // Brugeren har valgt 0 sekunder, start timeren direkte!
+  if (count <= 0) {
     hide($cdOverlay); callback(); return; 
   }
   
@@ -1657,15 +1635,15 @@ function startCountdown(callback) {
   }, 1000);
 }
 
-// ─── CLOCK ───
+// ─── CLOCK MODE ───
 function startClock() {
-  requestWakeLock(); // TILFØJET: Hold skærmen tændt i Clock-mode
+  requestWakeLock();
   hide($menu); hide($setup); hide($compoundSetup); hide($circuitSetup);
   $tPhase.textContent = ''; $tSub.textContent = ''; $tDisplay.className = 'clock-display';
   $timer.style.background = 'var(--bg)'; show($timer);
   
   document.getElementById('btn-pause').classList.add('hidden');
-  document.querySelector('.volume-control').classList.add('hidden'); // TILFØJET
+  document.querySelector('.volume-control').classList.add('hidden');
   
   document.getElementById('btn-reset').textContent = 'Back';
   document.querySelector('.timer-logo').classList.add('clock-mode');
@@ -1674,7 +1652,6 @@ function startClock() {
     const days = isDK ? ['Søndag','Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag'] : ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const months = isDK ? ['Jan','Feb','Mar','Apr','Maj','Jun','Jul','Aug','Sep','Okt','Nov','Dec'] : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     
-    // Tilføjer et lille punktum efter datoen på dansk (f.eks. "17. Maj")
     const dateStr = isDK ? `${now.getDate()}.` : now.getDate();
     $tSub.textContent = `${days[now.getDay()]} · ${dateStr} ${months[now.getMonth()]} ${now.getFullYear()}`; 
     $tSub.className = 'clock-date';
@@ -1683,13 +1660,13 @@ function startClock() {
   tick(); updateNavVisibility(); clearInterval(timerInterval); timerInterval = setInterval(tick, 500);
 }
 
-// ─── ROUNDS ───
+// ─── ROUNDS TIMER ───
 function startRounds() {
   const v = compoundRunning ? compoundSegments[compoundIndex] : getSetupValues();
   hide($setup); hide($compoundSetup); hide($circuitSetup);
   $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
   document.getElementById('btn-pause').classList.remove('hidden');  
-  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  document.querySelector('.volume-control').classList.remove('hidden');
   timerState = { work: v.work, rest: v.rest, rounds: v.rounds, sets: v.sets||1, setrest: v.setrest||60,
     currentSet: 1, currentRound: 1, phase: 'work', remaining: v.work, halfwayBeeped: false };
   isPaused = false; updateRoundsDisplay(); updateNavVisibility();
@@ -1710,6 +1687,7 @@ function updateRoundsDisplay() {
   $tSub.textContent = sub;
 }
 
+// Core tick: handles phase transitions (work → rest → next round → set rest → done)
 function tickRounds() {
   if (isPaused) return; const s = timerState;
   if (s.remaining <= 3 && s.remaining > 0) beep321();
@@ -1732,13 +1710,13 @@ function tickRounds() {
   if (!isCatchingUp) updateRoundsDisplay();
 }
 
-// ─── EMOM ───
+// ─── EMOM TIMER ───
 function startEmom() {
   const v = compoundRunning ? compoundSegments[compoundIndex] : getSetupValues();
   hide($setup); hide($compoundSetup); hide($circuitSetup);
   $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
   document.getElementById('btn-pause').classList.remove('hidden');
-  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  document.querySelector('.volume-control').classList.remove('hidden');
   timerState = { interval: v.interval, rounds: v.rounds, currentRound: 1, remaining: v.interval, halfwayBeeped: false };
   isPaused = false; updateEmomDisplay(); updateNavVisibility();
   startMetronome(tickEmom);
@@ -1764,13 +1742,13 @@ function tickEmom() {
   if (!isCatchingUp) updateEmomDisplay();
 }
 
-// ─── AMRAP / FOR TIME (merged) ───
+// ─── AMRAP / FOR TIME TIMER ───
 function startAmrap() {
   const v = compoundRunning ? compoundSegments[compoundIndex] : getSetupValues();
   hide($setup); hide($compoundSetup); hide($circuitSetup);
   $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
   document.getElementById('btn-pause').classList.remove('hidden');
-  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  document.querySelector('.volume-control').classList.remove('hidden');
   timerState = { total: v.duration * 60, remaining: v.duration * 60, elapsed: 0, halfwayBeeped: false };
   isPaused = false; updateAmrapDisplay(); updateNavVisibility();
   startMetronome(tickAmrap);
@@ -1803,13 +1781,13 @@ function tickAmrap() {
   if (!isCatchingUp) updateAmrapDisplay();
 }
 
-// ─── REST (compound) ───
+// ─── REST SEGMENT (compound) ───
 function startRest() {
   const v = compoundSegments[compoundIndex];
   hide($compoundSetup); hide($circuitSetup);
   $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
   document.getElementById('btn-pause').classList.remove('hidden');
-  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  document.querySelector('.volume-control').classList.remove('hidden');
   timerState = { total: v.duration, remaining: v.duration };
   isPaused = false; updateRestDisplay();
   startMetronome(tickRest);
@@ -1833,6 +1811,7 @@ function tickRest() {
 }
 
 // ─── FINISH ───
+// Called when a segment completes — advances compound queue or finishes the workout
 function finishSegment() {
   clearInterval(timerInterval);
   if (compoundRunning) {
@@ -1866,8 +1845,9 @@ function finishSegment() {
   } else { finishTimer(); }
 }
 
+// Final workout completion: triple beep, show DONE screen, release wake lock
 function finishTimer() {
-  releaseWakeLock(); // TILFØJET: Giv slip på skærmen
+  releaseWakeLock();
   updateNavVisibility();
   clearInterval(timerInterval);
   beepLong(); 
@@ -1880,7 +1860,6 @@ function finishTimer() {
   $tDisplay.style.textShadow = '0 0 80px var(--accent-glow)';
   $timer.style.background = 'linear-gradient(180deg, rgba(232,168,0,0.12) 0%, var(--bg) 60%)';
 
-  // Skjul kun Pause. Vis både Back (btn-reset) og Main
   hide(document.getElementById('btn-pause'));
   show(document.getElementById('btn-reset'));
   show(document.getElementById('btn-main'));
@@ -1892,14 +1871,13 @@ function startTimer() {
   document.getElementById('btn-toggle-url').textContent = 'Show URL';
   localStorage.setItem('farmLastUsed_' + timerType, JSON.stringify(getCurrentValues()));
   
-  // TILFØJ DENNE LINJE:
   history.pushState({ view: 'timer' }, '');
 
   const starter = { rounds: startRounds, emom: startEmom, amrap: startAmrap }[timerType];
   if (starter) startCountdown(() => starter());
 }
 
-// ─── COMPOUND ───
+// ─── COMPOUND SETUP ───
 function openCompoundSetup() {
   timerType = 'compound'; hide($menu); hide($setup); hide($timer);
   try {
@@ -1911,7 +1889,7 @@ function openCompoundSetup() {
   } catch {}
   populatePresetDropdown($compPresetSelect, 'compound');
   renderCompoundList(); show($compoundSetup);
-  localStorage.setItem('farmActiveView', 'compound'); // Husk visningen
+  localStorage.setItem('farmActiveView', 'compound');
 }
 
 function renderCompoundList() {
@@ -1931,7 +1909,6 @@ function renderCompoundList() {
     const grandTotal = totalSec * cRounds;
     $compoundTotal.innerHTML = `Per round: <strong>${fmt(totalSec)}</strong> · Total (×${cRounds}): <strong>${fmt(grandTotal)}</strong> (${Math.round(grandTotal/60)} min)`;
   }
-  // Gem til localStorage hver gang listen eller runder ændres
   localStorage.setItem('farmLastUsed_compound', JSON.stringify({ segments: compoundSegments, totalRounds: cRounds }));
 }
 
@@ -1979,9 +1956,9 @@ function openAddSegmentDialog(type, existingValues, editIdx) {
     div.innerHTML = `
       <label>${f.label}</label>
       <div class="stepper-container">
-        <button class="step-btn step-down" type="button" aria-label="Mindsk">-</button>
+        <button class="step-btn step-down" type="button" aria-label="Decrease">-</button>
         <input type="number" id="seg-f-${f.key}" value="${val}" min="0" step="${stepVal}">
-        <button class="step-btn step-up" type="button" aria-label="Forøg">+</button>
+        <button class="step-btn step-up" type="button" aria-label="Increase">+</button>
       </div>
     `;
     $f.appendChild(div);
@@ -2019,7 +1996,7 @@ document.getElementById('btn-seg-add').addEventListener('click', () => {
   hide($addSegDialog); renderCompoundList();
 });
 
-// ─── CIRCUIT BUILDER (for compound) ───
+// ─── CIRCUIT BUILDER (compound sub-dialog) ───
 let cbExercises = [];
 let cbEditSegIndex = -1;
 let exerciseContext = 'standalone'; // 'standalone' or 'builder'
@@ -2067,7 +2044,7 @@ function renderCbExerciseList() {
   cbExercises.forEach((ex, i) => {
     const dur = (ex.duration + ex.rest) * ex.rounds;
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
-    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" aria-label="Flyt op" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" aria-label="Flyt ned" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" aria-label="Slet" data-idx="${i}">✕</button>`;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" aria-label="Move up" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" aria-label="Move down" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" aria-label="Delete" data-idx="${i}">✕</button>`;
     $cbExList.appendChild(div);
   });
   $cbTotal.innerHTML = `Total: <strong>${fmt(cbCircuitDuration())}</strong>`;
@@ -2142,7 +2119,7 @@ function startCircuitFromCompound(seg) {
   };
   $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
   document.getElementById('btn-pause').classList.remove('hidden');
-  document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+  document.querySelector('.volume-control').classList.remove('hidden');
   isPaused = false;
   updateCircuitDisplay(); updateNavVisibility();
   startMetronome(tickCircuit);
@@ -2171,7 +2148,7 @@ document.getElementById('btn-compound-reset').addEventListener('click', () => {
   }, (isDK ? "Ryd alt" : "Clear all"));
 });
 
-// ─── CIRCUIT ───
+// ─── CIRCUIT SETUP ───
 const $circuitSetup = document.getElementById('circuit-setup');
 const $circuitList = document.getElementById('circuit-list');
 const $circuitTotal = document.getElementById('circuit-total');
@@ -2207,7 +2184,7 @@ function openCircuitSetup() {
   document.getElementById('circuit-url-display').style.display = 'none';
   document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
   show($circuitSetup);
-  localStorage.setItem('farmActiveView', 'circuit'); // Husk visningen
+  localStorage.setItem('farmActiveView', 'circuit');
 }
 
 function renderCircuitList() {
@@ -2221,13 +2198,12 @@ function renderCircuitList() {
   circuitExercises.forEach((ex, i) => {
     const dur = (ex.duration + ex.rest) * ex.rounds;
     const div = document.createElement('div'); div.className = 'compound-segment'; div.dataset.idx = i;
-    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" aria-label="Flyt op" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" aria-label="Flyt ned" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" aria-label="Slet" data-idx="${i}">✕</button>`;
+    div.innerHTML = `<span class="seg-num">${i+1}</span><span class="seg-type">${ex.name}</span><span class="seg-details">${exerciseSummary(ex)} · ${fmt(dur)}</span><div class="seg-move"><button class="seg-move-btn" aria-label="Move up" data-action="up" data-idx="${i}">▲</button><button class="seg-move-btn" aria-label="Move down" data-action="down" data-idx="${i}">▼</button></div><button class="seg-del" aria-label="Delete" data-idx="${i}">✕</button>`;
     $circuitList.appendChild(div);
   });
   $circuitTotal.innerHTML = `Total: <strong>${fmt(circuitTotalDuration())}</strong> (${Math.round(circuitTotalDuration()/60)} min)`;
   if (typeof updateCircuitUrl === 'function') updateCircuitUrl();
   
-  // Gem til localStorage hver gang listen eller runder ændres
   const cRounds = parseInt(document.getElementById('circuit-total-rounds').value) || 1;
   const cRest = parseInt(document.getElementById('circuit-rest').value) || 0;
   localStorage.setItem('farmLastUsed_circuit', JSON.stringify({ exercises: circuitExercises, totalRounds: cRounds, circuitRest: cRest }));
@@ -2328,7 +2304,7 @@ document.getElementById('btn-circuit-start').addEventListener('click', () => {
   startCountdown(() => {
     $tDisplay.className = 'timer-display'; $tSub.className = 'timer-sub'; show($timer);
     document.getElementById('btn-pause').classList.remove('hidden');
-    document.querySelector('.volume-control').classList.remove('hidden'); // TILFØJET
+    document.querySelector('.volume-control').classList.remove('hidden');
     isPaused = false;
     updateCircuitDisplay();
     updateNavVisibility();
@@ -2408,6 +2384,7 @@ function tickCircuit() {
   if (circuitRunning && !isCatchingUp) updateCircuitDisplay();
 }
 
+// Advance to the next exercise/round/circuit-round, or finish
 function advanceCircuit() {
   const cs = circuitState;
   const ex = cs.exercises[cs.exIdx];
@@ -2451,29 +2428,25 @@ document.querySelectorAll('.menu-btn').forEach(btn => {
     
     if (btn.dataset.type === 'settings') { 
       hide($menu); hide($timer); hide($compoundSetup); hide($circuitSetup); show($globalSettings); 
-      history.pushState({ view: 'settings' }, '', '?settings=1'); // Bruger ?
+      history.pushState({ view: 'settings' }, '', '?settings=1');
       return; 
     }
 
-    // Bruger ?type= i adressefeltet, som virker på file://
     history.pushState({ view: 'setup', type: btn.dataset.type }, '', '?type=' + btn.dataset.type);
     openSetup(btn.dataset.type);
   });
 });
 
-// Opdateret "Tilbage"-logik, der bruger browserens historik
 function goToMenu() {
   stopEverything();
-  localStorage.removeItem('farmActiveView'); // Slet hukommelsen om skærmen
+  localStorage.removeItem('farmActiveView');
   hide($setup); hide($compoundSetup); hide($circuitSetup); hide($timer); hide($globalSettings);
-  // Skjul eventuelle åbne dialoger og nulstil URL-visning
   hide($cbDialog); hide($addSegDialog); hide($addExDialog);
   document.getElementById('circuit-url-display').style.display = 'none';
   document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
   if ($urlDisplay) { $urlDisplay.style.display = 'none'; }
   if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
   show($menu);
-  // Vi sikrer os at historikken ved vi er i menuen nu, og fjerner parametre
   if (!history.state || history.state.view !== 'menu') {
     history.pushState({ view: 'menu' }, '', window.location.pathname);
   } else {
@@ -2486,7 +2459,7 @@ document.getElementById('btn-compound-back').addEventListener('click', goToMenu)
 document.getElementById('btn-circuit-back').addEventListener('click', goToMenu);
 
 document.getElementById('btn-start').addEventListener('click', () => {
-  eowRemainingSeconds = calculateTotalWorkoutTime(); // NYT: Beregn total tid
+  eowRemainingSeconds = calculateTotalWorkoutTime();
   startTimer();
 });
 
@@ -2505,7 +2478,6 @@ document.getElementById('btn-reset').addEventListener('click', () => {
       stopEverything();
       if (timerType === 'compound') openCompoundSetup();
       else if (timerType === 'circuit') openCircuitSetup();
-      // Slettet: else if (timerType === 'clock') ... (Fordi vi ved det ikke er klokken!)
       else openSetup(timerType);
       history.replaceState({ view: 'setup', type: timerType }, '');
     }, (isDK ? "Stop træning" : "Stop workout"), (isDK ? "Bliv her" : "Stay here"));
@@ -2513,29 +2485,26 @@ document.getElementById('btn-reset').addEventListener('click', () => {
     stopEverything();
     if (timerType === 'compound') openCompoundSetup();
     else if (timerType === 'circuit') openCircuitSetup();
-    else if (timerType === 'clock') { goToMenu(); return; } // VIGTIGT: Her lander klokken!
+    else if (timerType === 'clock') { goToMenu(); return; }
     else openSetup(timerType);
     history.replaceState({ view: 'setup', type: timerType }, '');
   }
 });
 
+// Keyboard shortcuts: Space = pause/resume, Escape = back/close dialog
 document.addEventListener('keydown', (e) => {
-  // Space til Pause/Resume
   if (e.code === 'Space' && $timer.style.display === 'flex') {
     e.preventDefault(); ensureAudio();
     if (timerType !== 'clock') { isPaused = !isPaused; document.getElementById('btn-pause').textContent = isPaused ? 'Resume' : 'Pause'; }
   }
 
-  // Universel ESCAPE håndtering
   if (e.key === 'Escape') {
-    // 1. Forsøg først at lukke en åben dialog (Confirmation, save, import etc.)
     if (closeTopDialog()) {
-      return; // Vi lukkede en dialog, så vi stopper her.
+      return;
     }
 
-    // 2. Hvis ingen dialog var åben, agér som en universel "Tilbage"-knap i hele appen!
     if (window.getComputedStyle($timer).display !== 'none') {
-      document.getElementById('btn-reset').click(); // Gå tilbage/fremkald bekræftelse fra timer
+      document.getElementById('btn-reset').click();
     } else if (window.getComputedStyle($setup).display !== 'none') {
       document.getElementById('btn-back').click(); // Tilbage fra normal setup
     } else if (window.getComputedStyle($compoundSetup).display !== 'none') {
@@ -2549,6 +2518,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ─── VOLUME SLIDER ───
+// Persist volume preference in localStorage
 const $volumeSlider = document.getElementById('volume-slider');
 $volumeSlider.value = Math.round(masterVolume * 100);
 $volumeSlider.addEventListener('input', () => {
@@ -2556,7 +2526,7 @@ $volumeSlider.addEventListener('input', () => {
   localStorage.setItem('farmTimerVolume', masterVolume);
 });
 
-// Universel funktion til at lukke den øverste åbne dialog
+// Close the topmost visible dialog overlay (used by Escape key and back button)
 function closeTopDialog() {
   const dialogs = [
     { id: 'confirm-dialog', cancelBtn: 'btn-confirm-cancel' },
@@ -2576,35 +2546,30 @@ function closeTopDialog() {
     if (el && window.getComputedStyle(el).display !== 'none') {
       const btn = document.getElementById(d.cancelBtn);
       if (btn) btn.click();
-      else hide(el); // Fallback hvis knappen mangler
-      return true; // Vi lukkede en dialog
+      else hide(el); // Fallback if button is missing
+      return true;
     }
   }
-  return false; // Ingen dialoger var åbne
+  return false;
 }
 
-// ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
-// ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
+// ─── BROWSER BACK BUTTON (popstate) ───
+// Handle browser back button — close dialogs first, then navigate views
 window.addEventListener('popstate', (e) => {
-  // 1. Tjek om en dialog er åben (F.eks. confirmation dialog). 
-  // Hvis ja, luk den og BLIV PÅ SIDEN.
   if (closeTopDialog()) {
-    history.pushState(e.state, ''); // Gendan URL'en så vi reelt annullerer "tilbage"-hoppet
+    history.pushState(e.state, '');
     return;
   }
 
   const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!' && timerType !== 'clock';
 
   if (isRunning) {
-    // Vi skubber staten tilbage med det samme for at "låse" brugeren i timeren
     history.pushState(e.state, ''); 
 
     const msg = isDK ? "Vil du stoppe træningen og gå tilbage?" : "Stop the workout and go back?";
 
-    // Vi bruger din egen askConfirmation funktion
     askConfirmation(msg, () => {
       stopEverything();
-      // Nu hvor timeren er stoppet, kan vi gå tilbage uden advarsel
       history.back(); 
     }, (isDK ? "Stop træning" : "Stop workout"), (isDK ? "Bliv her" : "Stay here"));
     return;
@@ -2614,22 +2579,20 @@ window.addEventListener('popstate', (e) => {
   handleNavigation(e.state);
 });
 
+// Skip forward/backward by one round within the current segment
 function changeRound(delta) {
   if (!timerInterval || $tPhase.textContent === 'DONE!') return;
   ensureAudio();
 
-  // 1. Håndtering af Simple Segmenter (AMRAP og REST)
-  // Hvis vi trykker "Næste" i en AMRAP eller Rest, hopper vi til næste segment
   if ((timerType === 'amrap' || timerType === 'rest') && delta > 0) {
     finishSegment();
     return;
   }
 
-  // 2. Håndtering af ROUNDS (Tabata/HIIT)
   if (timerType === 'rounds') {
     const s = timerState;
     if (delta > 0 && s.currentRound === s.rounds && s.currentSet === s.sets) {
-      finishSegment(); // Vi er på sidste runde, så hop til næste segment
+      finishSegment();
       return;
     }
     s.currentRound += delta;
@@ -2642,7 +2605,6 @@ function changeRound(delta) {
     updateRoundsDisplay();
   } 
 
-  // 3. Håndtering af EMOM
   else if (timerType === 'emom') {
     const s = timerState;
     if (delta > 0 && s.currentRound === s.rounds) {
@@ -2658,41 +2620,31 @@ function changeRound(delta) {
     updateEmomDisplay();
   }
 
-  // 4. Håndtering af CIRCUIT (Nu med runde-bevidsthed)
   else if (circuitRunning) {
     const cs = circuitState;
     const currentEx = cs.exercises[cs.exIdx];
 
     if (delta > 0) {
-      // HOP FREM
       if (cs.exRound < currentEx.rounds) {
-        // Der er flere runder tilbage af denne øvelse
         cs.exRound++;
       } else if (cs.exIdx < cs.exercises.length - 1) {
-        // Næste øvelse
         cs.exIdx++;
         cs.exRound = 1;
       } else if (cs.circuitRound < cs.totalRounds) {
-        // Næste omgang af hele circlut'en
         cs.circuitRound++;
         cs.exIdx = 0;
         cs.exRound = 1;
       } else {
-        // Alt er færdigt
         finishSegment();
         return;
       }
     } else {
-      // HOP TILBAGE
       if (cs.exRound > 1) {
-        // Gå en runde tilbage i samme øvelse
         cs.exRound--;
       } else if (cs.exIdx > 0) {
-        // Gå tilbage til forrige øvelse (og dens sidste runde)
         cs.exIdx--;
         cs.exRound = cs.exercises[cs.exIdx].rounds;
       } else if (cs.circuitRound > 1) {
-        // Gå tilbage til forrige omgang af hele circlut'en
         cs.circuitRound--;
         cs.exIdx = cs.exercises.length - 1;
         cs.exRound = cs.exercises[cs.exIdx].rounds;
@@ -2706,16 +2658,15 @@ function changeRound(delta) {
   }
 }
 
+// Skip forward/backward by one exercise (circuit) or segment (compound)
 function changeExercise(delta) {
   if (!timerInterval || $tPhase.textContent === 'DONE!') return;
   ensureAudio();
 
-  // 1. Prioritet: Hvis en Circuit kører (også inde i Compound), hop mellem øvelserne først
   if (circuitRunning) {
     const cs = circuitState;
     let newExIdx = cs.exIdx + delta;
     
-    // Hvis vi stadig er inden for listens øvelser
     if (newExIdx >= 0 && newExIdx < cs.exercises.length) {
       cs.exIdx = newExIdx;
       cs.exRound = 1;
@@ -2723,13 +2674,10 @@ function changeExercise(delta) {
       cs.remaining = cs.exercises[cs.exIdx].duration;
       beepHigh();
       updateCircuitDisplay();
-      return; // Stop her! Vi har fundet en ny øvelse
+      return;
     }
-    // Hvis vi er på første øvelse og trykker <<, eller sidste øvelse og trykker >>,
-    // så falder vi igennem til Compound-logikken nedenfor.
   }
 
-  // 2. Prioritet: Hop mellem de store segmenter i Compound-listen
   if (compoundRunning) {
     let newIdx = compoundIndex + delta;
     if (newIdx >= 0 && newIdx < compoundSegments.length) {
@@ -2742,29 +2690,25 @@ function changeExercise(delta) {
   }
 }
 
+// Show/hide the navigation arrows (◀◀ ◀ ▶ ▶▶) based on the active timer type
 function updateNavVisibility() {
   const allBtns = document.querySelectorAll('.nav-btn');
   const exBtns = [document.getElementById('btn-prev-ex'), document.getElementById('btn-next-ex')];
   const roundBtns = [document.getElementById('btn-prev-round'), document.getElementById('btn-next-round')];
 
-  // Skjul alt som udgangspunkt
   allBtns.forEach(b => b.style.display = 'none');
 
   if (!timerType || timerType === 'clock') return;
 
-  // COMPOUND & CIRCUIT: Her skal vi bruge det hele
   if (compoundRunning || circuitRunning || timerType === 'compound' || timerType === 'circuit') {
     allBtns.forEach(b => b.style.display = 'block');
   } 
-  // STANDARD ROUNDS / EMOM: Kun rundenavigation
   else if (timerType === 'rounds' || timerType === 'emom') {
     roundBtns.forEach(b => b.style.display = 'block');
   }
-  // AMRAP: Som udgangspunkt ingen runder at skifte, så vi viser intet
-  // (Medmindre det er en del af en Compound, men det fanges ovenfor)
 }
 
-// To hjælpefunktioner for at holde koden ren:
+// Clean shutdown: release wake lock, clear intervals, reset all running flags
 function stopEverything() {
   releaseWakeLock();
   clearInterval(timerInterval);
@@ -2774,7 +2718,6 @@ function stopEverything() {
   circuitRunning = false;
   isPaused = false;
   
-  // NYT: Stop den lydløse afspiller for at spare strøm
   silentAudio.pause();
   
   hide($cdOverlay);
@@ -2795,8 +2738,7 @@ function handleNavigation(state) {
   }
 }
 
-// Genaktivér Wake Lock, hvis brugeren vender tilbage fra en anden fane/app, 
-// og timeren stadig kører (timerInterval er ikke null)
+// Re-acquire wake lock when returning from a backgrounded tab
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible' && timerInterval !== null && !isPaused) {
     requestWakeLock();
@@ -2807,6 +2749,7 @@ document.addEventListener('visibilitychange', () => {
 const $urlDisplay = document.getElementById('url-display');
 const $urlOutput = document.getElementById('url-output');
 
+// Build a shareable URL with all current timer settings as query parameters
 function generateTimerUrl() {
   const base = window.location.origin + window.location.pathname;
   const vals = getCurrentValues();
@@ -2817,7 +2760,6 @@ function generateTimerUrl() {
     if (vals[f.key] !== undefined) params.set(f.key, vals[f.key]);
   });
   
-  // NYT: Tilføj retning og halfway til URL'en (hvis de afviger fra standard)
   if (vals._direction && vals._direction !== 'down') params.set('dir', vals._direction);
   if (vals._halfway) params.set('half', '1');
   
@@ -2919,12 +2861,11 @@ document.getElementById('btn-circuit-copy-url').addEventListener('click', () => 
 
 // ─── DONATE ───
 const $donateSection = document.getElementById('donate-section');
-let paypalRendered = false;
+let paypalRendered = false; // PayPal SDK is lazy-loaded on first click
 
-// Tjek om vi kører som en indpakket Android app (TWA) fra Google Play
+// Detect if running as a TWA (Trusted Web Activity) from Google Play
 const isAndroidApp = document.referrer.includes('android-app://');
 
-// Skjul hvis brugeren har lukket den, ELLER hvis vi er i en Android App
 if (localStorage.getItem('farmDonateHidden') === '1' || isAndroidApp) {
   if ($donateSection) $donateSection.style.display = 'none';
 }
@@ -2932,7 +2873,6 @@ if (localStorage.getItem('farmDonateHidden') === '1' || isAndroidApp) {
 document.getElementById('btn-donate').addEventListener('click', () => {
   document.getElementById('donate-overlay').style.display = 'block';
   if (!paypalRendered) {
-    // Lazy-load PayPal SDK kun når brugeren klikker Donate
     if (typeof paypal !== 'undefined') {
       try { paypal.HostedButtons({ hostedButtonId: "R8RFFSZ5RBG4Y" }).render("#paypal-container-R8RFFSZ5RBG4Y"); paypalRendered = true; } catch(e) { console.log('PayPal render error:', e); }
     } else {
@@ -2956,12 +2896,10 @@ document.getElementById('btn-donate-dismiss').addEventListener('click', () => {
   }, (isDK ? "Skjul" : "Hide"));
 });
 
-// ─── LOGO LINK ───
+// ─── LOGO LINK (.dk domain) ───
 if (isDK) {
-  // Skjul donate-sektionen helt på .dk domænet
   if ($donateSection) $donateSection.style.display = 'none';
 
-  // Gør logoet klikbart til farmfitness.dk
   const logo = document.getElementById('menu-logo');
   const link = document.createElement('a');
   link.href = 'https://farmfitness.dk';
@@ -2983,7 +2921,6 @@ function showTapOverlay(callback) {
     
     ensureAudio(); 
     
-    // NYT: Start den lydløse afspiller for at holde browseren vågen
     silentAudio.play().catch(e => console.log("Silent audio blocked", e));
     
     callback(); 
@@ -2992,7 +2929,7 @@ function showTapOverlay(callback) {
   overlay.addEventListener('click', onTap);
 }
 
-// ─── EXPORT / IMPORT LOGIC ───
+// ─── EXPORT / IMPORT ───
 
 // Export DOM
 const $exportDialog = document.getElementById('export-dialog');
@@ -3010,7 +2947,6 @@ document.getElementById('btn-export-ui').addEventListener('click', () => {
     if (Object.keys(presetsOfType).length === 0) continue;
     hasPresets = true;
 
-    // Kategori overskrift med master-checkbox
     const catDiv = document.createElement('div');
     catDiv.className = 'export-category-label';
     catDiv.innerHTML = `<label class="export-category" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
@@ -3037,7 +2973,6 @@ document.getElementById('btn-export-ui').addEventListener('click', () => {
     document.getElementById('btn-export-confirm').style.display = 'block';
   }
 
-  // Master checkbox logik
   $exportListContainer.querySelectorAll('.cat-check').forEach(cb => {
     cb.addEventListener('change', (e) => {
       const type = e.target.dataset.type;
@@ -3084,7 +3019,7 @@ let importResults = [];
 let applyAllAction = null; // 'skip', 'overwrite', 'rename'
 
 document.getElementById('btn-import-ui').addEventListener('click', () => {
-  $fileImportInput.value = ''; // Nulstil
+  $fileImportInput.value = '';
   $fileImportInput.click();
 });
 
@@ -3105,6 +3040,7 @@ $fileImportInput.addEventListener('change', (e) => {
   reader.readAsText(file);
 });
 
+// Queue all presets from the imported JSON, then process one-by-one
 function startImportProcess(data) {
   importQueue = [];
   importResults = [];
@@ -3119,23 +3055,22 @@ function startImportProcess(data) {
   processNextImport();
 }
 
+// Process import queue: auto-add new presets, prompt user on conflicts
 function processNextImport() {
-  // Brug et while-loop til lynhurtigt at køre alt igennem, der ikke kræver et klik fra brugeren
   while (importQueue.length > 0) {
-    const item = importQueue[0]; // Kig på næste item uden at fjerne det endnu
+    const item = importQueue[0];
     const currentPresets = loadAllPresets();
     const exists = currentPresets[item.type] && currentPresets[item.type][item.name];
 
     if (!exists) {
-      importQueue.shift(); // Fjern fra køen
+      importQueue.shift();
       savePreset(item.type, item.name, item.data);
       importResults.push({ status: 'added', text: `Added: <strong>${item.name}</strong> (${item.type})` });
     } else {
       if (applyAllAction) {
-        importQueue.shift(); // Fjern fra køen
+        importQueue.shift();
         executeConflictActionSync(item, applyAllAction, item.name);
       } else {
-        // Vi har brug for brugerens valg! Bryd loopet, vis dialogen, og stop funktionen.
         const itemToAsk = importQueue.shift(); 
         showConflictDialog(itemToAsk);
         return; 
@@ -3143,7 +3078,6 @@ function processNextImport() {
     }
   }
 
-  // Hvis vi når hertil, er køen tom
   finishImportProcess();
 }
 
@@ -3152,7 +3086,6 @@ function showConflictDialog(item) {
   $conflictRenameInput.value = item.name + ' (Imported)';
   $conflictApplyAll.checked = false;
   
-  // Gem nuværende item på knapperne
   document.getElementById('btn-conflict-skip').onclick = () => handleConflict(item, 'skip');
   document.getElementById('btn-conflict-overwrite').onclick = () => handleConflict(item, 'overwrite');
   document.getElementById('btn-conflict-rename').onclick = () => handleConflict(item, 'rename');
@@ -3164,7 +3097,7 @@ function handleConflict(item, action) {
   if ($conflictApplyAll.checked) applyAllAction = action;
   executeConflictActionSync(item, action, $conflictRenameInput.value.trim());
   hide($importConflictDialog);
-  processNextImport(); // Genstart loopet for at tage de næste
+  processNextImport();
 }
 
 function executeConflictActionSync(item, action, renameStr) {
@@ -3177,7 +3110,6 @@ function executeConflictActionSync(item, action, renameStr) {
     importResults.push({ status: 'overwritten', text: `Overwritten: <strong>${item.name}</strong>` });
   } else if (action === 'rename') {
     let newName = renameStr || `${item.originalName} (1)`;
-    // Hvis vi er i 'apply all' rename state, auto-generer et nummer hvis navnet findes
     if (applyAllAction === 'rename') {
       newName = `${item.originalName} (Imported)`;
       let counter = 1;
@@ -3192,7 +3124,6 @@ function executeConflictActionSync(item, action, renameStr) {
 }
 
 function finishImportProcess() {
-  // Opdater åbne dropdowns
   populatePresetDropdown($presetSelect, timerType || 'rounds');
   populatePresetDropdown($compPresetSelect, 'compound');
   populatePresetDropdown($circPresetSelect, 'circuit');
@@ -3213,21 +3144,20 @@ function finishImportProcess() {
 
 document.getElementById('btn-summary-close').addEventListener('click', () => hide($importSummaryDialog));
 
-// ─── EVENT DELEGATION FOR LISTER ───
+// ─── EVENT DELEGATION FOR LISTS ───
+// Shared click handler for compound/circuit/builder lists: delete, reorder, or edit
 function handleListClick(e, listArray, renderFunc, openDialogFunc) {
   const segItem = e.target.closest('.compound-segment');
   if (!segItem) return;
 
   const idx = parseInt(segItem.dataset.idx);
 
-  // Slet knap
   if (e.target.closest('.seg-del')) {
     listArray.splice(idx, 1);
     renderFunc();
     return;
   }
 
-  // Flyt knap (Op/Ned)
   const moveBtn = e.target.closest('.seg-move-btn');
   if (moveBtn) {
     const dir = moveBtn.dataset.action;
@@ -3240,12 +3170,10 @@ function handleListClick(e, listArray, renderFunc, openDialogFunc) {
     return;
   }
 
-  // Klik på rækken åbner Edit-dialogen
   const item = listArray[idx];
   if (openDialogFunc) openDialogFunc(item, idx);
 }
 
-// Lyt på Compound Listen
 if ($compoundList) {
   $compoundList.addEventListener('click', (e) => {
     handleListClick(e, compoundSegments, renderCompoundList, (seg, idx) => {
@@ -3255,24 +3183,23 @@ if ($compoundList) {
   });
 }
 
-// Lyt på Circuit Listen
 if ($circuitList) {
   $circuitList.addEventListener('click', (e) => {
     handleListClick(e, circuitExercises, renderCircuitList, openExerciseDialog);
   });
 }
 
-// Lyt på Circuit Builder Listen
 if ($cbExList) {
   $cbExList.addEventListener('click', (e) => {
     handleListClick(e, cbExercises, renderCbExerciseList, openCbExerciseDialog);
   });
 }
 
-// ─── GLOBAL EVENT DELEGATION FOR STEPPER KNAPPER (+ / -) ───
+// ─── STEPPER BUTTONS (+/-) EVENT DELEGATION ───
+// Global delegation: +/- stepper buttons increment/decrement their sibling number input
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.step-btn');
-  if (!btn) return; // Klikket var ikke på en stepper-knap
+  if (!btn) return;
 
   const container = btn.closest('.stepper-container');
   if (!container) return;
@@ -3280,14 +3207,12 @@ document.addEventListener('click', (e) => {
   const input = container.querySelector('input[type="number"]');
   if (!input) return;
 
-  // Tjek om det er plus eller minus
   if (btn.classList.contains('step-down') || btn.textContent.trim() === '-') {
     input.stepDown();
   } else if (btn.classList.contains('step-up') || btn.textContent.trim() === '+') {
     input.stepUp();
   }
   
-  // Udløs et "input" event (med bubbles: true), så beholderen kan lytte med og gemme ændringen
   input.dispatchEvent(new Event('input', { bubbles: true }));
 });
 
@@ -3295,30 +3220,25 @@ document.addEventListener('click', (e) => {
 const $miniClockContainer = document.getElementById('mini-clock-container');
 const $miniClock = document.getElementById('global-mini-clock');
 
+// Update mini-clock every second; show estimated end-of-workout time while running
 if ($miniClock && $miniClockContainer) {
   setInterval(() => {
     const now = new Date();
     const timeStr = fmtClock(now);
     
-    // Tjekker om en workout reelt er i gang
     const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!' && timerType !== 'clock';
     
-    // Hvis vi er i gang, beregn dynamisk EOW
     if (isRunning) {
       const remainingSecs = calculateExactRemainingTime();
       
-      // Vi lægger resterende sekunder til nuværende tidspunkt
       const eowDate = new Date(now.getTime() + (remainingSecs * 1000));
       const eowStr = `${String(eowDate.getHours()).padStart(2,'0')}:${String(eowDate.getMinutes()).padStart(2,'0')}`;
       
-      // Indsæt tiden med lækker formatering
       $miniClock.innerHTML = `${timeStr} <span style="color:var(--dim); margin:0 8px;">|</span> EOW: <span style="color:var(--accent);">${eowStr}</span>`;
     } else {
-      // Standard visning (f.eks. i menuen)
       $miniClock.textContent = timeStr;
     }
     
-    // Skjul hele containeren hvis den store klokke er aktiv
     if (timerType === 'clock' && document.getElementById('timer').style.display !== 'none') {
       $miniClockContainer.style.display = 'none';
     } else {
@@ -3327,24 +3247,21 @@ if ($miniClock && $miniClockContainer) {
   }, 1000);
 }
 
-// ─── URL AUTOSTART ───
+// ─── URL AUTOSTART (init) ───
 
+// Parse URL parameters on load to auto-configure and optionally auto-start a timer
 (function init() {
   const p = getUrlParams();
 
-  // Tjek om vi er på det danske domæne
   const isDK = window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostname === 'www.farmfitnesstimer.dk';
 
-  // Opdater titel og meta beskrivelser baseret på URL
   if (p.title) {
     const decodedTitle = decodeURIComponent(p.title.replace(/\+/g, ' '));
     
-    // Opdater fanen og overskriften i appen
     document.title = decodedTitle + " - Farm Fitness";
     const subtitleEl = document.querySelector('.menu-subtitle');
     if (subtitleEl) subtitleEl.textContent = decodedTitle;
 
-    // Sæt dynamisk meta beskrivelse på hhv. dansk og engelsk
     let descText = "";
     if (isDK) {
       descText = "Gratis " + decodedTitle + " til din næste træning. Brug vores nemme online timer til CrossFit, HIIT og hjemmetræning.";
@@ -3352,7 +3269,6 @@ if ($miniClock && $miniClockContainer) {
       descText = "Free " + decodedTitle + " for your next workout. Use our easy online timer for CrossFit, HIIT, and home workouts.";
     }
 
-    // Fang meta-tags fra din <head> og opdater dem
     const metaDesc = document.getElementById('meta-desc');
     const ogTitle = document.getElementById('og-title');
     const ogDesc = document.getElementById('og-desc');
@@ -3366,10 +3282,8 @@ if ($miniClock && $miniClockContainer) {
     if (twDesc) twDesc.setAttribute('content', descText);
   }
 
-  // --- NYT: Dynamisk Canonical, OG:URL og OG:Image baseret på domænet ---
   const currentBaseUrl = window.location.origin;
   
-  // Opdater OG/Twitter billeder og URL til at matche domænet (.dk eller .com)
   const ogUrl = document.querySelector('meta[property="og:url"]');
   const ogImage = document.querySelector('meta[property="og:image"]');
   const twitterImage = document.querySelector('meta[name="twitter:image"]');
@@ -3378,16 +3292,13 @@ if ($miniClock && $miniClockContainer) {
   if (ogImage) ogImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
   if (twitterImage) twitterImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
 
-  // Indsæt Canonical tag dynamisk
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.rel = 'canonical';
     document.head.appendChild(canonical);
   }
-  // Vi fjerner query-parametre fra canonical, så Google forstår, at index.html er "hovedsiden"
   canonical.href = currentBaseUrl + window.location.pathname;
-  // ----------------------------------------------------------------------
 
   if (p.type) {
     let type = p.type.toLowerCase().replace('-', '');
@@ -3396,12 +3307,10 @@ if ($miniClock && $miniClockContainer) {
     if (type === 'tabata') type = 'rounds';
       if (['rounds','emom','amrap','clock','compound','circuit'].includes(type)) {
         
-        // NYT: Byg en historik, så man kan trykke "Tilbage" fra et direkte link
         history.replaceState({ view: 'menu' }, '');
         history.pushState({ view: 'setup', type: type }, '');
 
-        // ... din eksisterende kode fortsætter her ...
-        if (type === 'clock') { openSetup('clock'); return; } // ÆNDRET: Sikrer at timerType sættes internt
+        if (type === 'clock') { openSetup('clock'); return; }
 
       // Circuit URL parsing
       if (type === 'circuit' && p.ex) {
@@ -3435,7 +3344,6 @@ if ($miniClock && $miniClockContainer) {
       // Support legacy 'cap' param → convert to duration
       if (p.cap !== undefined && type === 'amrap') { const v = parseInt(p.cap); params.duration = isNaN(v) ? 10 : v; }
       
-      // NYT: Hent 'dir' og 'half' fra URL'en
       if (p.dir) params._direction = p.dir;
       if (p.half === '1' || p.half === 'true') params._halfway = true;
       
@@ -3445,26 +3353,21 @@ if ($miniClock && $miniClockContainer) {
   }
 })();
 
-// ─── APP INSTALL LOGIC ───
+// ─── APP INSTALL LOGIC (PWA) ───
 const $btnInstallApp = document.getElementById('btn-install-app');
-// Tjek om appen allerede kører som en installeret PWA eller TWA
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 
-// Vis kun "Get the App" knappen, hvis vi er på .com (!isDK), og den IKKE allerede er installeret
 if (!isDK && !isStandalone && !isAndroidApp) {
   if ($btnInstallApp) $btnInstallApp.style.display = 'flex';
 }
 
 if ($btnInstallApp) {
   $btnInstallApp.addEventListener('click', () => {
-    // Tjek om brugeren er på iOS
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     
     if (isIOS) {
       show(document.getElementById('ios-install-dialog'));
     } else {
-      // Send Android og Desktop brugere til Google Play Store
-      // (Husk at opdatere com.farmfitnesstimer.app med dit rigtige package name fra PWABuilder senere)
       window.open('https://play.google.com/store/apps/details?id=com.farmfitnesstimer.app', '_blank');
     }
   });
@@ -3476,6 +3379,7 @@ if (document.getElementById('btn-ios-install-close')) {
 }
 
 // ─── SERVICE WORKER ───
+// Register service worker for offline PWA support (skip on file:// protocol)
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
