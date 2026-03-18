@@ -4,6 +4,11 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.46] - 2026-03-18
+### Fixed
+* Resolved an iOS/Safari specific audio suspension bug where Web Audio API oscillator beeps would randomly stop firing after the initial tones.
+* Applied `playsInline` property and `playsinline` HTML attribute to the background `silentAudio` HTML5 Audio element. This prevents iOS from attempting to hijack the audio stream for full-screen media playback and aggressively suspending the audio context during background/PWA execution.
+
 ## [1.0.45] - 2026-03-18
 ### Fixed
 * Resolved a Safari/iOS specific rendering bug where the timer navigation SVG icons (`icon-chevron-left`, `icon-chevron-right`) would fail to display. 

@@ -1091,6 +1091,8 @@ const AudioCtx = window.AudioContext || window.webkitAudioContext;
 const silentAudio = new Audio();
 silentAudio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 silentAudio.loop = true;
+silentAudio.playsInline = true; // VIGTIGT: Forhindrer iOS i at overtage og dræbe lyden
+silentAudio.setAttribute('playsinline', ''); // Ekstra sikring til ældre iOS versioner
 
 let audioCtx = null;
 let masterVolume = 1.0;
