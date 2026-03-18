@@ -4,6 +4,13 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.47] - 2026-03-18
+### Changed
+* Optimized UI element dimensions for better vertical space utilization on mobile screens.
+* Reduced padding and slightly scaled down font sizes on numerical input fields (`.field input`) and stepper buttons (`.step-btn`).
+* Slimmed down the vertical padding on primary action buttons (`.btn`, `.btn-sm`) to create a more compact, yet touch-friendly footprint.
+* Adjusted padding on the preset selection bar elements (`select`, `.preset-btn`) to tighten up the setup screen headers.
+
 ## [1.0.46] - 2026-03-18
 ### Fixed
 * Resolved an iOS/Safari specific audio suspension bug where Web Audio API oscillator beeps would randomly stop firing after the initial tones.
