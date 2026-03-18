@@ -4,6 +4,15 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.42] - 2026-03-18
+### Added
+* Implemented a "Smart Install" button (`btn-install-app`) in the main menu, specifically targeting `.com` users.
+* Added a custom iOS installation guide dialog (`ios-install-dialog`) providing step-by-step instructions for adding the PWA to the iOS home screen.
+
+### Changed
+* Integrated environment detection logic (`window.matchMedia('(display-mode: standalone)')` and `navigator.standalone`) to dynamically hide the install button if the app is already installed or running as a TWA.
+* Configured the install button to route Android and Desktop users directly to the Google Play Store (URL placeholder ready for final package ID).
+
 ## [1.0.41] - 2026-03-18
 ### Added
 * Added `apple-touch-icon` explicitly in `<head>` to ensure iOS devices generate high-quality homescreen icons.

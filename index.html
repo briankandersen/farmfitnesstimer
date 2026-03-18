@@ -578,6 +578,9 @@
   <button class="menu-btn" data-type="amrap">AMRAP / For Time</button>
   <button class="menu-btn" data-type="circuit">Circuit</button>
   <button class="menu-btn" data-type="compound">Compound</button>
+  
+  <button class="menu-btn" id="btn-install-app" style="margin-top: 10px; border-color: #3498db; color: #3498db; display: none;">📲 Get the App</button>
+  
   <button class="menu-btn" data-type="settings" style="margin-top: 10px; border-color: var(--dim); color: var(--dim);">⚙ Settings</button>
   
   <div style="display: flex; gap: 10px; margin-top: 10px;">
@@ -604,6 +607,20 @@
     <p style="font-family:Source Sans 3,sans-serif; font-size:15px; color:#666; line-height:1.5; margin-bottom:20px;">If you enjoy the timer, why not send a donation. You decide the amount :)</p>
     <div id="paypal-container-R8RFFSZ5RBG4Y" style="min-height:45px; margin-bottom:16px;"></div>
     <button class="btn btn-back btn-sm" id="btn-donate-close">Close</button>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="ios-install-dialog" style="z-index: 400;">
+  <div class="dialog-box">
+    <h3>Install on iOS</h3>
+    <p style="color:var(--text); text-align:center; font-size:16px; font-family:'Source Sans 3',sans-serif;">
+      To install Farm Fitness Timer as a native app on your iPhone or iPad:<br><br>
+      1. Tap the <strong>Share</strong> icon at the bottom of your screen.<br>
+      2. Scroll down and select <strong>Add to Home Screen</strong>.
+    </p>
+    <div class="dialog-actions">
+      <button class="btn btn-sm" id="btn-ios-install-close">Got it</button>
+    </div>
   </div>
 </div>
 
@@ -1057,6 +1074,13 @@ function releaseWakeLock() {
 
 // ─── AUDIO ───
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
+
+// Opret et lydløst HTML5 audio element
+const silentAudio = new Audio();
+// En tiny base64 kodet fuldstændig lydløs WAV fil
+silentAudio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+silentAudio.loop = true;
+
 let audioCtx = null;
 let masterVolume = 1.0;
 
@@ -1599,6 +1623,16 @@ function getSetupValues() { return getCurrentValues(); }
 function startCountdown(callback) {
   ensureAudio();
   requestWakeLock(); // TILFØJET: Hold skærmen tændt
+  
+  // NYT: Start den lydløse afspiller for at holde browseren vågen
+  silentAudio.play().catch(e => console.log("Silent audio blocked", e));
+  
+  // Nulstil knapperne til kamp-klar tilstandfunction startCountdown(callback) {
+  ensureAudio();
+  requestWakeLock(); // TILFØJET: Hold skærmen tændt
+  
+  // NYT: Start den lydløse afspiller for at holde browseren vågen
+  silentAudio.play().catch(e => console.log("Silent audio blocked", e));
   
   // Nulstil knapperne til kamp-klar tilstand
   show(document.getElementById('btn-pause'));
@@ -2533,7 +2567,8 @@ function closeTopDialog() {
     { id: 'import-summary-dialog', cancelBtn: 'btn-summary-close' },
     { id: 'add-exercise-dialog', cancelBtn: 'btn-ex-cancel' },
     { id: 'circuit-builder-dialog', cancelBtn: 'btn-cb-cancel' },
-    { id: 'donate-overlay', cancelBtn: 'btn-donate-close' }
+    { id: 'donate-overlay', cancelBtn: 'btn-donate-close' },
+    { id: 'ios-install-dialog', cancelBtn: 'btn-ios-install-close' }
   ];
 
   for (const d of dialogs) {
@@ -2731,13 +2766,17 @@ function updateNavVisibility() {
 
 // To hjælpefunktioner for at holde koden ren:
 function stopEverything() {
-  releaseWakeLock(); // TILFØJET: Giv slip på skærmen ved afbrydelse
+  releaseWakeLock();
   clearInterval(timerInterval);
   timerInterval = null;
-  currentTickFunction = null; // TILFØJET
+  currentTickFunction = null;
   compoundRunning = false;
   circuitRunning = false;
   isPaused = false;
+  
+  // NYT: Stop den lydløse afspiller for at spare strøm
+  silentAudio.pause();
+  
   hide($cdOverlay);
   document.getElementById('tap-overlay').style.display = 'none';
 }
@@ -2882,9 +2921,12 @@ document.getElementById('btn-circuit-copy-url').addEventListener('click', () => 
 const $donateSection = document.getElementById('donate-section');
 let paypalRendered = false;
 
-// Hide if user dismissed
-if (localStorage.getItem('farmDonateHidden') === '1') {
-  $donateSection.style.display = 'none';
+// Tjek om vi kører som en indpakket Android app (TWA) fra Google Play
+const isAndroidApp = document.referrer.includes('android-app://');
+
+// Skjul hvis brugeren har lukket den, ELLER hvis vi er i en Android App
+if (localStorage.getItem('farmDonateHidden') === '1' || isAndroidApp) {
+  if ($donateSection) $donateSection.style.display = 'none';
 }
 
 document.getElementById('btn-donate').addEventListener('click', () => {
@@ -2939,10 +2981,11 @@ function showTapOverlay(callback) {
     overlay.removeEventListener('click', onTap);
     overlay.style.display = 'none';
     
-    // Kald funktionen straks mens vi er inde i 'click'-eventet!
     ensureAudio(); 
     
-    // Kør callback (start timeren) med det samme
+    // NYT: Start den lydløse afspiller for at holde browseren vågen
+    silentAudio.play().catch(e => console.log("Silent audio blocked", e));
+    
     callback(); 
   }
   
@@ -3313,10 +3356,14 @@ if ($miniClock && $miniClockContainer) {
     const metaDesc = document.getElementById('meta-desc');
     const ogTitle = document.getElementById('og-title');
     const ogDesc = document.getElementById('og-desc');
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
     
     if (metaDesc) metaDesc.setAttribute('content', descText);
     if (ogTitle) ogTitle.setAttribute('content', decodedTitle + " - Farm Fitness Timer");
     if (ogDesc) ogDesc.setAttribute('content', descText);
+    if (twTitle) twTitle.setAttribute('content', decodedTitle + " - Farm Fitness Timer");
+    if (twDesc) twDesc.setAttribute('content', descText);
   }
 
   // --- NYT: Dynamisk Canonical, OG:URL og OG:Image baseret på domænet ---
@@ -3397,6 +3444,36 @@ if ($miniClock && $miniClockContainer) {
     }
   }
 })();
+
+// ─── APP INSTALL LOGIC ───
+const $btnInstallApp = document.getElementById('btn-install-app');
+// Tjek om appen allerede kører som en installeret PWA eller TWA
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+// Vis kun "Get the App" knappen, hvis vi er på .com (!isDK), og den IKKE allerede er installeret
+if (!isDK && !isStandalone && !isAndroidApp) {
+  if ($btnInstallApp) $btnInstallApp.style.display = 'flex';
+}
+
+if ($btnInstallApp) {
+  $btnInstallApp.addEventListener('click', () => {
+    // Tjek om brugeren er på iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    
+    if (isIOS) {
+      show(document.getElementById('ios-install-dialog'));
+    } else {
+      // Send Android og Desktop brugere til Google Play Store
+      // (Husk at opdatere com.farmfitnesstimer.app med dit rigtige package name fra PWABuilder senere)
+      window.open('https://play.google.com/store/apps/details?id=com.farmfitnesstimer.app', '_blank');
+    }
+  });
+}
+
+const $iosInstallDialog = document.getElementById('ios-install-dialog');
+if (document.getElementById('btn-ios-install-close')) {
+  document.getElementById('btn-ios-install-close').addEventListener('click', () => hide($iosInstallDialog));
+}
 
 // ─── SERVICE WORKER ───
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
