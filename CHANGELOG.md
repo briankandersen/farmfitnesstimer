@@ -4,6 +4,12 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.45] - 2026-03-18
+### Fixed
+* Resolved a Safari/iOS specific rendering bug where the timer navigation SVG icons (`icon-chevron-left`, `icon-chevron-right`) would fail to display. 
+* Replaced `display: none` on the root `<svg>` symbol container with a zero-dimension absolute positioning hack (`width: 0; height: 0; overflow: hidden;`) to force WebKit browsers to retain the symbols in the DOM for `<use>` element referencing.
+* Added `aria-hidden="true"` to the hidden SVG container to maintain screen reader accessibility standards.
+
 ## [1.0.44] - 2026-03-18
 ### Added
 * Added inline SVG symbols (`icon-chevron-left` and `icon-chevron-right`) to the DOM to ensure crisp, high-resolution iconography across all pixel densities.
