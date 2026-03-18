@@ -15,6 +15,7 @@
 <meta name="twitter:description" content="Custom online interval timers for CrossFit, HIIT, and functional fitness.">
 <meta name="twitter:image" content="https://www.farmfitnesstimer.com/og-image.jpg">
 
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="alternate" hreflang="da" href="https://www.farmfitnesstimer.dk/" />
 <link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/" />
 <link rel="alternate" hreflang="x-default" href="https://www.farmfitnesstimer.com/" />
@@ -563,7 +564,7 @@
 </head>
 <body>
 
-<div id="mini-clock-container" style="position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, transparent 0%, var(--bg) 75%, var(--bg) 100%); z-index: 40; pointer-events: none; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 5px; display: none;">
+<div id="mini-clock-container" style="position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, transparent 0%, var(--bg) 75%, var(--bg) 100%); z-index: 40; pointer-events: none; justify-content: center; align-items: flex-end; padding-bottom: 5px; display: none;">
   <div id="global-mini-clock" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(12px, 3vw, 16px); color: var(--text); opacity: 0.8; letter-spacing: 2px;"></div>
 </div>
 
@@ -996,7 +997,19 @@ document.querySelector('.menu-logo').src = LOGO_SRC;
 document.querySelector('.timer-logo').src = LOGO_SRC;
 
 const isDK = window.location.hostname.includes('.dk');
-if (isDK) document.documentElement.lang = 'da';
+if (isDK) {
+  document.documentElement.lang = 'da';
+  
+  // Oversæt SEO-teksten til dansk
+  const seoContainer = document.getElementById('seo-text-container');
+  if (seoContainer) {
+    seoContainer.innerHTML = `
+      <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 10px;">Om Farm Fitness Timer</h2>
+      <p style="margin-bottom: 10px;">Det ultimative online stopur til din funktionelle træning. Uanset om du kører højintens intervaltræning (HIIT), en CrossFit WOD, Tabata, eller bygger din egen cirkeltræning, fungerer vores web-timer perfekt på både mobil og desktop.</p>
+      <p>Inkluderer funktioner som AMRAP (As Many Rounds As Possible), EMOM (Every Minute On the Minute) og avancerede sammensatte timere. Kræver ingen download af app.</p>
+    `;
+  }
+}
 
 // Advarsel ved refresh eller hvis fanen lukkes, mens timeren kører
 window.addEventListener('beforeunload', (e) => {
@@ -1123,8 +1136,6 @@ try {
   const savedSettings = JSON.parse(localStorage.getItem('farmGlobalSettings'));
   if (savedSettings) globalSettings = { ...globalSettings, ...savedSettings };
 } catch(e) {}
-
-// Tilføj disse i bunden af STATE-sektionen
 
 // Tilføj disse i bunden af STATE-sektionen
 let expectedNextTick = 0;
@@ -2748,7 +2759,7 @@ function handleNavigation(state) {
 // Genaktivér Wake Lock, hvis brugeren vender tilbage fra en anden fane/app, 
 // og timeren stadig kører (timerInterval er ikke null)
 document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && timerInterval !== null) {
+  if (document.visibilityState === 'visible' && timerInterval !== null && !isPaused) {
     requestWakeLock();
   }
 });
@@ -2904,7 +2915,7 @@ document.getElementById('btn-donate-dismiss').addEventListener('click', () => {
 });
 
 // ─── LOGO LINK ───
-if (window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostname === 'www.farmfitnesstimer.dk') {
+if (isDK) {
   // Skjul donate-sektionen helt på .dk domænet
   if ($donateSection) $donateSection.style.display = 'none';
 
@@ -2917,16 +2928,6 @@ if (window.location.hostname === 'farmfitnesstimer.dk' || window.location.hostna
   logo.parentNode.insertBefore(link, logo);
   link.appendChild(logo);
   logo.style.cursor = 'pointer';
-
-  // Oversæt SEO-teksten til dansk
-  const seoContainer = document.getElementById('seo-text-container');
-  if (seoContainer) {
-    seoContainer.innerHTML = `
-      <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 10px;">Om Farm Fitness Timer</h2>
-      <p style="margin-bottom: 10px;">Det ultimative online stopur til din funktionelle træning. Uanset om du kører højintens intervaltræning (HIIT), en CrossFit WOD, Tabata, eller bygger din egen cirkeltræning, fungerer vores web-timer perfekt på både mobil og desktop.</p>
-      <p>Inkluderer funktioner som AMRAP (As Many Rounds As Possible), EMOM (Every Minute On the Minute) og avancerede sammensatte timere. Kræver ingen download af app.</p>
-    `;
-  }
 }
 
 // ─── TAP TO START (URL autostart) ───
@@ -3317,6 +3318,29 @@ if ($miniClock && $miniClockContainer) {
     if (ogTitle) ogTitle.setAttribute('content', decodedTitle + " - Farm Fitness Timer");
     if (ogDesc) ogDesc.setAttribute('content', descText);
   }
+
+  // --- NYT: Dynamisk Canonical, OG:URL og OG:Image baseret på domænet ---
+  const currentBaseUrl = window.location.origin;
+  
+  // Opdater OG/Twitter billeder og URL til at matche domænet (.dk eller .com)
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  const twitterImage = document.querySelector('meta[name="twitter:image"]');
+  
+  if (ogUrl) ogUrl.setAttribute('content', window.location.href);
+  if (ogImage) ogImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
+  if (twitterImage) twitterImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
+
+  // Indsæt Canonical tag dynamisk
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  // Vi fjerner query-parametre fra canonical, så Google forstår, at index.html er "hovedsiden"
+  canonical.href = currentBaseUrl + window.location.pathname;
+  // ----------------------------------------------------------------------
 
   if (p.type) {
     let type = p.type.toLowerCase().replace('-', '');

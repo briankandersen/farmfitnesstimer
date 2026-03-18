@@ -4,6 +4,21 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.41] - 2026-03-18
+### Added
+* Added `apple-touch-icon` explicitly in `<head>` to ensure iOS devices generate high-quality homescreen icons.
+* Implemented dynamic `canonical` URL generation to prevent duplicate content indexing between `.com` and `.dk` domains.
+* Added `Strict-Transport-Security` (HSTS) and `Permissions-Policy` headers to `netlify.toml` to enforce HTTPS and lock down unused browser hardware features.
+* Applied `x-default` hreflang tags to all localized sub-URLs in both XML sitemaps, providing a proper global fallback for unmatched languages.
+* Added `lang` and `dir` properties to `manifest.json` for better PWA compliance.
+
+### Changed
+* Dynamically update `twitter:title`, `twitter:description`, and `og:` meta tags via JavaScript when a shared workout URL is opened, ensuring rich previews match the actual domain and content.
+* Updated `favicon.svg` fill colors to perfectly match the CSS `--accent` variable (`#e8a800`) for visual consistency.
+
+### Removed
+* Removed redundant root path (`./`) from the Service Worker `PRECACHE_URLS` list to prevent duplicate caching of the `index.html` file.
+
 ## [1.0.40] - 2026-03-18
 ### Changed
 * Comprehensive update of `README.md` to reflect new architecture (Metronome, EOW, History API).

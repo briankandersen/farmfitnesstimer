@@ -1,7 +1,6 @@
-const CACHE_NAME = 'farm-fitness-timer-v1.0.40';
+const CACHE_NAME = 'farm-fitness-timer-v1.0.41';
 
 const PRECACHE_URLS = [
-  './',
   './index.html',
   './manifest.json',
   'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Oswald:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;600&display=swap',
