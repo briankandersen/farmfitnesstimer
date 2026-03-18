@@ -4,6 +4,16 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.44] - 2026-03-18
+### Added
+* Added inline SVG symbols (`icon-chevron-left` and `icon-chevron-right`) to the DOM to ensure crisp, high-resolution iconography across all pixel densities.
+
+### Changed
+* Replaced the standard Unicode arrow characters (`◀`, `▶`, `◀◀`, `▶▶`) in the timer navigation bar with custom SVG icons for a more cohesive, premium design.
+* Introduced the `.timer-nav-icon` CSS class to strip default iOS/Android WebView button styling (removing grey backgrounds and native borders).
+* Upgraded the timer navigation buttons with a native-feeling "halo" hover/tap effect matching the app's primary gold accent color (`--accent`).
+* Constructed double-chevron "skip" icons for Compound/Circuit modes by overlapping two SVG elements with negative margins, ensuring perfect visual alignment.
+
 ## [1.0.43] - 2026-03-18
 ### Changed
 * Refactored codebase to use English comments globally for improved readability and maintainability.

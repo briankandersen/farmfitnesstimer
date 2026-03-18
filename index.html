@@ -420,13 +420,34 @@
   .seg-type.rest-type { color: var(--rest); }
   .seg-details { font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: var(--dim); flex: 1; }
   .seg-move { display: flex; flex-direction: column; gap: 2px; }
+  /* ── DEL/MOVE BUTTONS (Setup screen reordering) ── */
   .seg-move-btn, .seg-del {
     font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 12px;
     padding: 4px 8px; border: 1px solid var(--border); background: transparent;
     color: var(--dim); cursor: pointer; border-radius: 3px; transition: all 0.15s;
+    outline: none;
   }
   .seg-move-btn:hover { border-color: var(--accent); color: var(--accent); }
   .seg-del:hover { border-color: var(--danger); color: var(--danger); }
+
+  /* ── TIMER NAVIGATION ICONS (The fix for the arrows) ── */
+  .timer-nav-icon {
+    -webkit-appearance: none; appearance: none; /* Tvinger iOS standard-udseende væk */
+    background: transparent; border: none; /* Ingen grim baggrund eller kant */
+    color: var(--accent); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px; /* Stor hit-area for tykke svedige fingre */
+    border-radius: 50%; /* Circle for halo-effekten */
+    transition: all 0.15s;
+    outline: none;
+  }
+  .timer-nav-icon:hover {
+    background: rgba(232, 168, 0, 0.1); /* Diskret guld halo på hover/tap */
+  }
+  .timer-nav-icon svg {
+    width: 24px; height: 24px;
+    fill: currentColor; /* Bruger knappens guld farve */
+  }
   .compound-empty {
     font-family: 'Oswald', sans-serif; font-size: 16px; color: var(--dim);
     text-align: center; padding: 40px 20px; letter-spacing: 2px; text-transform: uppercase;
@@ -550,6 +571,11 @@
 <div id="mini-clock-container" style="position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, transparent 0%, var(--bg) 75%, var(--bg) 100%); z-index: 40; pointer-events: none; justify-content: center; align-items: flex-end; padding-bottom: 5px; display: none;">
   <div id="global-mini-clock" style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: clamp(12px, 3vw, 16px); color: var(--text); opacity: 0.8; letter-spacing: 2px;"></div>
 </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></symbol>
+  <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+</svg>
 
 <div id="menu">
 
@@ -874,15 +900,17 @@
   <img src="" alt="Farm Fitness" class="timer-logo">
   <div class="timer-phase" id="t-phase"></div>
   <div class="timer-display" id="t-display">00:00</div>
-  <div style="display: flex; align-items: center; gap: 15px; z-index: 10;">
-  <button class="seg-move-btn nav-btn" id="btn-prev-ex" style="font-size: 24px; opacity: 0.4; display: none;">◀◀</button>
-  <button class="seg-move-btn nav-btn" id="btn-prev-round" style="font-size: 24px; opacity: 0.6; display: none;">◀</button>
   
-  <div class="timer-sub" id="t-sub" style="margin-top: 0; min-width: 120px; text-align: center;"></div>
+  <div style="display: flex; align-items: center; gap: 10px; z-index: 10; margin-bottom: 5px;">
+    <button class="timer-nav-icon nav-btn" id="btn-prev-ex" style="opacity: 0.4; display: none;"><svg><use href="#icon-chevron-left"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-left"></use></svg></button>
+    <button class="timer-nav-icon nav-btn" id="btn-prev-round" style="opacity: 0.6; display: none;"><svg><use href="#icon-chevron-left"></use></svg></button>
+    
+    <div class="timer-sub" id="t-sub" style="margin-top: 0; min-width: 120px; text-align: center;"></div>
+    
+    <button class="timer-nav-icon nav-btn" id="btn-next-round" style="opacity: 0.6; display: none;"><svg><use href="#icon-chevron-right"></use></svg></button>
+    <button class="timer-nav-icon nav-btn" id="btn-next-ex" style="opacity: 0.4; display: none;"><svg><use href="#icon-chevron-right"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-right"></use></svg></button>
+  </div>
   
-  <button class="seg-move-btn nav-btn" id="btn-next-round" style="font-size: 24px; opacity: 0.6; display: none;">▶</button>
-  <button class="seg-move-btn nav-btn" id="btn-next-ex" style="font-size: 24px; opacity: 0.4; display: none;">▶▶</button>
-</div>
   <div class="timer-controls">
     <button class="ctrl-btn" id="btn-pause">Pause</button>
     <button class="ctrl-btn" id="btn-reset">Back</button>
