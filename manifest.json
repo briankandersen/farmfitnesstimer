@@ -1,5 +1,6 @@
 {
   "id": "/",
+  "version": "1.0.1",
   "name": "Farm Fitness Timer",
   "short_name": "Farm Timer",
   "start_url": "/",

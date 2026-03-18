@@ -1110,6 +1110,7 @@ const $menu = document.getElementById('menu'), $setup = document.getElementById(
   $btnCompDelete = document.getElementById('btn-compound-delete');
 
 // ─── STATE ───
+let eowRemainingSeconds = 0;
 let timerType = null, timerInterval = null, isPaused = false, timerState = {};
 let countDirection = 'down', halfwayBeep = false;
 let compoundSegments = [], compoundRunning = false, compoundIndex = 0;
@@ -1157,6 +1158,8 @@ function metronomeTick() {
       
       if (currentTickFunction) currentTickFunction();
       actualTicksProcessed++;
+      
+      if (eowRemainingSeconds > 0) eowRemainingSeconds--; // NYT: Tæl EOW ned
       
       // Stop fremspoling, hvis vi rammer en skærm, der kræver en tidsmæssig overgang
       const phaseText = document.getElementById('t-phase').textContent;
@@ -1302,6 +1305,99 @@ function updateSetupTotal() {
   
   $setupTotal.style.display = 'block';
   $setupTotal.innerHTML = `Total: <strong>${fmt(totalSec)}</strong> (${Math.round(totalSec/60)} min)`;
+}
+
+// Beregner den totale varighed af hele den valgte workout i sekunder
+function calculateTotalWorkoutTime() {
+  if (timerType === 'compound') {
+    let t = 0;
+    compoundSegments.forEach(seg => t += segmentDuration(seg));
+    return t * (parseInt(document.getElementById('compound-total-rounds').value) || 1);
+  } else if (timerType === 'circuit') {
+    return circuitTotalDuration();
+  } else {
+    const vals = getCurrentValues();
+    vals.type = timerType;
+    return segmentDuration(vals);
+  }
+}
+
+// Beregner præcis hvor meget tid der er gået af et specifikt segment baseret på dets nuværende 'state'
+function getElapsedInSegment(type, state, setup) {
+  if (type === 'amrap') return state.elapsed || 0;
+  if (type === 'rest') return (setup.duration || 0) - state.remaining;
+  if (type === 'emom') return (state.currentRound - 1) * state.interval + (state.interval - state.remaining);
+  
+  if (type === 'rounds') {
+    const setTime = state.rounds * state.work + Math.max(0, state.rounds - 1) * state.rest;
+    const fullSetTime = setTime + (state.setrest || 0);
+    let elapsed = (state.currentSet - 1) * fullSetTime;
+    
+    if (state.phase === 'setrest') {
+      elapsed += setTime + ((state.setrest || 0) - state.remaining);
+    } else {
+      let elapsedInSet = (state.currentRound - 1) * (state.work + state.rest);
+      if (state.phase === 'work') elapsedInSet += (state.work - state.remaining);
+      else if (state.phase === 'rest') elapsedInSet += state.work + (state.rest - state.remaining);
+      elapsed += elapsedInSet;
+    }
+    return elapsed;
+  }
+  
+  if (type === 'circuit') {
+    let roundTime = 0;
+    state.exercises.forEach(ex => roundTime += (ex.duration + ex.rest) * ex.rounds);
+    const fullCircTime = roundTime + (state.circRest || 0);
+    
+    let elapsed = (state.circuitRound - 1) * fullCircTime;
+    if (state.phase === 'circuit-rest') {
+      elapsed += roundTime + ((state.circRest || 0) - state.remaining);
+    } else {
+      for (let i = 0; i < state.exIdx; i++) {
+        const ex = state.exercises[i];
+        elapsed += (ex.duration + ex.rest) * ex.rounds;
+      }
+      const currEx = state.exercises[state.exIdx];
+      elapsed += (state.exRound - 1) * (currEx.duration + currEx.rest);
+      if (state.phase === 'work') elapsed += (currEx.duration - state.remaining);
+      else if (state.phase === 'rest') elapsed += currEx.duration + (currEx.rest - state.remaining);
+    }
+    return elapsed;
+  }
+  return 0;
+}
+
+// Master-funktion: Udregner dynamisk den eksakte resttid for hele workouten
+function calculateExactRemainingTime() {
+  const total = calculateTotalWorkoutTime();
+  let elapsed = 0;
+
+  if (compoundRunning) {
+    const oneRoundTime = compoundSegments.reduce((acc, seg) => acc + segmentDuration(seg), 0);
+    elapsed += (compoundCurrentRound - 1) * oneRoundTime;
+    
+    for (let i = 0; i < compoundIndex; i++) {
+      elapsed += segmentDuration(compoundSegments[i]);
+    }
+    
+    const currSeg = compoundSegments[compoundIndex];
+    if (currSeg.type === 'circuit') {
+      elapsed += getElapsedInSegment('circuit', circuitState, currSeg);
+    } else {
+      elapsed += getElapsedInSegment(currSeg.type, timerState, currSeg);
+    }
+  } else if (circuitRunning) {
+    elapsed = getElapsedInSegment('circuit', circuitState, {
+      exercises: circuitExercises,
+      totalRounds: parseInt(document.getElementById('circuit-total-rounds').value) || 1,
+      circRest: parseInt(document.getElementById('circuit-rest').value) || 0
+    });
+  } else {
+    const vals = getCurrentValues();
+    elapsed = getElapsedInSegment(timerType, timerState, vals);
+  }
+
+  return Math.max(0, total - Math.floor(elapsed));
 }
 
 // ─── PRESETS ───
@@ -2009,6 +2105,7 @@ function startCircuitFromCompound(seg) {
 
 document.getElementById('btn-compound-start').addEventListener('click', () => {
   if (compoundSegments.length === 0) return;
+  eowRemainingSeconds = calculateTotalWorkoutTime(); // NYT
   ensureAudio();
   const cRounds = parseInt(document.getElementById('compound-total-rounds').value) || 1;
   localStorage.setItem('farmLastUsed_compound', JSON.stringify({ segments: compoundSegments, totalRounds: cRounds }));
@@ -2165,6 +2262,7 @@ $btnCircDelete.addEventListener('click', () => {
 // Circuit start
 document.getElementById('btn-circuit-start').addEventListener('click', () => {
   if (circuitExercises.length === 0) return;
+  eowRemainingSeconds = calculateTotalWorkoutTime(); // NYT
   document.getElementById('circuit-url-display').style.display = 'none';
   document.getElementById('btn-circuit-toggle-url').textContent = 'Show URL';
   ensureAudio();
@@ -2308,12 +2406,12 @@ document.querySelectorAll('.menu-btn').forEach(btn => {
     
     if (btn.dataset.type === 'settings') { 
       hide($menu); hide($timer); hide($compoundSetup); hide($circuitSetup); show($globalSettings); 
-      history.pushState({ view: 'settings' }, ''); 
+      history.pushState({ view: 'settings' }, '', '?settings=1'); // Bruger ?
       return; 
     }
-    
-    // NYT: Gem præcis hvilken type setup vi går ind i (gælder alt undtagen Settings)
-    history.pushState({ view: 'setup', type: btn.dataset.type }, '');
+
+    // Bruger ?type= i adressefeltet, som virker på file://
+    history.pushState({ view: 'setup', type: btn.dataset.type }, '', '?type=' + btn.dataset.type);
     openSetup(btn.dataset.type);
   });
 });
@@ -2330,9 +2428,11 @@ function goToMenu() {
   if ($urlDisplay) { $urlDisplay.style.display = 'none'; }
   if (document.getElementById('btn-toggle-url')) document.getElementById('btn-toggle-url').textContent = 'Show URL';
   show($menu);
-  // Vi sikrer os at historikken ved vi er i menuen nu
+  // Vi sikrer os at historikken ved vi er i menuen nu, og fjerner parametre
   if (!history.state || history.state.view !== 'menu') {
-    history.pushState({ view: 'menu' }, '');
+    history.pushState({ view: 'menu' }, '', window.location.pathname);
+  } else {
+    history.replaceState({ view: 'menu' }, '', window.location.pathname);
   }
 }
 
@@ -2340,7 +2440,11 @@ document.getElementById('btn-back').addEventListener('click', goToMenu);
 document.getElementById('btn-compound-back').addEventListener('click', goToMenu);
 document.getElementById('btn-circuit-back').addEventListener('click', goToMenu);
 
-document.getElementById('btn-start').addEventListener('click', startTimer);
+document.getElementById('btn-start').addEventListener('click', () => {
+  eowRemainingSeconds = calculateTotalWorkoutTime(); // NYT: Beregn total tid
+  startTimer();
+});
+
 document.getElementById('btn-pause').addEventListener('click', () => { isPaused = !isPaused; document.getElementById('btn-pause').textContent = isPaused ? 'Resume' : 'Pause'; });
 document.getElementById('btn-prev-round').addEventListener('click', () => changeRound(-1));
 document.getElementById('btn-next-round').addEventListener('click', () => changeRound(1));
@@ -2356,7 +2460,7 @@ document.getElementById('btn-reset').addEventListener('click', () => {
       stopEverything();
       if (timerType === 'compound') openCompoundSetup();
       else if (timerType === 'circuit') openCircuitSetup();
-      else if (timerType === 'clock') { hide($timer); show($menu); }
+      // Slettet: else if (timerType === 'clock') ... (Fordi vi ved det ikke er klokken!)
       else openSetup(timerType);
       history.replaceState({ view: 'setup', type: timerType }, '');
     }, (isDK ? "Stop træning" : "Stop workout"), (isDK ? "Bliv her" : "Stay here"));
@@ -2364,16 +2468,38 @@ document.getElementById('btn-reset').addEventListener('click', () => {
     stopEverything();
     if (timerType === 'compound') openCompoundSetup();
     else if (timerType === 'circuit') openCircuitSetup();
-    else if (timerType === 'clock') { hide($timer); show($menu); }
+    else if (timerType === 'clock') { goToMenu(); return; } // VIGTIGT: Her lander klokken!
     else openSetup(timerType);
     history.replaceState({ view: 'setup', type: timerType }, '');
   }
 });
 
 document.addEventListener('keydown', (e) => {
+  // Space til Pause/Resume
   if (e.code === 'Space' && $timer.style.display === 'flex') {
     e.preventDefault(); ensureAudio();
     if (timerType !== 'clock') { isPaused = !isPaused; document.getElementById('btn-pause').textContent = isPaused ? 'Resume' : 'Pause'; }
+  }
+
+  // Universel ESCAPE håndtering
+  if (e.key === 'Escape') {
+    // 1. Forsøg først at lukke en åben dialog (Confirmation, save, import etc.)
+    if (closeTopDialog()) {
+      return; // Vi lukkede en dialog, så vi stopper her.
+    }
+
+    // 2. Hvis ingen dialog var åben, agér som en universel "Tilbage"-knap i hele appen!
+    if (window.getComputedStyle($timer).display !== 'none') {
+      document.getElementById('btn-reset').click(); // Gå tilbage/fremkald bekræftelse fra timer
+    } else if (window.getComputedStyle($setup).display !== 'none') {
+      document.getElementById('btn-back').click(); // Tilbage fra normal setup
+    } else if (window.getComputedStyle($compoundSetup).display !== 'none') {
+      document.getElementById('btn-compound-back').click(); // Tilbage fra compound setup
+    } else if (window.getComputedStyle($circuitSetup).display !== 'none') {
+      document.getElementById('btn-circuit-back').click(); // Tilbage fra circuit setup
+    } else if (window.getComputedStyle($globalSettings).display !== 'none') {
+      document.getElementById('btn-settings-back').click(); // Tilbage fra settings
+    }
   }
 });
 
@@ -2385,10 +2511,42 @@ $volumeSlider.addEventListener('input', () => {
   localStorage.setItem('farmTimerVolume', masterVolume);
 });
 
-// ─── DONATE ───
+// Universel funktion til at lukke den øverste åbne dialog
+function closeTopDialog() {
+  const dialogs = [
+    { id: 'confirm-dialog', cancelBtn: 'btn-confirm-cancel' },
+    { id: 'save-dialog', cancelBtn: 'btn-save-cancel' },
+    { id: 'add-segment-dialog', cancelBtn: 'btn-seg-cancel' },
+    { id: 'export-dialog', cancelBtn: 'btn-export-cancel' },
+    { id: 'import-conflict-dialog', cancelBtn: 'btn-conflict-skip' },
+    { id: 'import-summary-dialog', cancelBtn: 'btn-summary-close' },
+    { id: 'add-exercise-dialog', cancelBtn: 'btn-ex-cancel' },
+    { id: 'circuit-builder-dialog', cancelBtn: 'btn-cb-cancel' },
+    { id: 'donate-overlay', cancelBtn: 'btn-donate-close' }
+  ];
+
+  for (const d of dialogs) {
+    const el = document.getElementById(d.id);
+    if (el && window.getComputedStyle(el).display !== 'none') {
+      const btn = document.getElementById(d.cancelBtn);
+      if (btn) btn.click();
+      else hide(el); // Fallback hvis knappen mangler
+      return true; // Vi lukkede en dialog
+    }
+  }
+  return false; // Ingen dialoger var åbne
+}
 
 // ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
+// ─── BROWSER BACK BUTTON LOGIC (POPSTATE) ───
 window.addEventListener('popstate', (e) => {
+  // 1. Tjek om en dialog er åben (F.eks. confirmation dialog). 
+  // Hvis ja, luk den og BLIV PÅ SIDEN.
+  if (closeTopDialog()) {
+    history.pushState(e.state, ''); // Gendan URL'en så vi reelt annullerer "tilbage"-hoppet
+    return;
+  }
+
   const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!' && timerType !== 'clock';
 
   if (isRunning) {
@@ -3096,13 +3254,31 @@ const $miniClock = document.getElementById('global-mini-clock');
 if ($miniClock && $miniClockContainer) {
   setInterval(() => {
     const now = new Date();
-    $miniClock.textContent = fmtClock(now); // Opdaterer selve tallene
+    const timeStr = fmtClock(now);
     
-    // Skjul hele containeren (og fade-effekten), hvis den store klokke er aktiv
+    // Tjekker om en workout reelt er i gang
+    const isRunning = timerInterval !== null && document.getElementById('t-phase').textContent !== 'DONE!' && timerType !== 'clock';
+    
+    // Hvis vi er i gang, beregn dynamisk EOW
+    if (isRunning) {
+      const remainingSecs = calculateExactRemainingTime();
+      
+      // Vi lægger resterende sekunder til nuværende tidspunkt
+      const eowDate = new Date(now.getTime() + (remainingSecs * 1000));
+      const eowStr = `${String(eowDate.getHours()).padStart(2,'0')}:${String(eowDate.getMinutes()).padStart(2,'0')}`;
+      
+      // Indsæt tiden med lækker formatering
+      $miniClock.innerHTML = `${timeStr} <span style="color:var(--dim); margin:0 8px;">|</span> EOW: <span style="color:var(--accent);">${eowStr}</span>`;
+    } else {
+      // Standard visning (f.eks. i menuen)
+      $miniClock.textContent = timeStr;
+    }
+    
+    // Skjul hele containeren hvis den store klokke er aktiv
     if (timerType === 'clock' && document.getElementById('timer').style.display !== 'none') {
       $miniClockContainer.style.display = 'none';
     } else {
-      $miniClockContainer.style.display = 'flex'; // Flex sørger for at uret forbliver centreret i bunden
+      $miniClockContainer.style.display = 'flex';
     }
   }, 1000);
 }
@@ -3154,7 +3330,7 @@ if ($miniClock && $miniClockContainer) {
         history.pushState({ view: 'setup', type: type }, '');
 
         // ... din eksisterende kode fortsætter her ...
-        if (type === 'clock') { hide($menu); startClock(); return; }
+        if (type === 'clock') { openSetup('clock'); return; } // ÆNDRET: Sikrer at timerType sættes internt
 
       // Circuit URL parsing
       if (type === 'circuit' && p.ex) {
@@ -3194,15 +3370,6 @@ if ($miniClock && $miniClockContainer) {
       
       openSetup(type, params);
       if (p.go === 'true' || p.go === '1') showTapOverlay(() => startTimer());
-    }
-  } else {
-    // Hvis ingen URL parametre er sat, tjek om vi skal gendanne en tidligere visning fra F5/Refresh
-    const activeView = localStorage.getItem('farmActiveView');
-    if (activeView) {
-      if (activeView === 'compound') openCompoundSetup();
-      else if (activeView === 'circuit') openCircuitSetup();
-      else if (activeView === 'clock') startClock();
-      else openSetup(activeView);
     }
   }
 })();
