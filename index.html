@@ -3322,14 +3322,15 @@ if ($miniClock && $miniClockContainer) {
   if (ogImage) ogImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
   if (twitterImage) twitterImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
 
-  let canonical = document.querySelector('link[rel="canonical"]');
+let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.rel = 'canonical';
     document.head.appendChild(canonical);
   }
-  canonical.href = currentBaseUrl + window.location.pathname;
-
+  // Sørg for at inkludere 'search' parametrene (?title=...) så Google vil indeksere dem!
+  canonical.href = currentBaseUrl + window.location.pathname + window.location.search;
+  
   if (p.type) {
     let type = p.type.toLowerCase().replace('-', '');
     // Legacy support

@@ -4,6 +4,11 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.48] - 2026-03-19
+### Fixed
+* Fixed a major SEO bug where dynamically generated canonical tags ignored query parameters (`window.location.search`). 
+* This ensures that parameterized URLs (like pre-built AMRAP or Circuit timers) submitted via sitemaps are properly indexed by Googlebot instead of being flagged as duplicates of the root domain.
+
 ## [1.0.47] - 2026-03-18
 ### Changed
 * Optimized UI element dimensions for better vertical space utilization on mobile screens.
