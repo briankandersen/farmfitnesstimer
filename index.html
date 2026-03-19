@@ -925,12 +925,13 @@
 <div id="timer">
   <img src="" alt="Farm Fitness" class="timer-logo">
   <div class="timer-phase" id="t-phase"></div>
+  
+  <div id="t-next" style="font-family: 'Oswald', sans-serif; font-weight: 400; font-size: clamp(16px, 3vh, 26px); color: var(--dim); letter-spacing: 4px; text-transform: uppercase; margin-top: 5px; z-index: 10; text-align: center;"></div>
+  
   <div class="timer-display" id="t-display">00:00</div>
   
   <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 10; margin-bottom: 10px;">
     <div class="timer-sub" id="t-sub" style="margin-top: 0; text-align: center;"></div>
-    
-    <div id="t-next" style="font-family: 'Oswald', sans-serif; font-size: 18px; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; margin-top: -8px;"></div>
     
     <div style="display: flex; align-items: center; gap: 12px;">
       <button class="timer-nav-icon nav-btn" id="btn-prev-ex" style="display: none;"><svg><use href="#icon-chevron-left"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-left"></use></svg></button>
@@ -3069,6 +3070,15 @@ const $exportDialog = document.getElementById('export-dialog');
 const $exportListContainer = document.getElementById('export-list-container');
 let exportDataMap = {};
 
+// Import DOM (Disse forsvandt i ombygningen!)
+const $fileImportInput = document.getElementById('file-import-input');
+const $importConflictDialog = document.getElementById('import-conflict-dialog');
+const $conflictMessage = document.getElementById('conflict-message');
+const $conflictRenameInput = document.getElementById('conflict-rename-input');
+const $conflictApplyAll = document.getElementById('conflict-apply-all');
+const $importSummaryDialog = document.getElementById('import-summary-dialog');
+const $importSummaryList = document.getElementById('import-summary-list');
+
 document.getElementById('btn-export-ui').addEventListener('click', () => {
   const allPresets = loadAllPresets();
   $exportListContainer.innerHTML = '';
@@ -3470,9 +3480,6 @@ if ($miniClock && $miniClockContainer) {
   if (canonical) {
     canonical.href = currentBaseUrl + window.location.pathname + window.location.search;
   }
-  
-  // Sørg for at inkludere 'search' parametrene (?title=...) så Google vil indeksere dem!
-  canonical.href = currentBaseUrl + window.location.pathname + window.location.search;
   
   if (p.type) {
     let type = p.type.toLowerCase().replace('-', '');

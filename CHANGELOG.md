@@ -4,6 +4,11 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.55] - 2026-03-19
+### Changed
+* Relocated the predictive "Next Up" indicator (`#t-next`) from the bottom progress container to the top header, directly below the active phase title (`#t-phase`).
+* Updated typography for `#t-next` to roughly match the active phase sizing (`clamp(16px, 3vh, 26px)`), but utilized a thinner font weight and dimmed color variable to establish clear visual hierarchy.
+
 ## [1.0.54] - 2026-03-19
 ### Changed
 * Removed the redundant exercise name from the progress sub-text (`$tSub`) during Circuit workouts, as it is already prominently displayed in the main phase header (`$tPhase`).
