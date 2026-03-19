@@ -4,6 +4,13 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.56] - 2026-03-19
+### Changed
+* Refined the vertical spacing in the active timer header to address crowding. Increased `margin-top` and added `margin-bottom` to the predictive "Next Up" indicator (`#t-next`). This restores visual balance by centering the text within the large gap between the active phase title and the timer digits, creating an elegant, less top-heavy interface.
+* Significantly increased the font size of the active exercise header (`.timer-phase`) to improve readability from a distance. 
+* Switched the `clamp()` function viewport dependency from `vh` to `vw` (`clamp(28px, 7vw, 60px)`) to allow the text to scale organically with the screen width.
+* Added `overflow-wrap: break-word;`, `text-align: center;`, and `line-height: 1.1;` to ensure exceptionally long exercise names wrap gracefully on narrow mobile displays without causing horizontal overflow.
+
 ## [1.0.55] - 2026-03-19
 ### Changed
 * Relocated the predictive "Next Up" indicator (`#t-next`) from the bottom progress container to the top header, directly below the active phase title (`#t-phase`).
