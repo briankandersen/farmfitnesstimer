@@ -20,6 +20,7 @@
 <link rel="alternate" hreflang="en" href="https://www.farmfitnesstimer.com/" />
 <link rel="alternate" hreflang="x-default" href="https://www.farmfitnesstimer.com/" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" id="canonical-link" href="https://www.farmfitnesstimer.com/">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -27,17 +28,26 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "WebApplication",
   "name": "Farm Fitness Timer",
-  "operatingSystem": "Web Browser",
+  "url": "https://www.farmfitnesstimer.com/",
+  "description": "Free online workout timer for EMOM, AMRAP, Tabata, and custom fitness circuits. No ads, no installation required.",
   "applicationCategory": "HealthAndFitnessApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript. Works on Chrome, Safari, Firefox, Edge.",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Free online interval, Tabata, EMOM, and AMRAP timer for workouts and CrossFit.",
-  "url": "https://www.farmfitnesstimer.com/"
+  "featureList": [
+    "EMOM Timer",
+    "AMRAP / For Time Timer",
+    "Tabata & Interval Timer",
+    "Custom Circuit Builder",
+    "Offline capable (PWA)",
+    "Ad-free interface"
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -579,7 +589,10 @@
 
 <div id="menu">
 
-  <h1><img src="" alt="Farm Fitness" class="menu-logo" id="menu-logo"></h1>
+  <h1>
+    <span style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">Farm Fitness Timer - Free Online Workout Clock</span>
+    <img src="" alt="Farm Fitness Timer" class="menu-logo" id="menu-logo">
+  </h1>
   <p class="menu-subtitle">Timer</p>
   <button class="menu-btn" data-type="clock">Clock</button>
   <button class="menu-btn" data-type="rounds">Rounds</button>
@@ -603,10 +616,15 @@
     <button class="donate-dismiss" id="btn-donate-dismiss">hide</button>
   </div>
 
-  <div id="seo-text-container" style="margin-top: 10px; max-width: 600px; text-align: center; color: var(--dim); font-size: 14px; line-height: 1.5; flex-shrink: 0;">
-    <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 10px;">About Farm Fitness Timer</h2>
-    <p style="margin-bottom: 10px;">The ultimate online workout timer for your functional fitness needs. Whether you are doing a high-intensity interval training (HIIT), a CrossFit WOD, a Tabata protocol, or building a custom circuit, our web-based timer works perfectly on both mobile and desktop.</p>
-    <p>Features include programmable AMRAPs (As Many Rounds As Possible), EMOMs (Every Minute On the Minute), and complex compound timers. No app download required.</p>
+  <div id="seo-text-container" style="margin-top: 10px; max-width: 600px; text-align: left; color: var(--dim); font-size: 13px; line-height: 1.6; flex-shrink: 0; padding: 0 15px;">
+    <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 8px; text-align: center;">Why use Farm Fitness Timer?</h2>
+    <p style="margin-bottom: 12px; text-align: center;">The best ad-free online workout timer for high-intensity interval training (HIIT), CrossFit WODs, and home garage gyms.</p>
+    <ul style="margin-left: 20px; margin-bottom: 12px; font-family: 'Source Sans 3', sans-serif;">
+      <li><strong>Is there a free EMOM timer?</strong> Yes, our EMOM (Every Minute On the Minute) clock is completely free and works in your browser.</li>
+      <li><strong>Can I create custom AMRAPs?</strong> Easily set your duration for AMRAP (As Many Rounds As Possible) or For Time workouts.</li>
+      <li><strong>Does it have annoying ads?</strong> No! Farm Fitness Timer is 100% ad-free so you can focus on your workout without interruptions.</li>
+      <li><strong>Will it run offline?</strong> Yes. Save it to your home screen (PWA) and use it anywhere, even without Wi-Fi.</li>
+    </ul>
   </div>
 </div>
 
@@ -1032,9 +1050,14 @@ if (isDK) {
   const seoContainer = document.getElementById('seo-text-container');
   if (seoContainer) {
     seoContainer.innerHTML = `
-      <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 10px;">Om Farm Fitness Timer</h2>
-      <p style="margin-bottom: 10px;">Det ultimative online stopur til din funktionelle træning. Uanset om du kører højintens intervaltræning (HIIT), en CrossFit WOD, Tabata, eller bygger din egen cirkeltræning, fungerer vores web-timer perfekt på både mobil og desktop.</p>
-      <p>Inkluderer funktioner som AMRAP (As Many Rounds As Possible), EMOM (Every Minute On the Minute) og avancerede sammensatte timere. Kræver ingen download af app.</p>
+      <h2 style="font-family: 'Oswald', sans-serif; color: var(--accent); font-size: 18px; margin-bottom: 8px; text-align: center;">Hvorfor vælge Farm Fitness Timer?</h2>
+      <p style="margin-bottom: 12px; text-align: center;">Det bedste reklamefri online stopur til HIIT, CrossFit WODs og hjemmetræning.</p>
+      <ul style="margin-left: 20px; margin-bottom: 12px; font-family: 'Source Sans 3', sans-serif;">
+        <li><strong>Er der en gratis EMOM timer?</strong> Ja, vores EMOM ur er 100% gratis og kører direkte i din browser.</li>
+        <li><strong>Kan jeg bygge custom AMRAPs?</strong> Sæt nemt din egen tidsgrænse til AMRAP og "For Time" workouts.</li>
+        <li><strong>Er der forstyrrende reklamer?</strong> Nej! Farm Fitness Timer er fuldstændig reklamefri, så du kan fokusere på din træning.</li>
+        <li><strong>Virker den offline?</strong> Ja. Føj appen til din hjemmeskærm, så virker den uden internetadgang.</li>
+      </ul>
     `;
   }
 }
@@ -3322,12 +3345,11 @@ if ($miniClock && $miniClockContainer) {
   if (ogImage) ogImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
   if (twitterImage) twitterImage.setAttribute('content', currentBaseUrl + '/og-image.jpg');
 
-let canonical = document.querySelector('link[rel="canonical"]');
-  if (!canonical) {
-    canonical = document.createElement('link');
-    canonical.rel = 'canonical';
-    document.head.appendChild(canonical);
+  const canonical = document.getElementById('canonical-link');
+  if (canonical) {
+    canonical.href = currentBaseUrl + window.location.pathname + window.location.search;
   }
+  
   // Sørg for at inkludere 'search' parametrene (?title=...) så Google vil indeksere dem!
   canonical.href = currentBaseUrl + window.location.pathname + window.location.search;
   

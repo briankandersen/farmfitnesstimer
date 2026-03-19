@@ -4,6 +4,16 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.50] - 2026-03-19
+### Added
+* Implemented visually hidden, SEO-optimized `<h1>` text ("Farm Fitness Timer - Free Online Workout Clock") alongside the main logo to improve keyword relevance without altering the UI.
+* Added a hardcoded default `<link rel="canonical">` tag in the document `<head>` to prevent indexing race conditions before JavaScript execution.
+
+### Changed
+* Significantly upgraded the JSON-LD Structured Data from a basic `SoftwareApplication` to a comprehensive `WebApplication`, injecting a detailed `featureList` and `browserRequirements` to enhance Google Rich Snippets.
+* Completely rewrote the bottom SEO text container into a Generative Engine Optimization (GEO) friendly Q&A/FAQ format. This targets semantic search queries and LLM (AI) scraping behavior for both English and Danish users.
+* Refactored the JavaScript canonical URL generation to reliably append `window.location.search`, ensuring dynamically shared URLs (like custom AMRAPs and Circuits) are correctly indexed as unique pages rather than duplicates.
+
 ## [1.0.48] - 2026-03-19
 ### Fixed
 * Fixed a major SEO bug where dynamically generated canonical tags ignored query parameters (`window.location.search`). 
