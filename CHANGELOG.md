@@ -5,6 +5,13 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [1.0.50] - 2026-03-19
+### Fixed
+* Resolved a layout wrapping issue on narrower Android screens where setup fields would awkwardly stack into a single column.
+* Forced a strict 2-column grid layout across all mobile devices by setting `.field` width to `calc(50% - 5px)`.
+* Reduced `.field input` width from `100px` to `80px` to ensure stepper controls can sit side-by-side without overflowing smaller viewports.
+* Forced `.preset-bar` to `flex-wrap: nowrap` to prevent the action buttons (Save/Delete) from wrapping to a second line.
+
+## [1.0.49] - 2026-03-19
 ### Added
 * Implemented visually hidden, SEO-optimized `<h1>` text ("Farm Fitness Timer - Free Online Workout Clock") alongside the main logo to improve keyword relevance without altering the UI.
 * Added a hardcoded default `<link rel="canonical">` tag in the document `<head>` to prevent indexing race conditions before JavaScript execution.

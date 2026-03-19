@@ -160,17 +160,17 @@
   }
 
   .preset-bar {
-    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 8px; flex-wrap: nowrap;
     justify-content: center; max-width: 700px; width: 100%;
   }
   .preset-bar select {
-    font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600;
-    letter-spacing: 1px; padding: 8px 12px; background: var(--surface); 
+    font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; padding: 8px 10px; background: var(--surface);
     border: 2px solid var(--border); color: var(--text); border-radius: 4px;
-    outline: none; cursor: pointer; flex: 1; min-width: 160px; max-width: 280px;
+    outline: none; cursor: pointer; flex: 1; min-width: 100px; max-width: 280px;
     appearance: none; -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
+    background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px;
   }
   .preset-bar select:focus { border-color: var(--accent); }
   .preset-bar select option { background: var(--surface); color: var(--text); }
@@ -186,18 +186,22 @@
   .preset-btn.danger:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--dim); }
 
   .setup-fields {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; max-width: 700px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 10px; max-width: 700px; width: 100%;
   }
-  .field { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .field { 
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    width: calc(50% - 5px); max-width: 220px; /* Tvinger et smukt 2-kolonne layout */
+  }
   .field label {
-    font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600;
-    color: var(--dim); text-transform: uppercase; letter-spacing: 2px;
+    font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--dim); text-transform: uppercase; letter-spacing: 1px; text-align: center;
+    white-space: nowrap;
   }
   .field input {
     font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700;
-    width: 100px; text-align: center; background: var(--surface);
+    width: 80px; text-align: center; background: var(--surface); /* Smalere input sikrer plads på Android */
     border: 3px solid var(--border); color: var(--text); border-radius: 4px;
-    padding: 6px 10px; outline: none;
+    padding: 6px 4px; outline: none;
   }
   .field input:focus { border-color: var(--accent); }
 
