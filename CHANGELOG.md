@@ -4,6 +4,10 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.58] - 2026-03-19
+### Added
+* privacy.html
+
 ## [1.0.57] - 2026-03-19
 ### Fixed
 * Resolved a layout collision issue within the "Add Exercise" and "Add Segment" modal dialogs (`.seg-dialog-fields`) on narrow mobile screens.

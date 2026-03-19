@@ -1,4 +1,4 @@
-const CACHE_NAME = 'farm-fitness-timer-v1.0.57a';
+const CACHE_NAME = 'farm-fitness-timer-v1.0.58';
 
 const PRECACHE_URLS = [
   './index.html',
