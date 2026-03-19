@@ -481,8 +481,8 @@
   .compound-total strong { color: var(--accent); font-weight: 700; }
 
   #add-segment-dialog .dialog-box { max-width: 650px; }
-  .seg-dialog-fields { display: flex; flex-wrap: wrap; gap: 12px 8px; justify-content: center; max-width: 600px; width: 100%; }
-  .seg-dialog-fields .field input { font-size: 24px; width: 55px; padding: 6px 2px; } /* Slimmer input for mobile */
+  .seg-dialog-fields { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 600px; }
+  .seg-dialog-fields .field input { font-size: 24px; width: 75px; padding: 8px; }
   .seg-dialog-fields .field label { font-size: 11px; }
 
   .hidden { display: none !important; }
@@ -560,12 +560,20 @@
 
   /* Stepper buttons (+/-) */
   .stepper-container {
-    display: flex; align-items: center; gap: 5px; background: var(--surface);
+    display: flex; align-items: center; gap: 4px; background: var(--surface);
     border: 3px solid var(--border); border-radius: 4px; padding: 2px;
   }
   .stepper-container:focus-within { border-color: var(--accent); }
   .stepper-container input {
-    border: none !important; width: 70px !important; padding: 10px 0 !important; background: transparent !important;
+    border: none !important; 
+    width: 50px !important; /* Rettet fra 70px til 50px */
+    padding: 6px 0 !important; 
+    background: transparent !important;
+  }
+
+  /* Giver mere plads til felterne inde i dialogboksen på små mobilskærme */
+  @media (max-width: 450px) {
+    .dialog-box { padding: 30px 15px !important; }
   }
   .step-btn {
     background: transparent; border: none; color: var(--accent); font-family: 'Oswald', sans-serif;
