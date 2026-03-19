@@ -186,11 +186,11 @@
   .preset-btn.danger:disabled { opacity: 0.3; cursor: default; border-color: var(--border); color: var(--dim); }
 
   .setup-fields {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 10px; max-width: 700px; width: 100%;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 12px; max-width: 700px; width: 100%;
   }
   .field { 
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    width: calc(50% - 5px); max-width: 220px; /* Tvinger et smukt 2-kolonne layout */
+    width: calc(50% - 6px); max-width: 220px; 
   }
   .field label {
     font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600;
@@ -198,10 +198,10 @@
     white-space: nowrap;
   }
   .field input {
-    font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700;
-    width: 80px; text-align: center; background: var(--surface); /* Smalere input sikrer plads på Android */
+    font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700;
+    width: 60px; text-align: center; background: var(--surface); 
     border: 3px solid var(--border); color: var(--text); border-radius: 4px;
-    padding: 6px 4px; outline: none;
+    padding: 6px 2px; outline: none;
   }
   .field input:focus { border-color: var(--accent); }
 
@@ -562,7 +562,7 @@
   }
   .step-btn {
     background: transparent; border: none; color: var(--accent); font-family: 'Oswald', sans-serif;
-    font-size: 22px; font-weight: 700; width: 38px; height: 38px; cursor: pointer;
+    font-size: 22px; font-weight: 700; width: 34px; height: 34px; cursor: pointer; 
     display: flex; align-items: center; justify-content: center; transition: background 0.2s; border-radius: 4px;
   }
   .step-btn:hover { background: rgba(232, 168, 0, 0.1); }

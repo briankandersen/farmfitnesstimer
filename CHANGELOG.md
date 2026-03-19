@@ -4,6 +4,12 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.51] - 2026-03-19
+### Fixed
+* Fixed a bounding box collision issue on narrow Android devices (~360px viewport) where stepper containers physically overlapped in the center of the screen.
+* Reduced `.field input` width to `60px` (from `80px`) and `.step-btn` width to `34px` (from `38px`), bringing the total stepper component width safely under the 50% column constraint.
+* Increased the horizontal `gap` in `.setup-fields` to `12px` to ensure a clean, visible padding channel between the two columns.
+
 ## [1.0.50] - 2026-03-19
 ### Fixed
 * Resolved a layout wrapping issue on narrower Android screens where setup fields would awkwardly stack into a single column.
