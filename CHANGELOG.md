@@ -4,6 +4,11 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.57] - 2026-03-19
+### Fixed
+* Resolved a layout collision issue within the "Add Exercise" and "Add Segment" modal dialogs (`.seg-dialog-fields`) on narrow mobile screens.
+* Reduced the specific `.field input` width inside dialogs from `75px` to `55px` and adjusted padding to allow the stepper containers to fit cleanly side-by-side within the two-column grid.
+
 ## [1.0.56] - 2026-03-19
 ### Changed
 * Refined the vertical spacing in the active timer header to address crowding. Increased `margin-top` and added `margin-bottom` to the predictive "Next Up" indicator (`#t-next`). This restores visual balance by centering the text within the large gap between the active phase title and the timer digits, creating an elegant, less top-heavy interface.
