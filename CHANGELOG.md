@@ -4,16 +4,26 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.54] - 2026-03-19
+### Changed
+* Removed the redundant exercise name from the progress sub-text (`$tSub`) during Circuit workouts, as it is already prominently displayed in the main phase header (`$tPhase`).
+* Restructured the active timer HTML layout to stack the progress text above the navigation arrows (Skip forward/backward), preventing text crowding on narrow screens.
+* Redesigned the timer navigation arrows (`.timer-nav-icon`) from borderless icons to explicit buttons by adding a subtle background fill, borders, and a border-radius that matches the app's overall button aesthetics.
+* Removed hardcoded inline opacity styles from the timer navigation buttons to ensure consistent visibility.
+* Implemented a predictive "Next Up" indicator (`#t-next`) in the active Circuit timer screen.
+* Added `getNextCircuitText()` logic algorithm to accurately predict the next workflow phase:
+  * Prioritizes displaying upcoming "Rest" durations during active Work phases.
+  * Correctly predicts sequential sets/reps of the *same* exercise before predicting the *next* distinct exercise.
+  * Handles Circuit Rest and completion ("Done") states dynamically.
+* Made the `getNextCircuitText()` logic "Compound-aware". The Circuit UI will now correctly predict and display upcoming Compound segments (e.g., `Next: EMOM`) if the Circuit is nested within a larger workflow.
+* Implemented a final-phase detection algorithm. When the user reaches the absolute end of the workout queue, the prediction text now displays a highly motivating `— DONE —` indicator instead of an empty string or generic fallback.
+
 ## [1.0.53] - 2026-03-19
 ### Changed
 * Redesigned the action button layout at the bottom of the Circuit setup screen (`#circuit-setup`) for better UX and visual hierarchy.
 * Grouped the primary actions (`[+ EXERCISE]` and `[START]`) into the top row, upgrading `+ EXERCISE` to a full-size primary button.
 * Moved the secondary/destructive actions (`[← BACK]` and `[RESET]`) into their own dedicated row below the primary actions, forming a clean 2x2 grid.
-* Removed the redundant exercise name from the progress sub-text (`$tSub`) during Circuit workouts, as it is already prominently displayed in the main phase header (`$tPhase`).
-* Restructured the active timer HTML layout to stack the progress text above the navigation arrows (Skip forward/backward), preventing text crowding on narrow screens.
-* Redesigned the timer navigation arrows (`.timer-nav-icon`) from borderless icons to explicit buttons by adding a subtle background fill, borders, and a border-radius that matches the app's overall button aesthetics.
-* Removed hardcoded inline opacity styles from the timer navigation buttons to ensure consistent visibility.
-
+  
 ## [1.0.52] - 2026-03-19
 ### Added
 * Implemented a dedicated Import Manager modal (`#import-dialog`) providing explicit options for `[UPLOAD .JSON FILE]` and `[PASTE TEXT]`.
