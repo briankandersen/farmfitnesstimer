@@ -609,9 +609,9 @@
   
   <button class="menu-btn" data-type="settings" style="margin-top: 10px; border-color: var(--dim); color: var(--dim);">⚙ Settings</button>
   
-  <div style="display: flex; gap: 10px; margin-top: 10px;">
-    <button class="preset-btn" id="btn-export-ui" style="border-color: var(--dim);">Export Presets</button>
-    <button class="preset-btn" id="btn-import-ui" style="border-color: var(--dim);">Import Presets</button>
+  <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: center; width: 100%; max-width: 400px;">
+    <button class="btn btn-sm" id="btn-export-ui" style="flex: 1; border-color: var(--dim); color: var(--text);">Export</button>
+    <button class="btn btn-sm" id="btn-import-ui" style="flex: 1; border-color: var(--dim); color: var(--text);">Import</button>
     <input type="file" id="file-import-input" accept=".json" style="display:none;">
   </div>
 
@@ -983,12 +983,33 @@
 
 <div class="dialog-overlay" id="export-dialog">
   <div class="dialog-box" style="max-width: 450px;">
-    <h3>Export Presets</h3>
+    <h3>Export Data</h3>
     <div class="export-list-container" id="export-list-container">
-      </div>
-    <div class="dialog-actions" style="margin-top: 15px;">
+    </div>
+    <div style="text-align: left; margin-top: 15px; width: 100%;">
+      <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--text); font-size: 14px; font-family: 'Source Sans 3', sans-serif;">
+        <input type="checkbox" id="export-include-settings" checked style="width: 16px; height: 16px; accent-color: var(--accent);">
+        Include Global Settings
+      </label>
+    </div>
+    <div class="dialog-actions" style="margin-top: 15px; flex-wrap: wrap; justify-content: center;">
       <button class="btn btn-back btn-sm" id="btn-export-cancel">Cancel</button>
-      <button class="btn btn-sm" id="btn-export-confirm">Export</button>
+      <button class="btn btn-sm" id="btn-export-copy" style="border-color: var(--dim); color: var(--dim);">Copy Text</button>
+      <button class="btn btn-sm" id="btn-export-confirm">Download</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialog-overlay" id="import-dialog">
+  <div class="dialog-box" style="max-width: 400px;">
+    <h3>Import Data</h3>
+    <p style="color: var(--dim); font-size: 14px; margin-bottom: 20px; text-align: center;">Vælg hvordan du vil importere:</p>
+    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+      <button class="btn btn-sm" id="btn-import-file" style="width: 100%;">UPLOAD .JSON FILE</button>
+      <button class="btn btn-sm" id="btn-import-paste" style="width: 100%; border-color: var(--dim); color: var(--dim);">PASTE TEXT</button>
+    </div>
+    <div class="dialog-actions" style="margin-top: 25px; width: 100%;">
+      <button class="btn btn-back btn-sm" id="btn-import-cancel" style="width: 100%;">Cancel</button>
     </div>
   </div>
 </div>
@@ -2590,6 +2611,7 @@ function closeTopDialog() {
     { id: 'save-dialog', cancelBtn: 'btn-save-cancel' },
     { id: 'add-segment-dialog', cancelBtn: 'btn-seg-cancel' },
     { id: 'export-dialog', cancelBtn: 'btn-export-cancel' },
+    { id: 'import-dialog', cancelBtn: 'btn-import-cancel' },
     { id: 'import-conflict-dialog', cancelBtn: 'btn-conflict-skip' },
     { id: 'import-summary-dialog', cancelBtn: 'btn-summary-close' },
     { id: 'add-exercise-dialog', cancelBtn: 'btn-ex-cancel' },
@@ -3042,7 +3064,8 @@ document.getElementById('btn-export-ui').addEventListener('click', () => {
 
 document.getElementById('btn-export-cancel').addEventListener('click', () => hide($exportDialog));
 
-document.getElementById('btn-export-confirm').addEventListener('click', () => {
+// --- EXPORT LOGIK ---
+function getExportData() {
   const exportObj = {};
   $exportListContainer.querySelectorAll('.item-check:checked').forEach(cb => {
     const type = cb.dataset.type;
@@ -3050,34 +3073,67 @@ document.getElementById('btn-export-confirm').addEventListener('click', () => {
     if (!exportObj[type]) exportObj[type] = {};
     exportObj[type][name] = exportDataMap[type][name];
   });
+  if (document.getElementById('export-include-settings').checked) {
+    exportObj['_settings'] = globalSettings; 
+  }
+  return exportObj;
+}
 
-  if (Object.keys(exportObj).length === 0) return alert("Please select at least one preset to export.");
+document.getElementById('btn-export-confirm').addEventListener('click', () => {
+  const exportObj = getExportData();
+  if (Object.keys(exportObj).length === 0) return alert("Please select at least one item to export.");
 
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
   const dlAnchorElem = document.createElement('a');
-  dlAnchorElem.setAttribute("href",     dataStr);
-  dlAnchorElem.setAttribute("download", `farm-fitness-presets-${new Date().toISOString().slice(0,10)}.json`);
+  dlAnchorElem.setAttribute("href", dataStr);
+  dlAnchorElem.setAttribute("download", `farm-fitness-backup-${new Date().toISOString().slice(0,10)}.json`);
   dlAnchorElem.click();
   dlAnchorElem.remove();
   hide($exportDialog);
 });
 
-// Import DOM & State Queue
-const $fileImportInput = document.getElementById('file-import-input');
-const $importConflictDialog = document.getElementById('import-conflict-dialog');
-const $conflictMessage = document.getElementById('conflict-message');
-const $conflictRenameInput = document.getElementById('conflict-rename-input');
-const $conflictApplyAll = document.getElementById('conflict-apply-all');
-const $importSummaryDialog = document.getElementById('import-summary-dialog');
-const $importSummaryList = document.getElementById('import-summary-list');
+document.getElementById('btn-export-copy').addEventListener('click', async () => {
+  const exportObj = getExportData();
+  if (Object.keys(exportObj).length === 0) return alert("Please select at least one item to copy.");
+  try {
+    await navigator.clipboard.writeText(JSON.stringify(exportObj, null, 2));
+    const btn = document.getElementById('btn-export-copy');
+    const originalText = btn.innerText;
+    btn.innerText = "COPIED! ✓";
+    btn.style.color = "var(--bg)";
+    btn.style.backgroundColor = "var(--dim)";
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.style.color = "var(--dim)";
+      btn.style.backgroundColor = "transparent";
+    }, 2000);
+  } catch (err) { alert("Kunne ikke kopiere. Tjek browser tilladelser."); }
+});
 
-let importQueue = [];
-let importResults = [];
-let applyAllAction = null; // 'skip', 'overwrite', 'rename'
+// --- IMPORT LOGIK ---
+const $importDialog = document.getElementById('import-dialog');
 
+// Åbn det nye import vindue i stedet for fil-browseren
 document.getElementById('btn-import-ui').addEventListener('click', () => {
+  show($importDialog);
+});
+document.getElementById('btn-import-cancel').addEventListener('click', () => hide($importDialog));
+
+// Valg 1: Upload fil
+document.getElementById('btn-import-file').addEventListener('click', () => {
+  hide($importDialog);
   $fileImportInput.value = '';
   $fileImportInput.click();
+});
+
+// Valg 2: Paste
+document.getElementById('btn-import-paste').addEventListener('click', async () => {
+  try {
+    const clipboardText = await navigator.clipboard.readText();
+    if (!clipboardText.trim().startsWith('{')) return alert("Det kopierede tekst ligner ikke en gyldig Farm Fitness backup.");
+    hide($importDialog);
+    startImportProcess(JSON.parse(clipboardText));
+  } catch (err) { alert("Kunne ikke læse udklipsholderen."); }
 });
 
 $fileImportInput.addEventListener('change', (e) => {
@@ -3105,6 +3161,13 @@ function startImportProcess(data) {
   $conflictApplyAll.checked = false;
 
   for (const type in data) {
+    if (type === '_settings') {
+      globalSettings = { ...globalSettings, ...data[type] };
+      localStorage.setItem('farmGlobalSettings', JSON.stringify(globalSettings));
+      applyGlobalSettingsUI();
+      importResults.push({ status: 'added', text: `Updated: <strong>Global Settings</strong>` });
+      continue;
+    }
     for (const name in data[type]) {
       importQueue.push({ type, name, originalName: name, data: data[type][name] });
     }

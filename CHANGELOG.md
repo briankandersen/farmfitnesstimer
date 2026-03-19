@@ -4,6 +4,17 @@ All notable changes to the Farm Fitness Timer will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.52] - 2026-03-19
+### Added
+* Implemented a dedicated Import Manager modal (`#import-dialog`) providing explicit options for `[UPLOAD .JSON FILE]` and `[PASTE TEXT]`.
+* Added clipboard read/write functionality (`navigator.clipboard`) to allow users to backup and restore their app configuration via text, bypassing the native file system.
+* Added an "Include Global Settings" checkbox to the Export Manager, enabling the bundling of `globalSettings` (audio preferences, UI toggles) into the export payload under the `_settings` key.
+* Extended the `startImportProcess` queue logic to intercept and seamlessly apply imported `_settings` data without triggering conflict resolution.
+
+### Changed
+* Rerouted the main menu `[Import]` button to open the new Import Manager modal instead of directly triggering the hidden `<input type="file">`.
+* Consolidated the export payload generation into a single `getExportData()` helper function to serve both JSON download and Clipboard copy actions.
+
 ## [1.0.51] - 2026-03-19
 ### Fixed
 * Fixed a bounding box collision issue on narrow Android devices (~360px viewport) where stepper containers physically overlapped in the center of the screen.
