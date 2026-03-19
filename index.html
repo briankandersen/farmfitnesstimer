@@ -446,17 +446,19 @@
 
   /* ── TIMER NAVIGATION ICONS (The fix for the arrows) ── */
   .timer-nav-icon {
-    -webkit-appearance: none; appearance: none; /* Tvinger iOS standard-udseende væk */
-    background: transparent; border: none; /* Ingen grim baggrund eller kant */
+    -webkit-appearance: none; appearance: none;
+    background: rgba(232, 168, 0, 0.05); /* Svag guld baggrund så den ligner en knap */
+    border: 1px solid rgba(232, 168, 0, 0.2); /* Svag guld kant */
     color: var(--accent); cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    padding: 15px; /* Stor hit-area for tykke svedige fingre */
-    border-radius: 50%; /* Circle for halo-effekten */
+    padding: 10px 16px; /* Rektangulær form */
+    border-radius: 6px; /* Matchende afrunding */
     transition: all 0.15s;
     outline: none;
   }
   .timer-nav-icon:hover {
-    background: rgba(232, 168, 0, 0.1); /* Diskret guld halo på hover/tap */
+    background: rgba(232, 168, 0, 0.15); 
+    border-color: rgba(232, 168, 0, 0.4);
   }
   .timer-nav-icon svg {
     width: 24px; height: 24px;
@@ -822,14 +824,16 @@
   <div class="compound-list" id="circuit-list">
     <div class="compound-empty">No exercises added yet</div>
   </div>
-  <div class="compound-total" id="circuit-total"></div>
-  <div class="compound-add-bar">
-    <button class="btn btn-sm" id="btn-add-exercise">+ Exercise</button>
+  <div class="compound-total" id="circuit-total" style="margin-bottom: 10px;"></div>
+  
+  <div class="setup-actions" style="margin-bottom: 12px;">
+    <button class="btn" id="btn-add-exercise">+ Exercise</button>
+    <button class="btn" id="btn-circuit-start">Start</button>
   </div>
+  
   <div class="setup-actions">
     <button class="btn btn-back" id="btn-circuit-back">← Back</button>
     <button class="btn btn-back" id="btn-circuit-reset">Reset</button>
-    <button class="btn" id="btn-circuit-start">Start</button>
   </div>
   <div class="setup-actions url-actions-container" style="margin-top:0; gap:10px; display: none;">
     <button class="btn btn-back btn-sm" id="btn-circuit-copy-url">Copy URL</button>
@@ -923,14 +927,16 @@
   <div class="timer-phase" id="t-phase"></div>
   <div class="timer-display" id="t-display">00:00</div>
   
-  <div style="display: flex; align-items: center; gap: 10px; z-index: 10; margin-bottom: 5px;">
-    <button class="timer-nav-icon nav-btn" id="btn-prev-ex" style="opacity: 0.4; display: none;"><svg><use href="#icon-chevron-left"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-left"></use></svg></button>
-    <button class="timer-nav-icon nav-btn" id="btn-prev-round" style="opacity: 0.6; display: none;"><svg><use href="#icon-chevron-left"></use></svg></button>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; z-index: 10; margin-bottom: 10px;">
+    <div class="timer-sub" id="t-sub" style="margin-top: 0; text-align: center;"></div>
     
-    <div class="timer-sub" id="t-sub" style="margin-top: 0; min-width: 120px; text-align: center;"></div>
-    
-    <button class="timer-nav-icon nav-btn" id="btn-next-round" style="opacity: 0.6; display: none;"><svg><use href="#icon-chevron-right"></use></svg></button>
-    <button class="timer-nav-icon nav-btn" id="btn-next-ex" style="opacity: 0.4; display: none;"><svg><use href="#icon-chevron-right"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-right"></use></svg></button>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="timer-nav-icon nav-btn" id="btn-prev-ex" style="display: none;"><svg><use href="#icon-chevron-left"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-left"></use></svg></button>
+      <button class="timer-nav-icon nav-btn" id="btn-prev-round" style="display: none;"><svg><use href="#icon-chevron-left"></use></svg></button>
+      
+      <button class="timer-nav-icon nav-btn" id="btn-next-round" style="display: none;"><svg><use href="#icon-chevron-right"></use></svg></button>
+      <button class="timer-nav-icon nav-btn" id="btn-next-ex" style="display: none;"><svg><use href="#icon-chevron-right"></use></svg><svg style="margin-left:-12px;"><use href="#icon-chevron-right"></use></svg></button>
+    </div>
   </div>
   
   <div class="timer-controls">
@@ -2424,7 +2430,7 @@ function updateCircuitDisplay() {
   }
 
   const exInfo = ex.rounds > 1 ? ` · Rep ${cs.exRound}/${ex.rounds}` : '';
-  let sub = `Exercise ${cs.exIdx+1}/${cs.exercises.length} · ${ex.name}${exInfo} · Circuit ${cs.circuitRound}/${cs.totalRounds}`;
+  let sub = `Exercise ${cs.exIdx+1}/${cs.exercises.length}${exInfo} · Circuit ${cs.circuitRound}/${cs.totalRounds}`;
   if (compoundRunning) { const ri = compoundTotalRounds > 1 ? ` R${compoundCurrentRound}/${compoundTotalRounds}` : ''; sub = `[${compoundIndex+1}/${compoundSegments.length}${ri}] ${sub}`; };
   $tSub.textContent = sub;
 }
